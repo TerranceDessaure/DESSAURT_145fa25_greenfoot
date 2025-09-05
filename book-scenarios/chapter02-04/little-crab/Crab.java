@@ -7,7 +7,7 @@ public class Crab extends Actor
 {
     public void act()
     {
-        // Add your action code here
+        move(-5);
     } // end method act
 } // end class Crab
 
