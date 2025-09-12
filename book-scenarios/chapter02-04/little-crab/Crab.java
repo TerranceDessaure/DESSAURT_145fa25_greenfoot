@@ -10,9 +10,7 @@ public class Crab extends Actor
      * whenever the 'Act' or 'Run' button gets pressed. 
      */
     public void act()
-    {
-
-        
+    {    
         // if the crab intersects with the boundary of the world,
         // make it turn enough so that it can keep moving
         if (isAtEdge())
