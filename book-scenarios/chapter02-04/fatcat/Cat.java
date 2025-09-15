@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Cat  extends Actor
 {
     private boolean tired = false;
-    private boolean hungry = false;
-    private boolean bored = true;
+    private boolean hungry = true;
+    private boolean bored = false;
     
     /**
      * Walk a bit to the left. 'distance' determines how far to walk. Use small numbers (1 to 10).

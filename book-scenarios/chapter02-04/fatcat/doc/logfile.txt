@@ -1,8 +1,15 @@
-Project documentation
+Class documentation
 <---- javadoc command: ---->
 C:\Program Files\Greenfoot\jdk\bin\javadoc.exe
--sourcepath
-C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat
+-author
+-version
+-nodeprecated
+-protected
+-Xdoclint:none
+-noindex
+-notree
+-nohelp
+-nonavbar
 -source
 21
 -classpath
@@ -13,44 +20,16 @@ C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\cha
 UTF-8
 -charset
 UTF-8
--doctitle
-fatcat
--windowtitle
-fatcat
--author
--version
--nodeprecated
--protected
--Xdoclint:none
--link
-https://docs.oracle.com/en/java/javase/21/docs/api/
-C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat/Cat.java
-C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat/CatWorld.java
-C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat/MyCat.java
+C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\MyCat.java
 <---- end of javadoc command ---->
-Loading source file C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\Cat.java...
-Loading source file C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\CatWorld.java...
 Loading source file C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\MyCat.java...
 Constructing Javadoc information...
 warning: unknown enum constant Tag.Any
   reason: class file for threadchecker.Tag not found
 warning: unknown enum constant Tag.Any
-warning: unknown enum constant Tag.Any
-warning: unknown enum constant Tag.Any
-Building index for all the packages and classes...
 Standard Doclet version 21.0.4+7-LTS
 Building tree for all the packages and classes...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\Cat.html...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\CatWorld.html...
 Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\MyCat.html...
 Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\package-summary.html...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\package-tree.html...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\overview-tree.html...
-Building index for all classes...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\allclasses-index.html...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\allpackages-index.html...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\index-all.html...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\search.html...
 Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\index.html...
-Generating C:\Users\Terrance Dessaure\Desktop\DESSAURT_145fa25_greenfoot\book-scenarios\chapter02-04\fatcat\doc\help-doc.html...
-4 warnings
+2 warnings
