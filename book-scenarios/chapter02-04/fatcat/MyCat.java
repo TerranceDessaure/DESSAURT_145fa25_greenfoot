@@ -14,7 +14,8 @@ public class MyCat extends Cat
      */
     public void act()
     {
-       
-    }    
+       eat();
+       dance();
+    }// end method act    
     
 }// end class MyCat

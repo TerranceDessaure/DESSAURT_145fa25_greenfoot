@@ -19,6 +19,13 @@ public class Crab extends Actor
 
         } // end if
 
+        // make the crab turn by 5 degrees,at random, 
+        // ten oercent if the time
+        if(Greenfoot.getRandomNumber(100) < 10) 
+        {
+            turn(Greenfoot.getRandomNumber(91) - 45 );
+        }// end if
+        
         // attempt to move the crab forward by 5 pixels
         move(5);
     } // end method act
