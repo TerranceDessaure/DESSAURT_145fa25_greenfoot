@@ -8,14 +8,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyCat extends Cat
 {
-   
+
+    private boolean isSleepy = false;
+    private boolean isBored = true;
+    private boolean isHungry = true;
     /**
      * Act - do whatever the MyCat wants to do.
      */
     public void act()
     {
-       eat();
-       dance();
+        if (isBored){
+            dance();
+        }// end isBored if
+
+        shoutHooray();
+        if (isSleepy){
+            sleep(1);
+        }// end isSleepy if 
+        
+        if (isHungry){
+            eat();
+        }// end isHungry if
+
+       
     }// end method act    
-    
+
 }// end class MyCat
