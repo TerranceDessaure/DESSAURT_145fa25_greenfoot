@@ -25,9 +25,24 @@ public class Crab extends Actor
         {
             turn(Greenfoot.getRandomNumber(91) - 45 );
         }// end if
-        
+
         // attempt to move the crab forward by 5 pixels
         move(5);
+
+        lookForWorm();
     } // end method act
+
+    /**
+     * Check whether we hae stumlbled upon a worm.
+     * If we have, eat it. If not, do nothing.
+     */
+    public void lookForWorm()
+    {
+        // If the crab sees a worm, it eats it
+        if( isTouching(Worm.class))
+        {
+            removeTouching(Worm.class);
+        }// end if
+    }// end method lookForWorm
 } // end class Crab
 
