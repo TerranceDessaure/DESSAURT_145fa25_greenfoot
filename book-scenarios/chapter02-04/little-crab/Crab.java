@@ -11,24 +11,16 @@ public class Crab extends Actor
      */
     public void act()
     {    
-        // if the crab intersects with the boundary of the world,
-        // make it turn enough so that it can keep moving
-        if (isAtEdge())
+        if (Greenfoot.isKeyDown("left"))
         {
-            turn(17);// turn to the right by 17 degrees
-
-        } // end if
-
-        // make the crab turn by 5 degrees,at random, 
-        // ten oercent if the time
-        if(Greenfoot.getRandomNumber(100) < 10) 
-        {
-            turn(Greenfoot.getRandomNumber(91) - 45 );
+            turn(-4);
         }// end if
-
-        // attempt to move the crab forward by 5 pixels
+        
+        if(Greenfoot.isKeyDown("right"))
+        {
+            turn(4);
+        }// end if
         move(5);
-
         lookForWorm();
     } // end method act
 
@@ -44,5 +36,29 @@ public class Crab extends Actor
             removeTouching(Worm.class);
         }// end if
     }// end method lookForWorm
-} // end class Crab
+    
+    /**
+     * make the crab turn a random number of degrees (between
+     * -45 degrees and +45 degrees), 
+     * about ten oercent if the time.
+     */
+    public void randomTurn()
+    {
+        if(Greenfoot.getRandomNumber(100) < 10) 
+        {
+            turn(Greenfoot.getRandomNumber(91) - 45 );
+        }// end if
+    }// end method randomTurn
 
+    /**
+     * if the crab intersects with the boundary of the world, 
+     * make it turn enough so that it can keep moving
+     */
+    public void turnAtEdge()
+    {
+        if (isAtEdge())
+        {
+            turn(17);// turn to the right by 17 degrees
+        } // end if
+    }// end method turnAtEdge
+} // end class Crab
