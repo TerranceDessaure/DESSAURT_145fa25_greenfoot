@@ -11,15 +11,7 @@ public class Crab extends Actor
      */
     public void act()
     {    
-        if (Greenfoot.isKeyDown("left"))
-        {
-            turn(-4);
-        }// end if
-        
-        if(Greenfoot.isKeyDown("right"))
-        {
-            turn(4);
-        }// end if
+        checkKeypress();
         move(5);
         lookForWorm();
     } // end method act
@@ -34,9 +26,10 @@ public class Crab extends Actor
         if( isTouching(Worm.class))
         {
             removeTouching(Worm.class);
+            Greenfoot.playSound("slurp.wav");
         }// end if
     }// end method lookForWorm
-    
+
     /**
      * make the crab turn a random number of degrees (between
      * -45 degrees and +45 degrees), 
@@ -61,4 +54,21 @@ public class Crab extends Actor
             turn(17);// turn to the right by 17 degrees
         } // end if
     }// end method turnAtEdge
+
+    /**
+     * Chesks to see if keys are pressed to allow the crab
+     * to turn left or right
+     */
+    public void checkKeypress()
+    {
+        if (Greenfoot.isKeyDown("left"))
+        {
+            turn(-4);
+        }// end if
+
+        if(Greenfoot.isKeyDown("right"))
+        {
+            turn(4);
+        }// end if 
+    }// end method checkKeypress
 } // end class Crab

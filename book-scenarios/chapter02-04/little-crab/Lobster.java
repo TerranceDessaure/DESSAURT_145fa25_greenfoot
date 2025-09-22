@@ -16,8 +16,9 @@ public class Lobster extends Actor
     {
         turnAtEdge();
         randomTurn();
-        move(5);
+        move(3);
         lookForCrab();
+        
     }// end method act
     
     /**
@@ -30,6 +31,8 @@ public class Lobster extends Actor
         if( isTouching(Crab.class))
         {
             removeTouching(Crab.class);
+            Greenfoot.playSound("au.wav");
+            Greenfoot.stop();
         }// end if
     }// end method lookForWorm
     

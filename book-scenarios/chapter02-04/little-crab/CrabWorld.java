@@ -9,5 +9,5 @@ public class CrabWorld extends World
     public CrabWorld() 
     {
         super(560, 560, 1);
-    }
-}
+    }//end CrabWorld constructor
+}// end class CrabWorld
