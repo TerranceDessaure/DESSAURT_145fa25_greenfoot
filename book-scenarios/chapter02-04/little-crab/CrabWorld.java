@@ -1,4 +1,4 @@
-import greenfoot.*;  // (Actor, World, Greenfoot, GreenfootImage)
+ import greenfoot.*;  // (Actor, World, Greenfoot, GreenfootImage)
 
 public class CrabWorld extends World
 {
@@ -8,6 +8,9 @@ public class CrabWorld extends World
      */
     public CrabWorld() 
     {
+        // set the size and resolution of the world
         super(560, 560, 1);
+        Crab myCrab = new Crab();
+        addObject( myCrab, 250, 200);
     }//end CrabWorld constructor
 }// end class CrabWorld
