@@ -5,6 +5,24 @@ import greenfoot.*;
  */
 public class Crab extends Actor
 {
+    /* INSTANCE VARIABLES (FIELDS) */
+    private GreenfootImage image1;// image1 can be accessed anywhere in the class
+    private GreenfootImage image2;// image2 can be accessed anywhere in the class
+    
+    /* CONSTRUCTORS */
+    /**
+     * Initialize a newly instantiated crab object with
+     * its two possible images; then set the initial image to
+     * one of those images.
+     */
+    public Crab()
+    {
+       image1 = new GreenfootImage("crab.png");
+       image2 = new GreenfootImage("crab2.png");
+       setImage( image1 ); // the crabs initial image will be set to image1
+    }// end Crab constructor
+    /* METHODS */
+
     /**
      * Act - do whatever the crab wants to do. This method is called
      * whenever the 'Act' or 'Run' button gets pressed. 
@@ -14,6 +32,7 @@ public class Crab extends Actor
         checkKeypress();
         move(5);
         lookForWorm();
+        switchImage();
     } // end method act
 
     /**
@@ -63,7 +82,7 @@ public class Crab extends Actor
     {
         if (Greenfoot.isKeyDown("left"))
         {
-            turn(-4);
+            turn(4);
         }// end if
 
         if(Greenfoot.isKeyDown("right"))
@@ -71,4 +90,19 @@ public class Crab extends Actor
             turn(4);
         }// end if 
     }// end method checkKeypress
+    
+    /**
+     * Alternates the crab's image between image1 and image2
+     */
+    public void switchImage()
+    {
+        if(getImage() == image1 )
+        {
+            setImage( image2 );
+        }
+        else // otherwise.. if the current image is image2...
+        {
+            setImage( image1 );
+        }// end if/else
+    }// end method switchImage
 } // end class Crab

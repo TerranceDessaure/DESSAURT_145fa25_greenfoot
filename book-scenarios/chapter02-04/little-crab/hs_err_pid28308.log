@@ -1,0 +1,239 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 536870912 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3616), pid=28308, tid=3240
+#
+# JRE version:  (21.0.4+7) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.4+7-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:MaxGCPauseMillis=50 -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:53991 -Dfile.encoding=UTF-8 bluej.runtime.ExecServer UTF-8
+
+Host: AMD Ryzen 5 5500                               , 12 cores, 31G,  Windows 11 , 64 bit Build 26100 (10.0.26100.5074)
+Time: Tue Sep 30 22:27:55 2025 Eastern Daylight Time elapsed time: 2.030757 seconds (0d 0h 0m 2s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000022d041c4530):  JavaThread "Unknown thread" [_thread_in_vm, id=3240, stack(0x000000a80df00000,0x000000a80e000000) (1024K)]
+
+Stack: [0x000000a80df00000,0x000000a80e000000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6cbcf9]
+V  [jvm.dll+0x8a5551]
+V  [jvm.dll+0x8a7a7e]
+V  [jvm.dll+0x8a8153]
+V  [jvm.dll+0x27eca6]
+V  [jvm.dll+0x6c8445]
+V  [jvm.dll+0x6bd13a]
+V  [jvm.dll+0x354a0a]
+V  [jvm.dll+0x35c5b6]
+V  [jvm.dll+0x3adf3e]
+V  [jvm.dll+0x3ae1e8]
+V  [jvm.dll+0x328bcc]
+V  [jvm.dll+0x32972b]
+V  [jvm.dll+0x86e7b9]
+V  [jvm.dll+0x3bac91]
+V  [jvm.dll+0x857973]
+V  [jvm.dll+0x44f32e]
+V  [jvm.dll+0x450f71]
+C  [jli.dll+0x5278]
+C  [ucrtbase.dll+0x37b0]
+C  [KERNEL32.DLL+0x2e8d7]
+C  [ntdll.dll+0x8d9c]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffeb53d3088, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x0000022d06571ac0 WorkerThread "GC Thread#0"                     [id=14956, stack(0x000000a80e000000,0x000000a80e100000) (1024K)]
+  0x0000022d065837a0 ConcurrentGCThread "G1 Main Marker"            [id=25760, stack(0x000000a80e100000,0x000000a80e200000) (1024K)]
+  0x0000022d06584a40 WorkerThread "G1 Conc#0"                       [id=24420, stack(0x000000a80e200000,0x000000a80e300000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffeb4adb4f7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffeb5447408] Heap_lock - owner thread: 0x0000022d041c4530
+
+Heap address: 0x0000000603000000, size: 8144 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 32 size 80 Howl #buckets 8 coarsen threshold 7372 Howl Bitmap #cards 1024 size 144 coarsen threshold 921 Card regions per heap region 1 cards per card region 8192
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000603000000, 0x0000000800000000)
+  region size 4096K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffeb4ec5669]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.008 Loaded shared library C:\Program Files\Greenfoot\jdk\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff670180000 - 0x00007ff67018e000 	C:\Program Files\Greenfoot\jdk\bin\java.exe
+0x00007fff1a2e0000 - 0x00007fff1a549000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007fff18570000 - 0x00007fff18639000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007fff17850000 - 0x00007fff17c43000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007fff17f60000 - 0x00007fff180ab000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007fff020c0000 - 0x00007fff020db000 	C:\Program Files\Greenfoot\jdk\bin\VCRUNTIME140.dll
+0x00007fff01ff0000 - 0x00007fff02008000 	C:\Program Files\Greenfoot\jdk\bin\jli.dll
+0x00007fff19fa0000 - 0x00007fff1a164000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffefaec0000 - 0x00007ffefb153000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.5074_none_3e0d6f78e32fd63f\COMCTL32.dll
+0x00007fff17e70000 - 0x00007fff17e97000 	C:\WINDOWS\System32\win32u.dll
+0x00007fff18700000 - 0x00007fff187a9000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007fff19a70000 - 0x00007fff19a9b000 	C:\WINDOWS\System32\GDI32.dll
+0x00007fff17670000 - 0x00007fff1779d000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007fff177a0000 - 0x00007fff17843000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007fff18110000 - 0x00007fff1813f000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007fff07940000 - 0x00007fff0794c000 	C:\Program Files\Greenfoot\jdk\bin\vcruntime140_1.dll
+0x00007ffec8de0000 - 0x00007ffec8e6e000 	C:\Program Files\Greenfoot\jdk\bin\msvcp140.dll
+0x00007ffeb47a0000 - 0x00007ffeb5528000 	C:\Program Files\Greenfoot\jdk\bin\server\jvm.dll
+0x00007fff183b0000 - 0x00007fff18464000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007fff18640000 - 0x00007fff186e6000 	C:\WINDOWS\System32\sechost.dll
+0x00007fff1a170000 - 0x00007fff1a288000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007fff19aa0000 - 0x00007fff19b14000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007fff16cf0000 - 0x00007fff16d4e000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007fff0e670000 - 0x00007fff0e67b000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007fff0e630000 - 0x00007fff0e665000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007fff16c80000 - 0x00007fff16c94000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007fff16250000 - 0x00007fff1626b000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007fff07920000 - 0x00007fff0792a000 	C:\Program Files\Greenfoot\jdk\bin\jimage.dll
+0x00007fff0e8d0000 - 0x00007fff0eb12000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007fff19500000 - 0x00007fff1987b000 	C:\WINDOWS\System32\combase.dll
+0x00007fff187b0000 - 0x00007fff18887000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffefe890000 - 0x00007ffefe8cd000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007fff17dd0000 - 0x00007fff17e69000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffef0aa0000 - 0x00007ffef0adc000 	C:\Program Files\Greenfoot\jdk\bin\jdwp.dll
+0x00007fff01fd0000 - 0x00007fff01fef000 	C:\Program Files\Greenfoot\jdk\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Greenfoot\jdk\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.5074_none_3e0d6f78e32fd63f;C:\Program Files\Greenfoot\jdk\bin\server
+
+VM Arguments:
+jvm_args: -XX:MaxGCPauseMillis=50 -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:53991 -Dfile.encoding=UTF-8 
+java_command: bluej.runtime.ExecServer UTF-8
+java_class_path (initial): C:\Program Files\Greenfoot\lib\greenfoot.jar;C:\Program Files\Greenfoot\lib\javafx-base-21.0.3-win.jar;C:\Program Files\Greenfoot\lib\javafx-controls-21.0.3-win.jar;C:\Program Files\Greenfoot\lib\javafx-fxml-21.0.3-win.jar;C:\Program Files\Greenfoot\lib\javafx-graphics-21.0.3-win.jar;C:\Program Files\Greenfoot\lib\javafx-media-21.0.3-win.jar;C:\Program Files\Greenfoot\lib\javafx-swing-21.0.3-win.jar;C:\Program Files\Greenfoot\lib\javafx-web-21.0.3-win.jar;C:\Program Files\Greenfoot\lib\junit-4.12.jar;C:\Program Files\Greenfoot\lib\junit-jupiter-5.5.2.jar;C:\Program Files\Greenfoot\lib\junit-jupiter-api-5.5.2.jar;C:\Program Files\Greenfoot\lib\junit-jupiter-engine-5.5.2.jar;C:\Program Files\Greenfoot\lib\junit-jupiter-params-5.5.2.jar;C:\Program Files\Greenfoot\lib\junit-platform-commons-1.5.2.jar;C:\Program Files\Greenfoot\lib\junit-platform-engine-1.5.2.jar;C:\Program Files\Greenfoot\lib\junit-platform-launcher-1.5.2.jar;C:\Program Files\Greenfoot\lib\junit-platform-suite-api-1.5.2.jar;C:\Program Files\Greenfoot\lib\junit-vintage-engine-5.5.2.jar;C:\Program Files\Greenfoot\lib\hamcrest-core-1.3.jar;C:\Program Files\Greenfoot\lib\opentest4j-1.2.0.jar;C:\Program Files\Greenfoot\lib\bluej.jar;C:\Program Files\Greenfoot\lib\classgraph-4.8.90.jar;C:\Program Files\Greenfoot\lib\diffutils-1.2.1.jar;C:\Program Files\Greenfoot\lib\commons-logging-1.2.jar;C:\Program Files\Greenfoot\lib\jl1.0.1.jar;C:\Program Files\Greenfoot\lib\opencsv-2.3.jar;C:\Program Files\Greenfoot\lib\opencsv-2.4.jar;C:\Program Files\Greenfoot\lib\xom-1.3.9.jar;C:\Program Files\Greenfoot\lib\lang-stride.jar;C:\Program Files\Greenfoot\lib\nsmenufx-3.1.0.jar;C:\Program Files\Greenfoot\lib\wellbehavedfx-0.3.3.jar;C:\Program Files\Greenfoot\lib\guava-33.3.1-jre.jar;C:\Program Files\Greenfoot\lib\failureaccess-1.0.2.jar;C:\Program Files\Greenfoot\lib\simple-png-0.2.0.jar;C:\Program Files\Greenfoot\lib\simple-png-javafx-0.2.0.jar;C:\Program Files\Greenfoot\lib\httpclient-4.5.13.jar;C:\Program Files\Greenfoot\lib\httpcore-4.4.13.jar;C:\Program Files\Greenfoot\lib\httpmime-4.1.1.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.base.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.controls.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.fxml.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.graphics.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.media.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.properties.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.swing.jar;C:\Program Files\Greenfoot\lib\javafx\javafx.web.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 4194304                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 536870912                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+    uintx MaxGCPauseMillis                         = 50                                        {product} {command line}
+   size_t MaxHeapSize                              = 8539602944                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 4194304                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5839372                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122909434                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122909434                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 8539602944                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+PATH=C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\Terrance Dessaure\AppData\Local\Microsoft\WindowsApps;C:\Users\Terrance Dessaure\.dotnet\tools;C:\ProgramData\Terrance Dessaure\GitHubDesktop\bin;C:\Users\Terrance Dessaure\AppData\Local\GitHubDesktop\bin
+USERNAME=Terrance Dessaure
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD
+TMP=C:\Users\TERRAN~1\AppData\Local\Temp
+TEMP=C:\Users\TERRAN~1\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.5074)
+OS uptime: 17 days 2:24 hours
+
+CPU: total 12 (initial active 12) (12 cores per cpu, 2 threads per core) family 25 model 80 stepping 0 microcode 0xa500011, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4a, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, rdtscp, rdpid, fsrm, f16c, pku, cet_ss
+Processor Information for all 12 processors :
+  Max Mhz: 3801, Current Mhz: 3801, Mhz Limit: 3801
+
+Memory: 4k page, system-wide physical 32560M (17231M free)
+TotalPageFile size 130864M (AvailPageFile size 115M)
+current process WorkingSet (physical memory assigned to process): 12M, peak: 12M
+current process commit charge ("private bytes"): 64M, peak: 576M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.4+7-LTS) for windows-amd64 JRE (21.0.4+7-LTS), built on 2024-07-16T00:00:00Z by "admin" with MS VC++ 17.7 (VS2022)
+
+END.
