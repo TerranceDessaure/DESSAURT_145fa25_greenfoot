@@ -8,7 +8,10 @@ public class Crab extends Actor
     /* INSTANCE VARIABLES (FIELDS) */
     private GreenfootImage image1;// image1 can be accessed anywhere in the class
     private GreenfootImage image2;// image2 can be accessed anywhere in the class
-    
+    private int wormsEaten;// instance variables will have a default value
+    private int cycleCount;// this keeps track of the number of cycles through
+                           // the act method that have transpired since the
+                           // crab's image was last updated
     /* CONSTRUCTORS */
     /**
      * Initialize a newly instantiated crab object with
@@ -20,6 +23,8 @@ public class Crab extends Actor
        image1 = new GreenfootImage("crab.png");
        image2 = new GreenfootImage("crab2.png");
        setImage( image1 ); // the crabs initial image will be set to image1
+       wormsEaten = 0;
+       cycleCount = 0;
     }// end Crab constructor
     /* METHODS */
 
@@ -32,7 +37,14 @@ public class Crab extends Actor
         checkKeypress();
         move(5);
         lookForWorm();
-        switchImage();
+        
+        cycleCount = cycleCount + 1;
+        
+        if(cycleCount == 3)
+        {
+            switchImage();
+            cycleCount = 0;
+        }// end if 
     } // end method act
 
     /**
@@ -46,7 +58,15 @@ public class Crab extends Actor
         {
             removeTouching(Worm.class);
             Greenfoot.playSound("slurp.wav");
-        }// end if
+            
+            wormsEaten = wormsEaten + 1;
+            
+            if(wormsEaten == 8)
+            {
+                Greenfoot.playSound("fanfare.wav");
+                Greenfoot.stop();
+            }// end INNER if
+        }// end OUTER if
     }// end method lookForWorm
 
     /**
@@ -87,7 +107,7 @@ public class Crab extends Actor
 
         if(Greenfoot.isKeyDown("right"))
         {
-            turn(4);
+            turn(-4);
         }// end if 
     }// end method checkKeypress
     
