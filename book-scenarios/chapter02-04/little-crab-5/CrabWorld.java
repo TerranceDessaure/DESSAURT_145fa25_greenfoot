@@ -24,31 +24,17 @@ public class CrabWorld extends World
     {
         Crab crab = new Crab();
         addObject(crab, 231, 203);
-        Worm worm = new Worm();
-        addObject(worm, 445, 137);
-        Worm worm2 = new Worm();
-        addObject(worm2, 454, 369);
-        Worm worm3 = new Worm();
-        addObject(worm3, 368, 466);
-        Worm worm4 = new Worm();
-        addObject(worm4, 129, 488);
-        Worm worm5 = new Worm();
-        addObject(worm5, 254, 388);
-        Worm worm6 = new Worm();
-        addObject(worm6, 106, 334);
-        Worm worm7 = new Worm();
-        addObject(worm7, 338, 112);
-        Worm worm8 = new Worm();
-        addObject(worm8, 150, 94);
-        Worm worm9 = new Worm();
-        addObject(worm9, 373, 240);
-        Worm worm10 = new Worm();
-        addObject(worm10, 509, 55);
+        
         Lobster lobster = new Lobster();
         addObject(lobster, 334, 65);
         Lobster lobster2 = new Lobster();
         addObject(lobster2, 481, 481);
         Lobster lobster3 = new Lobster();
         addObject(lobster3, 79, 270);
-    }
-}
+        
+        // place 10 worms at randomly-gernerated X- and Y-coordinates
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        
+    }// end method prepare
+}// end class CrabWorld
