@@ -35,6 +35,23 @@ public class CrabWorld extends World
         // place 10 worms at randomly-gernerated X- and Y-coordinates
         addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
                              Greenfoot.getRandomNumber(511) + 25);
-        
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
+        addObject(new Worm(),Greenfoot.getRandomNumber(511) + 25,
+                             Greenfoot.getRandomNumber(511) + 25);
     }// end method prepare
 }// end class CrabWorld

@@ -15,7 +15,8 @@ public class Crab extends Actor
     private GreenfootImage image1;
     private GreenfootImage image2;
     private int wormsEaten;
-    
+    private int cycleCount;
+
     /**
      * Create a crab and initialize its two images.
      */
@@ -25,6 +26,7 @@ public class Crab extends Actor
         image2 = new GreenfootImage("crab2.png");
         setImage(image1);
         wormsEaten = 0;
+        cycleCount = 0;
     }
         
     /** 
@@ -36,8 +38,26 @@ public class Crab extends Actor
         checkKeypress();
         move(5);
         lookForWorm();
-        switchImage();
+        controlAnimationSpeed();
     }
+    
+    /**
+     * Counts the number of animation cycles; when
+     * the count is 3 (or perhaps some other hard-coded value)
+     * the we switch the crab's image
+     */
+    public void controlAnimationSpeed()
+    {
+         cycleCount = cycleCount + 1; // or ` cycleCount += 1;`
+                                     // or ` cycleCount++;`
+                                     
+        if ( cycleCount == 3 )
+        {
+            switchImage();
+            cycleCount = 0;
+        }
+    }
+    
     
     /**
      * Alternate the crab's image between image1 and image2.
