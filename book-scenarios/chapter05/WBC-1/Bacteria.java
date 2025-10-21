@@ -21,7 +21,7 @@ public class Bacteria extends Actor
      */
     public void act() 
     {
-        setLocation(getX()-2, getY());
+        setLocation(getX()-1, getY());
         turn(1);
         
         if (getX() == 0) 

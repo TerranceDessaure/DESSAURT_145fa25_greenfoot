@@ -28,9 +28,20 @@ public class Bloodstream extends World
         if (Greenfoot.getRandomNumber(100) < 3)
         {
             addObject(new Bacteria(), 779, Greenfoot.getRandomNumber(360));
-        }
+        }// end if
+
+        if (Greenfoot.getRandomNumber(100) < 1)
+        {
+            addObject(new Lining(), 779, 0); // Adds Lining to the top of screen
+        }// end if 
+
+        if (Greenfoot.getRandomNumber(100) < 1)
+        {
+            addObject(new Lining(), 779, 359); // Adds Lining to the bottom
+        }// end if
+
     }
-    
+
     /**
      * Prepare the world for the start of the program. In this case: Create
      * a white blood cell and the lining at the edge of the blood stream.
