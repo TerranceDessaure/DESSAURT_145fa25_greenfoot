@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Virus
+comment0.text=\r\n\ The\ Virus\ is\ another\ object\ floating\ in\ the\ bloodstream.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ 10/22/2025\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ The\ Virus\ object\ moves\ at\ 4\ frames\ per\ act\ and\ turns\ counter\ clockwise.\r\n
+numComments=2

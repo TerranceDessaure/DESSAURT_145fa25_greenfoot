@@ -4,16 +4,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Bacteria fload along in the bloodstream. They are bad. Best to destroy
  * them if you can.
  * 
- * @author Michael Kölling
- * @version 0.1
+ * @author Terrance Dessaure
+ * @version 10/22/2025
  */
 public class Bacteria extends Actor
 {
+    private int speed;
     /**
      * Constructor. Nothing to do so far.
      */
     public Bacteria()
     {
+        speed = Greenfoot.getRandomNumber(3)+1;
     }
 
     /**
@@ -21,7 +23,7 @@ public class Bacteria extends Actor
      */
     public void act() 
     {
-        setLocation(getX()-1, getY());
+        setLocation(getX()-speed, getY());// Subtracts speed variable from getX valueSSSSSSSSSSSSSSSSS
         turn(1);
         
         if (getX() == 0) 

@@ -9,12 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WhiteCell extends Actor
 {
+    
     /**
      * Act: move up and down when cursor keys are pressed.
      */
     public void act() 
     {
         checkKeyPress();
+        checkCollision();
     }
     
     /**
@@ -32,4 +34,22 @@ public class WhiteCell extends Actor
             setLocation(getX(), getY()+4);
         }
     }
+    
+    /*
+     * Checks whether the WhiteCell is touching the Bacteria
+     */
+    private void checkCollision()
+    {
+        if (isTouching(Bacteria.class))
+        {
+            Greenfoot.playSound("slurp.wav");// Plays the sound from the slurp.wav file
+            removeTouching(Bacteria.class);// Removes any bacteria touching the WhiteCell object
+        }// end if
+        
+        if (isTouching(Bacteria.class))
+        {
+            Greenfoot.playSound("game-over.wav");
+            Greenfoot.stop();
+        }//end if
+    }// end checkCollision
 }

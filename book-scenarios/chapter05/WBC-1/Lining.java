@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The Lining are objects at the edge of the vein.
  * 
  * @author Terrance Dessaure
- * @version 0.2
+ * @version 10/22/2025
  */
 public class Lining extends Actor
 {

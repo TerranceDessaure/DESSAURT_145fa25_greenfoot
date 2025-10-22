@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Bacteria
-comment0.text=\r\n\ Bacteria\ fload\ along\ in\ the\ bloodstream.\ They\ are\ bad.\ Best\ to\ destroy\r\n\ them\ if\ you\ can.\r\n\ \r\n\ @author\ Michael\ K\u00F6lling\r\n\ @version\ 0.1\r\n
+comment0.text=\r\n\ Bacteria\ fload\ along\ in\ the\ bloodstream.\ They\ are\ bad.\ Best\ to\ destroy\r\n\ them\ if\ you\ can.\r\n\ \r\n\ @author\ Terrance\ Dessaure\r\n\ @version\ 10/22/2025\r\n
 comment1.params=
 comment1.target=Bacteria()
 comment1.text=\r\n\ Constructor.\ Nothing\ to\ do\ so\ far.\r\n

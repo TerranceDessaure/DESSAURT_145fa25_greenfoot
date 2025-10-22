@@ -39,6 +39,13 @@ public class Bloodstream extends World
         {
             addObject(new Lining(), 779, 359); // Adds Lining to the bottom
         }// end if
+        
+        if (Greenfoot.getRandomNumber (100) < 1)
+        {
+            addObject(new Virus(), 799, Greenfoot.getRandomNumber (360));// Adds Virus Object to the right boundary
+                                                                         // at any random number between 0 and 359
+                                                                         // inclusively.
+        }// end if
 
     }
 

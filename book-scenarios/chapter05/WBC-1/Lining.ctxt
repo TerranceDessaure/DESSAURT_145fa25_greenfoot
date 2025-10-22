@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Lining
-comment0.text=\r\n\ The\ Lining\ are\ objects\ at\ the\ edge\ of\ the\ vein.\r\n\ \r\n\ @author\ Terrance\ Dessaure\r\n\ @version\ 0.2\r\n
+comment0.text=\r\n\ The\ Lining\ are\ objects\ at\ the\ edge\ of\ the\ vein.\r\n\ \r\n\ @author\ Terrance\ Dessaure\r\n\ @version\ 10/22/2025\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ Moves\ the\ Lining\ object\ left\ until\ it\ hits\ 0\ and\ then\ disappers.\r\n

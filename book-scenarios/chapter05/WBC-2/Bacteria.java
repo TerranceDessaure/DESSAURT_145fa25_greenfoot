@@ -9,11 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bacteria extends Actor
 {
+    private int speed;
+    
     /**
      * Constructor. Nothing to do so far.
      */
     public Bacteria()
     {
+        
     }
 
     /**
