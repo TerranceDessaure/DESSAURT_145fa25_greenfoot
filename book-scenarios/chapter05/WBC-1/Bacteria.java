@@ -11,7 +11,7 @@ public class Bacteria extends Actor
 {
     private int speed;
     /**
-     * Constructor. Nothing to do so far.
+     * Constructor.Set the speed for Bacteria.
      */
     public Bacteria()
     {

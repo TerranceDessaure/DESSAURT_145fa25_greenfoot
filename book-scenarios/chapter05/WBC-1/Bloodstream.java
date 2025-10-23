@@ -16,9 +16,9 @@ public class Bloodstream extends World
     public Bloodstream()
     {    
         super(780, 360, 1); 
-
+        setPaintOrder( Border.class ); // sets Border as the first layer
         prepare();
-    }
+    }// end Bloodstream
 
     /**
      * Create new floating objects at irregular intervals.
@@ -46,6 +46,13 @@ public class Bloodstream extends World
                                                                          // at any random number between 0 and 359
                                                                          // inclusively.
         }// end if
+        
+        if (Greenfoot.getRandomNumber (100) < 6)
+        {
+            addObject(new RedCell(), 799, Greenfoot.getRandomNumber (360));// Adds RedCell Object to the right boundary
+                                                                           // and at any random y coordinate between 0 and 359
+                                                                           // inclusively
+        }// end if 
 
     }
 
@@ -56,7 +63,7 @@ public class Bloodstream extends World
     private void prepare()
     {
         WhiteCell whitecell = new WhiteCell();
-        addObject(whitecell, 83, 179);
+        addObject(whitecell, 95, 179);
         Lining lining = new Lining();
         addObject(lining, 126, 1);
         Lining lining2 = new Lining();
@@ -75,5 +82,10 @@ public class Bloodstream extends World
         addObject(lining8, 596, 359);
         Lining lining9 = new Lining();
         addObject(lining9, 740, 354);
+        
+        Border border = new Border();
+        addObject(border, 0, 180);
+        Border border2 = new Border();
+        addObject(border2, 770, 180);
     }
 }

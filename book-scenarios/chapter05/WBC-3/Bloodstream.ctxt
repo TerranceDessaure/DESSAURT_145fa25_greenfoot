@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=Bloodstream
-comment0.text=\n\ The\ bloodstream\ is\ the\ setting\ for\ our\ White\ Blood\ Cell\ scenario.\ It's\ a\ place\n\ where\ blood\ cells,\ bacteria\ and\ viruses\ float\ around.\n\ \n\ @author\ Michael\ K\u00F6lling\n\ @version\ 0.3\n
+comment0.text=\r\n\ The\ bloodstream\ is\ the\ setting\ for\ our\ White\ Blood\ Cell\ scenario.\ It's\ a\ place\r\n\ where\ blood\ cells,\ bacteria\ and\ viruses\ float\ around.\r\n\ \r\n\ @author\ Michael\ K\u00F6lling\r\n\ @version\ 0.3\r\n
 comment1.params=
 comment1.target=Bloodstream()
-comment1.text=\n\ Constructor\:\ Set\ up\ the\ starting\ objects.\n
+comment1.text=\r\n\ Constructor\:\ Set\ up\ the\ starting\ objects.\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\n\ Create\ new\ floating\ objects\ at\ irregular\ intervals.\n
+comment2.text=\r\n\ Create\ new\ floating\ objects\ at\ irregular\ intervals.\r\n
 comment3.params=
 comment3.target=void\ prepare()
-comment3.text=\n\ Prepare\ the\ world\ for\ the\ start\ of\ the\ program.\ In\ this\ case\:\ Create\n\ a\ white\ blood\ cell\ and\ the\ lining\ at\ the\ edge\ of\ the\ blood\ stream.\n
+comment3.text=\r\n\ Prepare\ the\ world\ for\ the\ start\ of\ the\ program.\ In\ this\ case\:\ Create\r\n\ a\ white\ blood\ cell\ and\ the\ lining\ at\ the\ edge\ of\ the\ blood\ stream.\r\n
 numComments=4

@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Border
-comment0.text=\n\ A\ border\ of\ our\ world,\ to\ cover\ the\ left\ and\ right\ edges.\n\ \n\ @author\ Michael\ K\u00F6lling\n\ @version\ 1.0\n
+comment0.text=\r\n\ A\ border\ of\ our\ world,\ to\ cover\ the\ left\ and\ right\ edges.\r\n\ \r\n\ @author\ Michael\ K\u00F6lling\r\n\ @version\ 1.0\r\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\n\ Act\ -\ nothing\ to\ do.\ This\ object\ does\ not\ do\ anything.\n
+comment1.text=\r\n\ Act\ -\ nothing\ to\ do.\ This\ object\ does\ not\ do\ anything.\r\n
 numComments=2
