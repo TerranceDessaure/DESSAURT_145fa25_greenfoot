@@ -11,6 +11,7 @@ public class Bloodstream extends World
 {
 
     private int score = 0;
+    private int time; 
     /**
      * Constructor: Set up the starting objects.
      */
@@ -20,7 +21,9 @@ public class Bloodstream extends World
         setPaintOrder( Border.class ); // sets Border as the first layer
         prepare();
         score = 0;
+        time = 2000;
         showScore();
+        showTime();
     }// end Bloodstream
 
     /**
@@ -42,20 +45,21 @@ public class Bloodstream extends World
         {
             addObject(new Lining(), 779, 359); // Adds Lining to the bottom
         }// end if
-        
+
         if (Greenfoot.getRandomNumber (100) < 1)
         {
             addObject(new Virus(), 799, Greenfoot.getRandomNumber (360));// Adds Virus Object to the right boundary
-                                                                         // at any random number between 0 and 359
-                                                                         // inclusively.
+            // at any random number between 0 and 359
+            // inclusively.
         }// end if
-        
+
         if (Greenfoot.getRandomNumber (100) < 6)
         {
             addObject(new RedCell(), 799, Greenfoot.getRandomNumber (360));// Adds RedCell Object to the right boundary
-                                                                           // and at any random y coordinate between 0 and 359
-                                                                           // inclusively
+            // and at any random y coordinate between 0 and 359
+            // inclusively
         }// end if 
+        countTime();
 
     }// end act
 
@@ -67,8 +71,13 @@ public class Bloodstream extends World
     {
         score = score + points;
         showScore();
-    }// end Score
-    
+        if (score < 0) 
+        {
+            Greenfoot.playSound("game-over.wav");
+            Greenfoot.stop();
+        }// end if
+    }// end addScore
+
     /**
      * Show our current score on screen.
      */
@@ -76,6 +85,39 @@ public class Bloodstream extends World
     {
         showText("Score: " + score, 80, 25);
     }// end showScore method
+
+    /**
+     * Count down the game time and display it. Stop the game 
+     * with a winning message when time is up.
+     */
+    private void countTime()
+    {
+        time--;
+        showTime();
+        if (time == 0)
+        {
+            showEndMessage();
+            Greenfoot.stop();
+        }// end if
+    }// end countTime() method
+
+    /**
+     * Show how much time is left on the top right side of the screen.
+     */
+    private void showTime()
+    {
+        showText("Time: " + time, 700, 25);
+    }// end showTime() method
+    
+    /**
+     * Show the end-of-game message on screen.
+     */
+    private void showEndMessage()
+    {
+        showText("Time is up - you win!", 390, 150);
+        showText("Your final score: " + score + " points", 390, 170);
+    }// end showEndMessage() method
+    
 
     /**
      * Prepare the world for the start of the program. In this case: Create
@@ -103,7 +145,7 @@ public class Bloodstream extends World
         addObject(lining8, 596, 359);
         Lining lining9 = new Lining();
         addObject(lining9, 740, 354);
-        
+
         Border border = new Border();
         addObject(border, 0, 180);
         Border border2 = new Border();

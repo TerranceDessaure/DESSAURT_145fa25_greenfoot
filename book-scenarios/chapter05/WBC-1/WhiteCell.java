@@ -57,5 +57,12 @@ public class WhiteCell extends Actor
             Bloodstream bloodstream = (Bloodstream)getWorld();
             bloodstream.addScore(20);
         }//end if
+        
+        if (isTouching(Virus.class)) 
+        {
+            removeTouching(Virus.class);
+            Bloodstream bloodstream = (Bloodstream)getWorld();
+            bloodstream.addScore(-100);            
+        }//end if
     }// end checkCollision method
 }// end WhiteCell Actor
