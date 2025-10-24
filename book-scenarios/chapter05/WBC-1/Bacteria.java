@@ -15,7 +15,7 @@ public class Bacteria extends Actor
      */
     public Bacteria()
     {
-        speed = Greenfoot.getRandomNumber(3)+1;
+        speed = Greenfoot.getRandomNumber(5)+1;
     }
 
     /**
@@ -23,12 +23,14 @@ public class Bacteria extends Actor
      */
     public void act() 
     {
-        setLocation(getX()-speed, getY());// Subtracts speed variable from getX valueSSSSSSSSSSSSSSSSS
+        setLocation(getX()-speed, getY());// Subtracts speed variable from getX values
         turn(1);
-        
+
         if (getX() == 0) 
         {
-            getWorld().removeObject(this);
-        }
-    }
-}
+            Bloodstream bloodstream = (Bloodstream)getWorld();
+            bloodstream.addScore(-15);
+            bloodstream.removeObject(this);
+        }// end if
+    }// end act
+}// end Bacteria class

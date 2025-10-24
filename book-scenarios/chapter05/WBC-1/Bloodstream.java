@@ -4,12 +4,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The bloodstream is the setting for our White Blood Cell scenario. 
  * It's a place where blood cells, bacteria and viruses float around.
  * 
- * @author Michael Kölling
- * @version 0.1
+ * @author Terrance Dessaure
+ * @version 10/23/2025
  */
 public class Bloodstream extends World
 {
 
+    private int score = 0;
     /**
      * Constructor: Set up the starting objects.
      */
@@ -18,6 +19,8 @@ public class Bloodstream extends World
         super(780, 360, 1); 
         setPaintOrder( Border.class ); // sets Border as the first layer
         prepare();
+        score = 0;
+        showScore();
     }// end Bloodstream
 
     /**
@@ -54,7 +57,25 @@ public class Bloodstream extends World
                                                                            // inclusively
         }// end if 
 
-    }
+    }// end act
+
+    /**
+     * addScore increments the current score by 20 every time a WhiteCell touches Bacteria
+     * and displays the score at the top left side of the screen
+     */
+    public void addScore(int points)
+    {
+        score = score + points;
+        showScore();
+    }// end Score
+    
+    /**
+     * Show our current score on screen.
+     */
+    private void showScore()
+    {
+        showText("Score: " + score, 80, 25);
+    }// end showScore method
 
     /**
      * Prepare the world for the start of the program. In this case: Create
@@ -87,5 +108,5 @@ public class Bloodstream extends World
         addObject(border, 0, 180);
         Border border2 = new Border();
         addObject(border2, 770, 180);
-    }
-}
+    }// end Prepare
+}// end Bloodstream Class
