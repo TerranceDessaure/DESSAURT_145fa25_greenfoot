@@ -15,7 +15,7 @@ public class Bacteria extends Actor
      */
     public Bacteria()
     {
-        speed = Greenfoot.getRandomNumber(5)+1;
+        speed = Greenfoot.getRandomNumber(15)+1;
     }
 
     /**

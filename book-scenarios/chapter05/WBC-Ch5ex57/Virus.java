@@ -13,7 +13,7 @@ public class Virus extends Actor
      */
     public void act()
     {
-        setLocation(getX()-4, getY()); // Moves the Virus object 4 frames per act
+        setLocation(getX()-20, getY()); // Moves the Virus object 4 frames per act
         turn(-1); // Turns the Bacteria object counter clockwise
     }// end act
 }

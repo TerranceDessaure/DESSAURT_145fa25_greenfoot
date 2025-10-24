@@ -21,7 +21,7 @@ public class Bloodstream extends World
         setPaintOrder( Border.class ); // sets Border as the first layer
         prepare();
         score = 0;
-        time = 2000;
+        time = 1000;
         showScore();
         showTime();
     }// end Bloodstream
@@ -53,7 +53,7 @@ public class Bloodstream extends World
             // inclusively.
         }// end if
 
-        if (Greenfoot.getRandomNumber (100) < 6)
+        if (Greenfoot.getRandomNumber (100) < 4)
         {
             addObject(new RedCell(), 799, Greenfoot.getRandomNumber (360));// Adds RedCell Object to the right boundary
             // and at any random y coordinate between 0 and 359

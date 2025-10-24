@@ -25,7 +25,7 @@ public class RedCell extends Actor
      */
     public void act()
     {
-        setLocation(getX()-4, getY()); // Moves the RedCell object 4 frames per act
+        setLocation(getX()-7, getY()); // Moves the RedCell object 4 frames per act
         turn(-1);
     }//end act
 }

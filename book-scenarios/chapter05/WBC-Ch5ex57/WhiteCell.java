@@ -26,22 +26,22 @@ public class WhiteCell extends Actor
     {
         if (Greenfoot.isKeyDown("up")) 
         {
-            setLocation(getX(), getY()-8);
+            setLocation(getX(), getY()-10);
         }// end if
 
         if (Greenfoot.isKeyDown("down")) 
         {
-            setLocation(getX(), getY()+8);
+            setLocation(getX(), getY()+15);
         }// end if
 
         if (Greenfoot.isKeyDown("left"))
         {
-            setLocation(getX()-4, getY());
+            setLocation(getX()-6, getY());
         }// end if 
 
         if (Greenfoot.isKeyDown("right"))
         {
-            setLocation(getX()+4, getY());
+            setLocation(getX()+7, getY());
         }// end if
     } // end checkKeyPress
 
