@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=CrabWorld
-comment0.text=\r\n\ The\ CrabWorld\ is\ the\ place\ where\ crabs\ and\ other\ creatures\ live.\ \r\n\ It\ creates\ the\ initial\ population.\r\n
+comment0.text=\r\n\ The\ CrabWorld\ is\ the\ place\ where\ crabs\ and\ other\ creatures\ live.\ \r\n\ It\ creates\ the\ initial\ population.\r\n\ \r\n\ @author\ _username_@email.uscb.edu\r\n\ @version\ ICE\ for\ Fri\ 7\ Nov\ 2025\r\n
 comment1.params=
 comment1.target=CrabWorld()
 comment1.text=\r\n\ Create\ the\ crab\ world\ (the\ beach).\ Our\ world\ has\ a\ size\ \r\n\ of\ 560x560\ cells,\ where\ every\ cell\ is\ just\ 1\ pixel.\r\n
