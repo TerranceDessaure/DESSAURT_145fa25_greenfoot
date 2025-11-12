@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Lobster
-comment0.text=\r\n\ A\ lobster.\ Lobsters\ live\ on\ the\ beach.\ They\ like\ to\ eat\ crabs.\ (Well,\ in\ our\ game\r\n\ they\ do...)\r\n\ \r\n\ The\ lobster\ walks\ around\ randomly.\ If\ it\ runs\ into\ a\ crab\ it\ eats\ it.\r\n\ \r\n\ @author\ _______@email.uscb.edu\r\n\ @version\ 145fa25\ ICE\ for\ 10\ Nov\ 2025\r\n
+comment0.text=\r\n\ A\ lobster.\ Lobsters\ live\ on\ the\ beach.\ They\ like\ to\ eat\ crabs.\ (Well,\ in\ our\ game\r\n\ they\ do...)\r\n\ \r\n\ The\ lobster\ walks\ around\ randomly.\ If\ it\ runs\ into\ a\ crab\ it\ eats\ it.\r\n\ \r\n\ @author\ _______@email.uscb.edu\r\n\ @version\ 145fa25\ ICE\ for\ 10\ Nov\ 2025\ (updated\ 12\ Nov\ 2025)\r\n
 comment1.params=
 comment1.target=Lobster()
 comment1.text=\ \r\n\ One\ simple\ "no-arg"\ constructor\ for\ initializing\ Lobster's\ fields\r\n
@@ -12,7 +12,7 @@ comment3.target=Lobster.State\ randomlySamplePossibleNextState()
 comment3.text=\r\n\ Returns\ the\ updated\ State\ of\ this\ Lobster\ to\ the\ calling\ method\r\n
 comment4.params=
 comment4.target=Crab\ getReferenceToTargetCrab()
-comment4.text=\r\n\ Returns\ a\ reference\ to\ the\ Crab\ object\ \r\n
+comment4.text=\r\n\ Returns\ a\ reference\ to\ the\ Crab\ object\ (or\ returns\ `null`\ if\ the\ Crab\ has\r\n\ been\ removed\ from\ the\ world)\r\n
 comment5.params=
 comment5.target=void\ lookForCrab()
 comment5.text=\r\n\ look\ for\ a\ crab;\ if\ the\ lobster\ is\ intersecting\ a\ crab\ object,\r\n\ then\ we\ will\ "eat"\ (remove)\ that\ crab\ object.\ If\ not,\r\n\ then\ do\ nothing.\r\n

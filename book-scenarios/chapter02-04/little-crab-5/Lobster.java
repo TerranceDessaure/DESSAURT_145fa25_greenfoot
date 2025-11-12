@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  * The lobster walks around randomly. If it runs into a crab it eats it.
  * 
  * @author _______@email.uscb.edu
- * @version 145fa25 ICE for 10 Nov 2025
+ * @version 145fa25 ICE for 10 Nov 2025 (updated 12 Nov 2025)
  */
 public class Lobster extends Actor
 {
@@ -24,7 +24,7 @@ public class Lobster extends Actor
     //          "helper class"), like what Dr. Canada did for the Greenfoot version of "Pong"
     //          (see https://github.com/doctorcanada/pong-greenfoot/)
     private enum State { 
-        CHASE,  // ordinal 0 
+        CHASE,  // ordinal 0
         PATROL, // ordinal 1
         WANDER  // ordinal 2
     } // end enum State 
@@ -90,7 +90,7 @@ public class Lobster extends Actor
         // We'll lock this angle on first PATROL frame so the Lobster's current rotation is maintained
         patrolHeading = 0;
 
-        // Target is discovered duirng act()/getReferenceToTargetCrab()
+        // Target is discovered during act()/getReferenceToTargetCrab()
         targetCrab = null;
 
         // For gameplay variety, set this Lobster's direction to a random int 
@@ -102,7 +102,7 @@ public class Lobster extends Actor
     {
         // get a reference to the Crab player-character (or "re-find" if needed)
         targetCrab = getReferenceToTargetCrab();
-
+        
         // Given the current state, determine the flow of control accordingly
         // (could be refactored to go in its own method)
         if (currentState == State.CHASE) 
@@ -131,7 +131,7 @@ public class Lobster extends Actor
             if (patrolFrameCount >= PATROL_FRAMES_EACH_DIRECTION || isAtEdge()) 
             {
                 patrolHeading = (patrolHeading + 180) % 360; // `+ 180` flips direction, then `% 360`
-                                                             // ensures patrolHeading is still 0 to 360
+                                                             // ensures patrolHeading is still 0 to 359
                 setRotation(patrolHeading);
                 patrolFrameCount = 0;
             } // end inner if
@@ -143,10 +143,7 @@ public class Lobster extends Actor
             randomTurn();
             move(SPEED);
         } // end multi-way if/else
-
-        // Eat crab if touching (from original Lobster logic)
-        lookForCrab();
-
+        
         // For timing state change (NOTE: this could go in its own method)
         countOfFramesInState++;
         if (countOfFramesInState >= DWELL_FRAMES) // ensure no state change until "dwell time" has passed
@@ -161,8 +158,8 @@ public class Lobster extends Actor
                 currentState = possibleNextState;
                 countOfFramesInState = 0;
                 
-                /* log debug message to console (for testing only; comment this before "release") */
-                // System.out.println(this + " has changed state to " + currentState);
+                /* log debug message to console (for testing only; comment out or delete before "release") */
+                System.out.println(this + " has changed state to " + currentState);
                 
                 // reset patrol bookkeeping when we enter PATROL
                 if (currentState == State.PATROL) 
@@ -177,6 +174,9 @@ public class Lobster extends Actor
                 countOfFramesInState = 0;
             } // end INNER if/else
         } // end OUTER if
+        
+        // Eat crab if touching (from original Lobster logic)
+        lookForCrab();
     } // end method act
 
 
@@ -216,9 +216,9 @@ public class Lobster extends Actor
 
         // perform a "cumulative check" to see if the random double value 
         // falls within the probability range for a given state
-        // NOTE: When coding a multi-way if/else statement, always code
-        // the most specific condition (or "narrowest range" of possible values)
-        // first, and then code in order of most specific to least specific
+        // NOTE: When coding a multi-way if/else statement, ALWAYS code
+        // the MOST SPECIFIC condition (or "narrowest range" of possible values) first, 
+        // and then code remaining conditions in order of MOST specific to LEAST specific
         if (randomValue < probChase) 
         {
             return State.CHASE; // exits method, returns (possibly new) State to method caller
@@ -231,25 +231,66 @@ public class Lobster extends Actor
         {
             return State.WANDER; // exits method, returns (possibly new) State to method caller
         } // end multi-way if/else
-    } // end method sampleNextState
-
+    } // end method randomlySamplePossibleNextState
+    
     /**
-     * Returns a reference to the Crab object 
+     * Returns a reference to the Crab object (or returns `null` if the Crab has
+     * been removed from the world)
      */
     public Crab getReferenceToTargetCrab()
     {
+        // if the reference to the Crab is "lost," try to "re-acquire" the Crab...
         if (targetCrab == null) 
         {
-            java.util.List listOfPossibleCrabsOnScreen = getWorld().getObjects(Crab.class);
+            java.util.List<Crab> listOfPossibleCrabsOnScreen = getWorld().getObjects(Crab.class);
             
-            if (!listOfPossibleCrabsOnScreen.isEmpty()) 
-            {
-                targetCrab = (Crab) listOfPossibleCrabsOnScreen.get(0);
-            }
+            if (listOfPossibleCrabsOnScreen.isEmpty()) {
+                return null; // exits the method (and skips all remaining statements in the method)
+            } // end inner if
+            
+            targetCrab = listOfPossibleCrabsOnScreen.get(0);
         } // end if
         
-        return targetCrab;
-    } // end method 
+        // IMPORTANT! The only way the program can get to the if-statement BELOW is 
+        // if targetCrab is NOT null, which CAN occur if the Crab object referenced
+        // by `targetCrab` was removed from the world, via `removeTouching(Crab.class)`,
+        // but `targetCrab` is still referring to an object that exists in MEMORY
+        // 
+        // Here's a helpful analogy: remember that the "body" of an object and the 
+        // "soul" of an object (its existence in memory) are NOT the same thing. The 
+        // `removeTouching` method removes the crab's "body" from the world, while the 
+        // "soul" of the crab may still be referenced by the `targetCrab` variable. 
+        // Because the "body" is gone, the reference to the "soul" has become "stale";
+        // the object exists in memory, but it's "detached" from the world, and calling
+        // methods on the crab that depend on its presence in the world can cause errors.
+        //  
+        // So if the crab's "soul" remains referenced after its "body" has left the world, then
+        // our best practice is to remove the reference to the crab's "soul" by 
+        // setting `targetCrab` to null; this will help to prevent a runtime exception
+        // when any methods are called on `targetCrab` (such as `targetCrab.getX()` in
+        // the `turnTowards` method call earlier in the Lobster's `act` method)
+        // 
+        // So, to check if an actor's "body" is in the world, call the actor object's `getWorld()` method; 
+        // if getWorld() returns `null` that means the actor's "body" has left the world, so setting
+        // the object's reference variable to `null` clears this stale reference and helps to 
+        // ensure that we won't later call methods on a "removed Actor" object. Furthermore, this 
+        // makes the crab's "soul" (its existence in the computer's memory) eligible for 
+        // "garbage collection" (Java's mechanism for removing unreferenced objects from memory) 
+        // as long as no other references to the crab remain, and this should help avoid 
+        // runtime errors later!
+        //
+        // For more info, please see: https://www.greenfoot.org/howto/actor-not-in-world.html
+        // (You may also want to check the parent website for other helpful Greenfoot tips;
+        // please see: https://www.greenfoot.org/howto/)
+        if (targetCrab.getWorld() == null)
+        {
+            targetCrab = null;
+        } // end if
+        
+        // Finally, regardless of whether `targetCrab` is `null` or refers to an actual Crab object, 
+        // we `return` that value (or reference) to the calling method:
+        return targetCrab; // exits the method
+    } // end method getReferenceToTargetCrab
     
     /**
      * look for a crab; if the lobster is intersecting a crab object,
@@ -260,7 +301,11 @@ public class Lobster extends Actor
     {
         if ( isTouching( Crab.class ) )
         {
-            removeTouching( Crab.class );
+            removeTouching( Crab.class ); 
+            targetCrab = null; // the reference to `targetCrab` is now "stale";
+                               // we set it to `null` to avoid calling methods on a removed 
+                               // actor in later `act` cycles, as Greenfoot may still allow 
+                               // one more cycle even after calling Greenfoot.stop()
             Greenfoot.playSound("au.wav");
             Greenfoot.stop(); // stop the game
         } // end if
@@ -297,5 +342,5 @@ public class Lobster extends Actor
  * "Housekeeping" suggestion:
  * Please DELETE any older, unused code that you have 
  * commented-out; if you really need to refer to older code,
- * you can always review your commit history on Bitbucket
+ * you can always review your commit history on GitHub
  */
