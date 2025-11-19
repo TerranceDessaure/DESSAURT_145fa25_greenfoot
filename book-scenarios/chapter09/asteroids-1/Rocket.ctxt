@@ -1,16 +1,16 @@
 #BlueJ class context
 comment0.target=Rocket
-comment0.text=\n\ A\ rocket\ that\ can\ be\ controlled\ by\ the\ arrowkeys\:\ up,\ left,\ right.\n\ The\ gun\ is\ fired\ by\ hitting\ the\ 'space'\ key.\ 'z'\ releases\ a\ proton\ wave.\n\ \n\ @author\ Poul\ Henriksen\n\ @author\ Michael\ K\u00F6lling\n\ \n\ @version\ 1.1\n
+comment0.text=\r\n\ A\ rocket\ that\ can\ be\ controlled\ by\ the\ arrowkeys\:\ up,\ left,\ right.\r\n\ The\ gun\ is\ fired\ by\ hitting\ the\ 'space'\ key.\ 'z'\ releases\ a\ proton\ wave.\r\n\ \r\n\ @author\ Poul\ Henriksen\r\n\ @author\ Michael\ K\u00F6lling\r\n\ \r\n\ @version\ 1.1\r\n
 comment1.params=
 comment1.target=Rocket()
-comment1.text=\n\ Initialise\ this\ rocket.\n
+comment1.text=\r\n\ Initialise\ this\ rocket.\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\n\ Do\ what\ a\ rocket's\ gotta\ do.\ (Which\ is\:\ mostly\ flying\ about,\ and\ turning,\n\ accelerating\ and\ shooting\ when\ the\ right\ keys\ are\ pressed.)\n
+comment2.text=\r\n\ Do\ what\ a\ rocket's\ gotta\ do.\ (Which\ is\:\ mostly\ flying\ about,\ and\ turning,\r\n\ accelerating\ and\ shooting\ when\ the\ right\ keys\ are\ pressed.)\r\n
 comment3.params=
 comment3.target=void\ checkKeys()
-comment3.text=\n\ Check\ whether\ there\ are\ any\ key\ pressed\ and\ react\ to\ them.\n
+comment3.text=\r\n\ Check\ whether\ there\ are\ any\ key\ pressed\ and\ react\ to\ them.\r\n
 comment4.params=
 comment4.target=void\ fire()
-comment4.text=\n\ Fire\ a\ bullet\ if\ the\ gun\ is\ ready.\n
+comment4.text=\r\n\ Fire\ a\ bullet\ if\ the\ gun\ is\ ready.\r\n
 numComments=5

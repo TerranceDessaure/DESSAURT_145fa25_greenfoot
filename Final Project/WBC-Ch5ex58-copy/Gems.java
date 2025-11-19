@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Gems here.
+ * These gems represent the gems of the Breast Plate of Aaron.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Terrance Dessaure 
+ * @version (11/17/2025)
  */
 public class Gems extends Actor
 {
@@ -15,6 +15,6 @@ public class Gems extends Actor
      */
     public void act()
     {
-        
+        // do nothing right now
     }
 }

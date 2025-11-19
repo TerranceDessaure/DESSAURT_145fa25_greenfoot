@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Gems
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Gems\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ These\ gems\ represent\ the\ gems\ of\ the\ Breast\ Plate\ of\ Aaron.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ (11/17/2025)\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Gems\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
