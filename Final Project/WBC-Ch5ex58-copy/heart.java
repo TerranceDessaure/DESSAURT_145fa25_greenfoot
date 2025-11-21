@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * If the heart is touched by Spiderman it will give him health.
- * Theses hearts should only spawn if Spiderman has taken damage
+ * Theses hearts should only spawn if Spiderman has taken damage.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Terrance Dessaure 
+ * @version (11/18/2025)
  */
 public class heart extends Actor
 {

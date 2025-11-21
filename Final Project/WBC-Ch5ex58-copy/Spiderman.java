@@ -9,8 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Spiderman extends Actor
 {
     private int cooldown;
-    int mouseX;
-    int mouseY;
+    private int mouseX;
+    private int mouseY;
+    private int health = 100;
     /**
      * Act - do whatever the Spiderman wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -19,11 +20,8 @@ public class Spiderman extends Actor
     {
         checkKeypress();
         aim();
-        if (cooldown > 0)
-        {
-            cooldown--;
-        }//end if
-    }// end act metho
+        fireSpeed();
+    }// end act method
 
     public void checkKeypress()
     {
@@ -59,6 +57,14 @@ public class Spiderman extends Actor
         }// end if
 
     } // end checkKeypress Method
+    
+    private void fireSpeed()
+    {
+         if (cooldown > 0)
+        {
+            cooldown--;
+        }//end if
+    }
 
     private void fire()
     {
@@ -82,6 +88,21 @@ public class Spiderman extends Actor
 
         }//end if
     }// end aim method
+    
+    private void checkHealth()
+    {
+       health = 100;
+    }// end checkHealt method
+    // Getter
+    public int getHealth()
+    {
+        return health;
+    }// end getter getHealth
+    // Setter
+    public void setHealth(int h)
+    {
+        health = h;
+    }// end setter setHealth
 
 }// end Spiderman class
 
