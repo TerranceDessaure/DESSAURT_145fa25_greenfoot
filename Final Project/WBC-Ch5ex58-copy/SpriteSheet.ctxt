@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=SpriteSheet
+comment0.text=\r\n\ Helper\ class\ for\ working\ with\ spritesheets\ --\ contains\ four\ overloaded\ versions\ of\ a\ method\ called\ getSprite.\r\n\ \r\n\ Minor\ modifications\ made\ from\ original\ version\ (obtained\ from\ Greenfoot\ website)\ by\:\r\n\ @author\ bcanada\r\n\ @version\ 2014.11.20\r\n\r\n
+comment1.params=spriteSheet\ topLeftX\ topLeftY\ bottomRightX\ bottomRightY\ width\ height
+comment1.target=greenfoot.GreenfootImage\ getSprite(greenfoot.GreenfootImage,\ int,\ int,\ int,\ int,\ int,\ int)
+comment1.text=\r\n\ This\ is\ a\ general\ method\ for\ retrieving\ a\ sprite\ from\ your\ spritesheet\ using\ the\ specified\ coordinates\ \r\n\ for\ the\ image's\ bounding\ box.\r\n\ \r\n\ Note\ that\ you\ switch\ your\ inputs\ for\ topLeftX,\ and\ bottomRightX\ the\ image\ will\ be\ flipped\ horizontilly,\r\n\ if\ you\ do\ the\ same\ with\ the\ topLeftY\ and\ bottomRightY\ the\ image\ will\ be\ flipped\ vertically.\ The\ width\r\n\ and\ height\ are\ the\ dimesions\ of\ the\ returned\ image.\r\n
+comment2.params=spriteSheet\ ID\ spriteCellWidth\ spriteCellHeight\ width\ height
+comment2.target=greenfoot.GreenfootImage\ getSprite(greenfoot.GreenfootImage,\ int,\ int,\ int,\ int,\ int)
+comment2.text=\r\n\ This\ uses\ an\ ID\ where\ 0\ will\ be\ the\ first\ image\ on\ the\ sheet.\ The\ spriteCellWidth\ and\ spriteCellHeight\ are\r\n\ the\ dimensions\ of\ each\ individual\ cell\ on\ your\ sprite\ sheet.\ The\ width\ and\ height\ are\ the\ dimesions\r\n\ of\ the\ returned\ image.\r\n
+comment3.params=spriteSheet\ ID\ spriteCellWidth\ spriteCellHeight
+comment3.target=greenfoot.GreenfootImage\ getSprite(greenfoot.GreenfootImage,\ int,\ int,\ int)
+comment3.text=\r\n\ This\ uses\ an\ ID\ where\ 0\ will\ be\ the\ first\ image\ on\ the\ sheet.\ The\ spriteCellWidth\ and\ Height\ are\r\n\ the\ dimesions\ of\ each\ individual\ cells\ on\ your\ sprite\ sheet.\r\n
+comment4.params=spriteSheet\ ID\ blockWidth
+comment4.target=greenfoot.GreenfootImage\ getSprite(greenfoot.GreenfootImage,\ int,\ int)
+comment4.text=\r\n\ This\ uses\ an\ ID\ where\ 0\ will\ be\ the\ first\ image\ on\ the\ sheet.\r\n\ The\ block\ width\ is\ the\ width\ of\ a\ SQUARE\ block\ on\ the\ sheet,\r\n\ the\ returned\ image\ will\ also\ be\ a\ SQUARE\ block.\r\n
+numComments=5

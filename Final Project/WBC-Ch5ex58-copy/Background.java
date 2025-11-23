@@ -23,8 +23,9 @@ public class Background extends World
     public Background()
     {    
         // Create a new world with 750x750 cells with a cell size of 1x1 pixels.
-        super(750, 750, 1); 
+        super(600, 400, 1); 
         spiderman = new Spiderman();
+        
         prepare();
     }// end Background constructor
     

@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.GreenfootImage;
 
 /**
  * Write a description of class Spiderman here.
@@ -8,10 +9,67 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Spiderman extends Actor
 {
+    // instance variables
     private int cooldown;
     private int mouseX;
     private int mouseY;
     private int health = 100;
+    
+    private GreenfootImage[] images = new GreenfootImage[9];
+    private int frameCount;
+    private int imageIndex;
+    
+    // declare reference to a StriteSheet object
+    private SpriteSheet spriteSheet;
+    //constructor
+    public Spiderman()
+    {
+        // instantiate the SpriteSheet object
+        spriteSheet = new SpriteSheet(); // call defalt constructor
+        
+        // extract the first row of animation frames
+        //images[0] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+        //                                                     0, 0,
+        //                                                     28, 30, 
+        //                                                   28, 30));
+        images[0] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             0, 33,
+                                                             18, 65, 
+                                                             18, 32));
+        images[1] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             22,33 ,
+                                                             48, 65, 
+                                                             26, 32));
+        images[2] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             59, 33,
+                                                             83, 65, 
+                                                             24, 32));
+        images[3] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             87, 33,
+                                                             107, 65, 
+                                                             20, 32));
+        images[4] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             107, 33,
+                                                             128, 65, 
+                                                             21, 32)); 
+        images[5] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             131, 33,
+                                                             155, 65, 
+                                                             24, 32)); 
+        images[6] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             156, 33,
+                                                             178, 65, 
+                                                             22, 32));
+        images[7] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             179, 33,
+                                                             197, 65, 
+                                                             18, 32)); 
+        images[8] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                                                             201, 33,
+                                                             228, 65, 
+                                                             27, 32));                                                     
+    }
+    
     /**
      * Act - do whatever the Spiderman wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -22,22 +80,41 @@ public class Spiderman extends Actor
         aim();
         fireSpeed();
     }// end act method
+    
+    public void updateImage()
+    {
+        setImage ( images[imageIndex] );
+        
+        // ++imageIndex pre-incremnt imageIndex
+        // then we check to see if the incremented value of imageIndex
+        // is greater that the highest available index in the
+        // images array
+        if (++imageIndex > (images.length - 1))
+        {
+            imageIndex = 0;
+        }// end if
+    }// end method updateImage
 
     public void checkKeypress()
     {
         // Get Current position
         int x = getX();
         int y = getY();
+        
+        boolean moving = false;
 
         if(Greenfoot.isKeyDown("a"))
         {
             setLocation(x - 5,y);
+            moving = true;
 
         }// end if 
 
         if(Greenfoot.isKeyDown("d"))
         {
             setLocation(x + 5, y);
+            moving = true;
+        
         }// end if
 
         if (Greenfoot.isKeyDown("w"))
@@ -50,6 +127,16 @@ public class Spiderman extends Actor
             setLocation(x, y + 5);
         }// end if
 
+        if (moving)
+        {
+            frameCount++;
+            if (frameCount == 4)
+            {
+                updateImage();
+                frameCount = 0;
+            }
+        }// end
+        
         if(Greenfoot.mouseClicked(null))
         {
             fire();
