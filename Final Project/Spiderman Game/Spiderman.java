@@ -13,7 +13,7 @@ public class Spiderman extends Actor
     private int cooldown;
     private int mouseX;
     private int mouseY;
-    private int health = 100;
+    
     
     private GreenfootImage[] images = new GreenfootImage[9];
     private int frameCount;
@@ -77,6 +77,7 @@ public class Spiderman extends Actor
     public void act()
     {
         checkKeypress();
+        checkCollision();
         aim();
         fireSpeed();
     }// end act method
@@ -176,20 +177,21 @@ public class Spiderman extends Actor
         }//end if
     }// end aim method
     
-    private void checkHealth()
+    private void checkCollision()
     {
-       health = 100;
-    }// end checkHealt method
-    // Getter
-    public int getHealth()
-    {
-        return health;
-    }// end getter getHealth
-    // Setter
-    public void setHealth(int h)
-    {
-        health = h;
-    }// end setter setHealth
-
+        if (isTouching(EvilSpirit.class))
+        {
+            Background background = (Background)getWorld();
+            background.takeHealth(20);
+            move(20);
+        }// end if
+        
+        if (isTouching(heart.class))
+        {
+            removeTouching(heart.class);
+            Background background = (Background)getWorld();
+            background.addHealth(10);
+        }
+    }// end checkTouching method
 }// end Spiderman class
 

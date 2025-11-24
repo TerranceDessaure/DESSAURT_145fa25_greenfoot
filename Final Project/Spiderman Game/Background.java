@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Background extends World
 {
-
+    // instance variables
     private int frameCounter; // instializes a counter variable
     private int frameInterval;// initializes a varible to count the frames
                                // per second
@@ -16,6 +16,9 @@ public class Background extends World
                              // to add the gems
     private int heartInterval;// count frames for hearts
     private Spiderman spiderman;
+    
+    private int health = 100;
+    
     /**
      * Constructor for objects of class Background.
      * 
@@ -25,19 +28,19 @@ public class Background extends World
         // Create a new world with 750x750 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         spiderman = new Spiderman();
-        
         prepare();
     }// end Background constructor
     
     public void act()
     {
+      frameCounter = frameCounter + 1;
       countFrames();
-      showText("Health:" + spiderman.getHealth(), 60, 20);
+      checkHealth();
+      showText("Health:" + health, 60, 20);; 
     } // end act method
     
     private void countFrames()
     {
-        frameCounter = frameCounter + 1;
         
         if(frameCounter == 60)
         {
@@ -48,18 +51,55 @@ public class Background extends World
         
         if (gemInterval == 15)
         {
-            addObject (new Gems(), Greenfoot.getRandomNumber(750), Greenfoot.getRandomNumber(750));
+            addObject (new Gems(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
             gemInterval = 0; // resets the gem interval to 0
                              // so it count to 15 again and place 
                              // another gem
         }// end if
-        
-        if (heartInterval == 5)
-        {
-            addObject (new heart(), Greenfoot.getRandomNumber(750), Greenfoot.getRandomNumber(750));
-            heartInterval = 0;
-        }// end if
     }// end countFrames method 
+    
+    private void checkHealth()
+    {
+        if (health != 100)
+        {
+            if (heartInterval == 5)
+            {
+                addObject (new heart(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+                heartInterval = 0;
+            }// end if
+        }// end if
+    }// end checkHealth Method
+    
+    /**
+     * takeHealth will subtract whatever amout of damage is neccisary
+     * after hitting an ememy or enemy projectile.
+     * If the current Health is less than or equal to zero the game will stop
+     */
+    public void takeHealth(int damage)
+    {
+        health = health - damage;
+        showHealth();
+        if  (health <= 0)
+        {
+            Greenfoot.stop();
+        }// end if
+    }// end takeHealth method
+    
+    /**
+     * addHealth will increase Spidermans health to then given amount.
+     */
+    public void addHealth(int healing)
+    {
+        health = health + healing;
+    }// end addHealth method
+    
+    /**
+     * Show current health on the screen.
+     */
+    private void showHealth()
+    {
+        showText("Health:" + health, 60, 20);
+    }// end showHealth method
     
     private void prepare()
     {
