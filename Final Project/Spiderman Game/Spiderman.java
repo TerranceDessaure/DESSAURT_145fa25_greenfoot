@@ -14,13 +14,15 @@ public class Spiderman extends Actor
     private int mouseX;
     private int mouseY;
     
-    
+    // animation logic
     private GreenfootImage[] images = new GreenfootImage[9];
     private int frameCount;
     private int imageIndex;
     
     // declare reference to a StriteSheet object
     private SpriteSheet spriteSheet;
+    
+    
     //constructor
     public Spiderman()
     {
@@ -191,7 +193,14 @@ public class Spiderman extends Actor
             removeTouching(heart.class);
             Background background = (Background)getWorld();
             background.addHealth(10);
-        }
+        }// end if
+        
+        if (isTouching(Gems.class))
+        {
+            removeTouching(Gems.class);
+            Background background = (Background)getWorld();
+            background.addGems(1);
+        }// end if
     }// end checkTouching method
 }// end Spiderman class
 

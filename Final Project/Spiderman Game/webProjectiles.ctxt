@@ -1,7 +1,10 @@
 #BlueJ class context
 comment0.target=webProjectiles
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ web\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Spiderman\ is\ able\ to\ shoot\ webProjectiles\ when\ the\ user\ left\ clicks\ on\ the\ mouse.\r\n\ These\ webs\ are\ his\ tool\ to\ fighting\ against\ the\ EvilSpirits.\ If\ one\ of\ these\ webs\ the\ EvilSpirit\ \r\n\ it\ will\ be\ removed\ from\ the\ world.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ 11.24.25\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ web\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment2.params=
+comment2.target=void\ checkEdge()
+comment2.text=\r\n\ This\ will\ check\ if\ the\ webProjectile\ is\ at\ the\ edge\ of\ the\ screen.\r\n\ If\ it\ is\ at\ the\ edge\ it\ will\ remove\ the\ webProjectile.\r\n
+numComments=3

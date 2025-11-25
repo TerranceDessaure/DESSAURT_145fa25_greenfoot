@@ -2,6 +2,10 @@
 comment0.target=Gems
 comment0.text=\r\n\ These\ gems\ represent\ the\ gems\ of\ the\ Breast\ Plate\ of\ Aaron.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ (11/17/2025)\r\n
 comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Gems\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment1.target=Gems()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Gems\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.params=
+comment3.target=void\ updateImage()
+numComments=4

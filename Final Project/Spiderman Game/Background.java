@@ -19,6 +19,7 @@ public class Background extends World
     
     private int health = 100;
     
+    private int gemCounter;
     /**
      * Constructor for objects of class Background.
      * 
@@ -36,9 +37,15 @@ public class Background extends World
       frameCounter = frameCounter + 1;
       countFrames();
       checkHealth();
-      showText("Health:" + health, 60, 20);; 
+      showText("Health:" + health, 60, 20);
+      showText("Gems Collected: " + gemCounter, 95, 40);
     } // end act method
     
+    /**
+     * This method transforms the frames into seconds so that we can count
+     * and know when objects should appear on the screen. We Know that every act is 60 frames.
+     * If every act is 60 frames we want each act to be one second.
+     */
     private void countFrames()
     {
         
@@ -58,6 +65,10 @@ public class Background extends World
         }// end if
     }// end countFrames method 
     
+    /**
+     * If heath does not equal 100 hundred then a heart will pop up every 5 seconds in
+     * a random spot on the screen.
+     */
     private void checkHealth()
     {
         if (health != 100)
@@ -73,17 +84,37 @@ public class Background extends World
     /**
      * takeHealth will subtract whatever amout of damage is neccisary
      * after hitting an ememy or enemy projectile.
-     * If the current Health is less than or equal to zero the game will stop
+     * If the current Health is less than or equal to zero the game will stop.
      */
     public void takeHealth(int damage)
     {
         health = health - damage;
-        showHealth();
         if  (health <= 0)
         {
             Greenfoot.stop();
         }// end if
     }// end takeHealth method
+    
+    /**
+     * Adds 1 Gem to gem counter
+     */
+    public void addGems(int gem)
+    {
+        gemCounter = gemCounter + gem;
+        if (gemCounter == 5)
+        {
+            showWinMessage();
+            Greenfoot.stop();
+        }
+    }// end addGems method
+    
+    /**
+     * Show winning end of game message 
+     */
+    private void showWinMessage()
+    {
+        showText("Game Over - You Win!", 390, 150);
+    }// end showWinMesage method
     
     /**
      * addHealth will increase Spidermans health to then given amount.
@@ -101,19 +132,20 @@ public class Background extends World
         showText("Health:" + health, 60, 20);
     }// end showHealth method
     
+   
     private void prepare()
     {
         Spiderman spiderman = new Spiderman();
         addObject(spiderman, 286, 224);
         
         EvilSpirit evilspirit = new EvilSpirit();
-        addObject( evilspirit, Greenfoot.getRandomNumber(700), Greenfoot.getRandomNumber(700));
+        addObject( evilspirit, Greenfoot.getRandomNumber(550), Greenfoot.getRandomNumber(550));
         
         EvilSpirit evilspirit2 = new EvilSpirit();
-        addObject( evilspirit2, Greenfoot.getRandomNumber(700), Greenfoot.getRandomNumber(700));
+        addObject( evilspirit2, Greenfoot.getRandomNumber(550), Greenfoot.getRandomNumber(350));
         
         EvilSpirit evilspirit3 = new EvilSpirit();
-        addObject( evilspirit3, Greenfoot.getRandomNumber(700), Greenfoot.getRandomNumber(700));
+        addObject( evilspirit3, Greenfoot.getRandomNumber(550), Greenfoot.getRandomNumber(350));
     }// end prepare method
     
 }// end class Background
