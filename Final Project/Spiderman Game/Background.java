@@ -141,6 +141,7 @@ public class Background extends World
         health = health - damage;
         if  (health <= 0)
         {
+            showText("Game Over: You Lose", 300,200);
             Greenfoot.stop();
         }// end if
     }// end takeHealth method
