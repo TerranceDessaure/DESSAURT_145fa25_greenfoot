@@ -11,15 +11,24 @@ public class Background extends World
     // instance variables
     private int frameCounter; // instializes a counter variable
     private int frameInterval;// initializes a varible to count the frames
-                               // per second
+    // per second
     private int gemInterval; // initializes a interval that counts the frames
-                             // to add the gems
+    // to add the gems
     private int heartInterval;// count frames for hearts
+    private int spiritInterval;
+
     private Spiderman spiderman;
-    
+
     private int health = 100;
-    
+
     private int gemCounter;
+    private int spiritCounter;
+    
+    private int blessingInterval;
+    
+    private int time;
+    
+
     /**
      * Constructor for objects of class Background.
      * 
@@ -31,16 +40,18 @@ public class Background extends World
         spiderman = new Spiderman();
         prepare();
     }// end Background constructor
-    
+
     public void act()
     {
-      frameCounter = frameCounter + 1;
-      countFrames();
-      checkHealth();
-      showText("Health:" + health, 60, 20);
-      showText("Gems Collected: " + gemCounter, 95, 40);
+        frameCounter = frameCounter + 1;
+        countFrames();
+        checkHealth();
+        sendSpirit();
+        showTime();
+        showText("Health:" + health, 60, 20);
+        showText("Gems Collected: " + gemCounter, 95, 40);
     } // end act method
-    
+
     /**
      * This method transforms the frames into seconds so that we can count
      * and know when objects should appear on the screen. We Know that every act is 60 frames.
@@ -48,39 +59,78 @@ public class Background extends World
      */
     private void countFrames()
     {
-        
+
         if(frameCounter == 60)
         {
             gemInterval = gemInterval + 1;
             heartInterval = heartInterval + 1;
+            spiritInterval++;
+            blessingInterval++;
+            time++;
             frameCounter = 0;
         }//end if
-        
+
         if (gemInterval == 15)
         {
-            addObject (new Gems(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+            sendGems();
             gemInterval = 0; // resets the gem interval to 0
-                             // so it count to 15 again and place 
-                             // another gem
+            // so it count to 15 again and place 
+            // another gem
         }// end if
+        
+        if(blessingInterval == 30)
+        {
+            sendBlessings();
+            blessingInterval = 0;
+        }
+
     }// end countFrames method 
     
+    /**
+     * Displays time played on the screen
+     */
+    private void showTime()
+    {
+        showText("Time Passed:" + time, 81, 60);
+    }
+    
+    /**
+     * Send a Blessing to the world in a random place
+     */
+    private void sendBlessings()
+    {
+        addObject (new Blessings(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+    }
+
+    private void sendGems()
+    {
+        addObject (new Gems(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));    
+    }// end sendGems method
+
     /**
      * If heath does not equal 100 hundred then a heart will pop up every 5 seconds in
      * a random spot on the screen.
      */
     private void checkHealth()
     {
-        if (health != 100)
+        if (health < 100 && heartInterval >= 5)
         {
-            if (heartInterval == 5)
-            {
-                addObject (new heart(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
-                heartInterval = 0;
-            }// end if
+           
+            addObject (new heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
+            heartInterval = 0;
+           
         }// end if
     }// end checkHealth Method
-    
+
+    private void sendSpirit()
+    {
+        if (getObjects(EvilSpirit.class).size() < 3 && spiritInterval >= 5)
+        {
+            addSpirit();
+            spiritInterval = 0;
+        }
+    }
+
     /**
      * takeHealth will subtract whatever amout of damage is neccisary
      * after hitting an ememy or enemy projectile.
@@ -94,7 +144,7 @@ public class Background extends World
             Greenfoot.stop();
         }// end if
     }// end takeHealth method
-    
+
     /**
      * Adds 1 Gem to gem counter
      */
@@ -108,14 +158,19 @@ public class Background extends World
         }
     }// end addGems method
     
+    public void subtractSpiritCounter(int erase)
+    {
+        spiritCounter = spiritCounter - erase;
+    }
+
     /**
      * Show winning end of game message 
      */
     private void showWinMessage()
     {
-        showText("Game Over - You Win!", 390, 150);
+        showText("Game Over - You Win!", 300, 200);
     }// end showWinMesage method
-    
+
     /**
      * addHealth will increase Spidermans health to then given amount.
      */
@@ -123,7 +178,7 @@ public class Background extends World
     {
         health = health + healing;
     }// end addHealth method
-    
+
     /**
      * Show current health on the screen.
      */
@@ -131,21 +186,17 @@ public class Background extends World
     {
         showText("Health:" + health, 60, 20);
     }// end showHealth method
-    
-   
+
+    private void addSpirit()
+    {
+        EvilSpirit evilspirit = new EvilSpirit();
+        addObject( evilspirit, Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
+    }
+
     private void prepare()
     {
         Spiderman spiderman = new Spiderman();
         addObject(spiderman, 286, 224);
-        
-        EvilSpirit evilspirit = new EvilSpirit();
-        addObject( evilspirit, Greenfoot.getRandomNumber(550), Greenfoot.getRandomNumber(550));
-        
-        EvilSpirit evilspirit2 = new EvilSpirit();
-        addObject( evilspirit2, Greenfoot.getRandomNumber(550), Greenfoot.getRandomNumber(350));
-        
-        EvilSpirit evilspirit3 = new EvilSpirit();
-        addObject( evilspirit3, Greenfoot.getRandomNumber(550), Greenfoot.getRandomNumber(350));
     }// end prepare method
-    
+
 }// end class Background

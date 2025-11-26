@@ -15,6 +15,8 @@ public class EvilSpirit extends Actor
      */
     public void act()
     {
+        move(5);
+        turnAtEdge();
         checkHit();
         checkHealth();
     }// end act method
@@ -25,6 +27,7 @@ public class EvilSpirit extends Actor
         {
             health--;
             removeTouching(webProjectiles.class);
+            
         }// end if
     }// end chechHit mehtod
     
@@ -32,7 +35,32 @@ public class EvilSpirit extends Actor
     {
         if (health <= 0)
         {
+            Background background = (Background)getWorld();
+            background.subtractSpiritCounter(1);
             getWorld().removeObject(this); 
         }
     }// end checkHealth method
+    
+    private void checkSpiritNumber()
+    {
+        Background background = (Background)getWorld();
+        background.subtractSpiritCounter(1);
+    }
+    
+    private void turnAtEdge()
+    {
+        if ( isAtEdge() )
+        {
+            setRotation(getRotation() + 180);
+            
+        } // end if
+    } // end method turnAtEdge
+    
+     public void randomTurn()
+    {
+        if ( Greenfoot.getRandomNumber(100) < 10 )
+        {
+            turn( Greenfoot.getRandomNumber( 91 ) - 45 );
+        } // end if
+    } // end method randomTurn
 }
