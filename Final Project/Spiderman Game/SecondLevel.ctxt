@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=SecondLevel
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ SecondLevel\ here.\r\n\ \r\n\ @author\ Terrance\ \r\n\ @version\ 11/29/2025\r\n
+comment1.params=spiderman\ health\ gemCounter\ time
+comment1.target=SecondLevel(Spiderman,\ int,\ int,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SecondLevel.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ prepare()
+numComments=3

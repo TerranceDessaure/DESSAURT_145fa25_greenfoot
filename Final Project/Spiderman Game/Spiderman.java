@@ -242,6 +242,13 @@ public class Spiderman extends Actor
         {
             removeTouching(Blessings.class);
         }
+        
+        if (isTouching(enemyProjectile.class))
+        {
+            removeTouching(enemyProjectile.class);
+            Background background = (Background)getWorld();
+            background.takeHealth(20);
+        }
     }// end checkTouching method
 }// end Spiderman class
 

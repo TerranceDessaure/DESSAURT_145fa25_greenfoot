@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=enemyProjectile
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ enemyProjectile\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ enemyProjectile\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.params=
+comment2.target=void\ checkEdge()
+comment2.text=\r\n\ This\ will\ check\ if\ the\ enemyProjectile\ is\ at\ the\ edge\ of\ the\ screen.\r\n\ If\ it\ is\ at\ the\ edge\ it\ will\ remove\ the\ enemyProjectile.\r\n
+numComments=3

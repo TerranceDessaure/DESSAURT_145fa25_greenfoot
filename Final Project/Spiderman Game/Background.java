@@ -12,6 +12,7 @@ public class Background extends World
     private int frameCounter; // instializes a counter variable
     private int frameInterval;// initializes a varible to count the frames
     // per second
+    private int gameFrameCounter;
     private int gemInterval; // initializes a interval that counts the frames
     // to add the gems
     private int heartInterval;// count frames for hearts
@@ -45,8 +46,9 @@ public class Background extends World
     {
         frameCounter = frameCounter + 1;
         countFrames();
-        checkHealth();
         sendSpirit();
+        checkHealth();
+        time();
         showTime();
         showText("Health:" + health, 60, 20);
         showText("Gems Collected: " + gemCounter, 95, 40);
@@ -65,8 +67,8 @@ public class Background extends World
             gemInterval = gemInterval + 1;
             heartInterval = heartInterval + 1;
             spiritInterval++;
-            blessingInterval++;
             time++;
+            blessingInterval++;
             frameCounter = 0;
         }//end if
 
@@ -92,6 +94,17 @@ public class Background extends World
     private void showTime()
     {
         showText("Time Passed:" + time, 81, 60);
+    }
+    
+    public void time()
+    {
+        gameFrameCounter++;
+        if(gameFrameCounter == 60)
+        {
+            time++;
+            frameCounter = 0;
+        }
+        
     }
     
     /**
@@ -152,10 +165,10 @@ public class Background extends World
     public void addGems(int gem)
     {
         gemCounter = gemCounter + gem;
-        if (gemCounter == 5)
+        if (gemCounter == 2)
         {
             showWinMessage();
-            Greenfoot.stop();
+            Greenfoot.setWorld(new SecondLevel(spiderman,health, gemCounter,time));
         }
     }// end addGems method
     
@@ -193,10 +206,10 @@ public class Background extends World
         EvilSpirit evilspirit = new EvilSpirit();
         addObject( evilspirit, Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
     }
-
+    
     private void prepare()
     {
-        Spiderman spiderman = new Spiderman();
+        spiderman = new Spiderman();
         addObject(spiderman, 286, 224);
     }// end prepare method
 
