@@ -17,20 +17,37 @@ public class EvilSpirit extends Actor
     private int stepCounter;
     private int sideLength = 50;
     
+    // chasing instance variables
+    private boolean chasing = false;
+    private int chaseTimer = 0;
+    private int maxChaseTime = 180;
+    
     /**
      * Act - do whatever the EvilSpirit wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        move(2);
         countSeconds();
         fireSpeed();
-        fireRate();
+        if(seconds >= 5)
+        {
+            fireAtSpiderman();
+            seconds = 0;
+        }
         turnAtEdge();
-        boxMovement();
+        // boxMovement();
         checkHit();
         checkHealth();
+
+        if (chasing)
+        {
+            chaseSpiderman();
+        }
+        else
+        {
+            roam();
+        }
     }// end act method
     
     private void countSeconds()
@@ -57,9 +74,12 @@ public class EvilSpirit extends Actor
     {
         if (health <= 0)
         {
-            Background background = (Background)getWorld();
-            background.subtractSpiritCounter(1);
-            getWorld().removeObject(this); 
+            if (getWorld() != null)
+            {
+                Background background = (Background)getWorld();
+                background.subtractSpiritCounter(1);
+                getWorld().removeObject(this); 
+            }
         }
     }// end checkHealth method
     
@@ -74,7 +94,6 @@ public class EvilSpirit extends Actor
         if ( isAtEdge() )
         {
             setRotation(getRotation() + 180);
-            
         } // end if
         
     } // end method turnAtEdge
@@ -104,10 +123,11 @@ public class EvilSpirit extends Actor
     
      private void fireSpeed()
     {
-        if (coolDown > 0)
-        {
-            coolDown--;
-        }//end if
+       if (seconds >= 5)
+       {
+           fireAtSpiderman();
+           seconds = 0;
+       }
     }
     
     private void fireRate()
@@ -126,8 +146,104 @@ public class EvilSpirit extends Actor
         
         if (stepCounter >= sideLength)
         {
-            turn(90);
+            turn(Greenfoot.getRandomNumber(360));
             stepCounter = 0;
+        }
+    }
+    
+    private void fireAtSpiderman() 
+    {
+        
+        if (getWorld() == null) 
+        {
+            return; // safety check
+        }
+
+        Background bg = (Background)getWorld();
+        Spiderman spiderman = bg.getSpiderman(); // make sure Background has a getter
+
+        if (spiderman != null && spiderman.getWorld() != null && coolDown == 0) 
+        {
+            if (isInRange(spiderman,150))
+            {
+                enemyProjectile projectile = new enemyProjectile();
+                getWorld().addObject(projectile, getX(), getY());
+
+                // Calculate angle to Spiderman
+                int dx = spiderman.getX() - getX();
+                int dy = spiderman.getY() - getY();
+                double angle = Math.atan2(dy, dx); // radians
+
+                // Convert to degrees and set rotation
+                int rotation = (int)Math.toDegrees(angle);
+                projectile.setRotation(rotation);
+
+                coolDown = 60; // wait 1 second before next shot
+            }
+        }
+    }
+    
+    private boolean isInRange(Spiderman spiderman, int range)
+    {
+        int dx = spiderman.getX() - getX();
+        int dy = spiderman.getY() - getY();
+        double distance = Math.sqrt(dx * dx + dy * dy);
+        return distance <= range;
+    }
+    
+    
+    private void chaseSpiderman()
+    {
+        if (getWorld() == null)
+        {
+            return;
+        }
+        Background bg = (Background)getWorld();
+        Spiderman spiderman = bg.getSpiderman();
+        if (spiderman != null && spiderman.getWorld () != null)
+        {
+            turnTowards(spiderman.getX(), spiderman.getY());
+            move(2);
+            
+            chaseTimer++;
+            if (chaseTimer >= maxChaseTime)
+            {
+                chasing = false;
+                chaseTimer = 0;
+            }
+        }
+        else
+        {
+            chasing = false; 
+        }
+    }
+    
+    private void roam()
+    {
+        move(2);
+        if (Greenfoot.getRandomNumber(100) < 2)
+        {
+            turn(Greenfoot.getRandomNumber(90) - 45);
+        }
+        
+        if (getWorld() == null)
+        {
+            return;
+        }
+        Background bg = (Background)getWorld();
+        Spiderman spiderman = bg.getSpiderman();
+        
+        if (spiderman != null && spiderman.getWorld() != null)
+        {
+            int dx = spiderman.getX() - getX();
+            int dy = spiderman.getY() - getY();
+            double distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 150)
+            {
+                chasing = true;
+                chaseTimer = 0;
+            }
         }
     }
 }

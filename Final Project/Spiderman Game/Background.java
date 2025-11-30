@@ -29,7 +29,6 @@ public class Background extends World
     
     private int time;
     
-
     /**
      * Constructor for objects of class Background.
      * 
@@ -84,7 +83,7 @@ public class Background extends World
         {
             sendBlessings();
             blessingInterval = 0;
-        }
+        }// end if
 
     }// end countFrames method 
     
@@ -94,7 +93,7 @@ public class Background extends World
     private void showTime()
     {
         showText("Time Passed:" + time, 81, 60);
-    }
+    }// end showTime method
     
     public void time()
     {
@@ -103,9 +102,9 @@ public class Background extends World
         {
             time++;
             frameCounter = 0;
-        }
+        }// end if
         
-    }
+    }// end time method
     
     /**
      * Send a Blessing to the world in a random place
@@ -113,8 +112,11 @@ public class Background extends World
     private void sendBlessings()
     {
         addObject (new Blessings(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
-    }
+    }// end sendBlessings method
 
+    /**
+     * Sends Gems to the world.
+     */
     private void sendGems()
     {
         addObject (new Gems(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));    
@@ -135,14 +137,17 @@ public class Background extends World
         }// end if
     }// end checkHealth Method
 
+    /**
+     * Sends the Spirits to the world.
+     */
     private void sendSpirit()
     {
         if (getObjects(EvilSpirit.class).size() < 3 && spiritInterval >= 5)
         {
             addSpirit();
             spiritInterval = 0;
-        }
-    }
+        }// end if
+    }// end sendSpirit method
 
     /**
      * takeHealth will subtract whatever amout of damage is neccisary
@@ -172,10 +177,13 @@ public class Background extends World
         }
     }// end addGems method
     
+    /**
+     * This method will allow the Spirit Counter to earase one count.
+     */
     public void subtractSpiritCounter(int erase)
     {
         spiritCounter = spiritCounter - erase;
-    }
+    }// end subtractSpiritCounter method
 
     /**
      * Show winning end of game message 
@@ -201,16 +209,25 @@ public class Background extends World
         showText("Health:" + health, 60, 20);
     }// end showHealth method
 
+    /**
+     * This method will adds an Evil Spirit to the world in a ramdom place. We use the numbers 580 and 380
+     * so that they do not spawn to close to the edges of the screen.
+     */
     private void addSpirit()
     {
         EvilSpirit evilspirit = new EvilSpirit();
         addObject( evilspirit, Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
-    }
+    }// end addSpirit method
     
     private void prepare()
     {
         spiderman = new Spiderman();
         addObject(spiderman, 286, 224);
     }// end prepare method
+    
+    public Spiderman getSpiderman()
+    {
+        return spiderman;
+    }
 
 }// end class Background
