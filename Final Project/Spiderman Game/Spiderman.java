@@ -217,26 +217,6 @@ public class Spiderman extends Actor
 
     private void checkCollision()
     {
-        if (isTouching(EvilSpirit.class))
-        {
-            Background background = (Background)getWorld();
-            background.takeHealth(20);
-            move(20);
-        }// end if
-
-        if (isTouching(heart.class))
-        {
-            removeTouching(heart.class);
-            Background background = (Background)getWorld();
-            background.addHealth(10);
-        }// end if
-
-        if (isTouching(Gems.class))
-        {
-            removeTouching(Gems.class);
-            Background background = (Background)getWorld();
-            background.addGems(1);
-        }// end if
         
         if (isTouching(Blessings.class))
         {

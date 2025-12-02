@@ -22,6 +22,7 @@ public class webProjectiles extends Actor
     {
         move(5);
         checkEdge();
+        
     }// end act method
     
     /**
@@ -35,5 +36,10 @@ public class webProjectiles extends Actor
             getWorld().removeObject(this);
         }// end if
     }// end checkEdge method    
+    
+    private void checkCollision()
+    {
+        
+    }
    
 }// end webProjectiles Class

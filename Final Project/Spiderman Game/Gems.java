@@ -57,7 +57,33 @@ public class Gems extends Actor
                 updateImage();
                 frameCount = 0;
             }
-    }// end act method
+            
+         if (isTouching(Spiderman.class)) 
+         
+         {
+             World currentWorld = getWorld();
+             GameManager manager = null;
+            if (currentWorld instanceof Background)
+            {
+                Background world = (Background)getWorld();
+                manager = world.getManager();
+                manager.addGem(1);
+                world.addGem();
+            } 
+            else if(currentWorld instanceof SecondLevel)
+            {
+                SecondLevel world = (SecondLevel)currentWorld;
+                manager = world.getManager();
+                manager.addGem(1);
+                world.addGem(); 
+            }
+
+            
+            getWorld().removeObject(this); // remove the gem itself
+
+        }// end act method
+
+    }
     
     public void updateImage()
     {

@@ -6,9 +6,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (Terrance Dessaure) 
  * @version (11/10/25)
  */
-public class Background extends World
+public class Background extends BaseWorld
 {
-    // instance variables
+   /* FIELDS */
+   
     private int frameCounter; // instializes a counter variable
     private int frameInterval;// initializes a varible to count the frames
     // per second
@@ -17,29 +18,21 @@ public class Background extends World
     // to add the gems
     private int heartInterval;// count frames for hearts
     private int spiritInterval;
-
-    private Spiderman spiderman;
-
-    private int health = 100;
-
-    private int gemCounter;
-    private int spiritCounter;
-    
     private int blessingInterval;
     
     private int time;
-    
-    /**
-     * Constructor for objects of class Background.
-     * 
-     */
-    public Background()
-    {    
-        // Create a new world with 750x750 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
-        spiderman = new Spiderman();
-        prepare();
-    }// end Background constructor
+    private int spiritCounter;
+    public Background() {
+        this(new Spiderman(), new GameManager()); 
+    }
+
+    public Background(Spiderman spiderman, GameManager manager) 
+    {
+        super(600, 400, 1, spiderman, manager);
+        showText("Welcome to Level 1!", 300, 50);
+        
+    }
+  
 
     public void act()
     {
@@ -47,10 +40,9 @@ public class Background extends World
         countFrames();
         sendSpirit();
         checkHealth();
-        time();
-        showTime();
-        showText("Health:" + health, 60, 20);
-        showText("Gems Collected: " + gemCounter, 95, 40);
+        showHUD();
+        manager.setCurrentTime(1);
+        //showText("" + myGameManager.getCurrentTime(), 150, 80);
     } // end act method
 
     /**
@@ -71,7 +63,7 @@ public class Background extends World
             frameCounter = 0;
         }//end if
 
-        if (gemInterval == 15)
+        if (gemInterval == 5)
         {
             sendGems();
             gemInterval = 0; // resets the gem interval to 0
@@ -86,25 +78,6 @@ public class Background extends World
         }// end if
 
     }// end countFrames method 
-    
-    /**
-     * Displays time played on the screen
-     */
-    private void showTime()
-    {
-        showText("Time Passed:" + time, 81, 60);
-    }// end showTime method
-    
-    public void time()
-    {
-        gameFrameCounter++;
-        if(gameFrameCounter == 60)
-        {
-            time++;
-            frameCounter = 0;
-        }// end if
-        
-    }// end time method
     
     /**
      * Send a Blessing to the world in a random place
@@ -128,7 +101,7 @@ public class Background extends World
      */
     private void checkHealth()
     {
-        if (health < 100 && heartInterval >= 5)
+        if (manager.getHealth() < 100 && heartInterval >= 5)
         {
            
             addObject (new heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
@@ -156,8 +129,8 @@ public class Background extends World
      */
     public void takeHealth(int damage)
     {
-        health = health - damage;
-        if  (health <= 0)
+        manager.takeHealth(damage);
+        if  (manager.isGameOver())
         {
             showText("Game Over: You Lose", 300,200);
             Greenfoot.stop();
@@ -167,13 +140,13 @@ public class Background extends World
     /**
      * Adds 1 Gem to gem counter
      */
-    public void addGems(int gem)
+    public void addGem()
     {
-        gemCounter = gemCounter + gem;
-        if (gemCounter == 2)
+
+        if (manager.hasWonLevel1())
         {
             showWinMessage();
-            Greenfoot.setWorld(new SecondLevel(spiderman,health, gemCounter,time));
+            Greenfoot.setWorld(new SecondLevel(spiderman,manager));
         }
     }// end addGems method
     
@@ -193,22 +166,7 @@ public class Background extends World
         showText("Game Over - You Win!", 300, 200);
     }// end showWinMesage method
 
-    /**
-     * addHealth will increase Spidermans health to then given amount.
-     */
-    public void addHealth(int healing)
-    {
-        health = health + healing;
-    }// end addHealth method
-
-    /**
-     * Show current health on the screen.
-     */
-    private void showHealth()
-    {
-        showText("Health:" + health, 60, 20);
-    }// end showHealth method
-
+  
     /**
      * This method will adds an Evil Spirit to the world in a ramdom place. We use the numbers 580 and 380
      * so that they do not spawn to close to the edges of the screen.
@@ -219,15 +177,4 @@ public class Background extends World
         addObject( evilspirit, Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
     }// end addSpirit method
     
-    private void prepare()
-    {
-        spiderman = new Spiderman();
-        addObject(spiderman, 286, 224);
-    }// end prepare method
-    
-    public Spiderman getSpiderman()
-    {
-        return spiderman;
-    }
-
 }// end class Background
