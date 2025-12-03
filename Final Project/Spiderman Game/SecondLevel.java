@@ -71,7 +71,7 @@ public class SecondLevel extends BaseWorld
 
     private void sendBlessings() 
     {
-        String[] types = {"invincible", "doubleDamage", "speedBoost", "rapidFire"};
+        String[] types = { "doubleDamage", "speedBoost", "rapidFire"};
         String chosen = types[Greenfoot.getRandomNumber(types.length)];
 
         int x = Greenfoot.getRandomNumber(getWidth());
