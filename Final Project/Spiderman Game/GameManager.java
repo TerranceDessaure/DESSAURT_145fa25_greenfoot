@@ -42,6 +42,15 @@ public class GameManager
         return timeCounter;
     }
     
+    /**
+     * Updates the in-game time counter based on frame progression.
+     * 
+     * This method increment the `frameCounter` each time it is called.
+     * When the counter reaches 60 (60 is chosen because Greenfoot is running at 60 frames per second)
+     * it increases the `timeCounter` by a the `timeIncrement` and resets the `frameCounter` back to zero.
+     * 
+     * @param timeIncrement the amount of time (in seconds) to add to `timeCounter` once 60 frames have passed.
+     */
     public void setCurrentTime (int timeIncrement)
     {
         frameCounter++;
@@ -49,39 +58,61 @@ public class GameManager
         {
             timeCounter += timeIncrement;
             frameCounter = 0;
-        }
+        }// end if 
 
     }// end method setCurrentTime
     
-    
-    
     /*Health*/
+    /**
+     * Reduces the current health of this actor by the specified famage amount.
+     * 
+     * If health falls below zero, it is clamped to zero to prevent negative health values. This method
+     * does not remove the actor from the world, but it update the health field.
+     * 
+     * 
+     *@param damage the amoint of health to subtract
+     */
     public void takeHealth(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
             health = 0;
-        }
-    }
+        }// end if
+    }// end takeHealth method
     
     public void addHealth(int healing)
     {
         health = Math.min(100, health + healing);
-    }
+    }// end addHealth method
     
     public int getHealth()
     {
         return health;
-    }
+    }// end getHealth method
     
     /* Gem Management */
-    
+    /**
+     * Increases the player's gem count by the given amount.
+     * 
+     * This method adds the give `amount` to  the `gemCounter`.
+     * that tracks the total number of gems collected. 
+     * 
+     * @param amount that number of gems to add to the counter
+     */
     public void addGem(int amount)
     {
         gemCounter += amount;
-    }
+    }// end addGem method
     
+    /**
+     * Gets the current number of gems collected.
+     * 
+     * This method returns (or `gets`) the value of `gemCounters`, which tracks
+     * the total gems accumulated by the player. (plain getter method)
+     * 
+     * @return the current gem count
+     */
     public int getGemCounter()
     {
         return gemCounter;
