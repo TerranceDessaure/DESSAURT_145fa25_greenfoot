@@ -178,6 +178,16 @@ public class Spiderman extends Actor
         }//end if
     }
 
+    /**
+     * Fires a web projectile toward the current mouse position.
+     * 
+     * When the cooldown timer is zero, this method creates a new
+     * `webProjectiles` object at the actor's current location.
+     * It calculates the angle between the actor and the mouse cursor,
+     * set the projectile's rotation accordingly, and adds it to the world.
+     * After firinf, the cooldown is reset to t30 frames to prevent 
+     * continuous firing.
+     */
     private void fire()
     {
         if (cooldown == 0)
@@ -204,6 +214,14 @@ public class Spiderman extends Actor
         }// end if 
     }// end fire method
 
+    /**
+     * Updates the aiming coordinates based on the current mouse position.
+     * 
+     * If the mouse cursor is present within the Greenfoot window, this method
+     * get the X and Y coordinates and stores them in and `mouseX` and `mouseY`. 
+     * These values can be used to determine the direction in which projectiles
+     * should be fired.
+     */
     private void aim()
     {
         if(Greenfoot.getMouseInfo() != null) // if the mouse is in the screen
