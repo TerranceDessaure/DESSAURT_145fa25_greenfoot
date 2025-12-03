@@ -7,4 +7,6 @@ comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ enemyProjectile\ wants\ to\ do.\ 
 comment2.params=
 comment2.target=void\ checkEdge()
 comment2.text=\r\n\ This\ will\ check\ if\ the\ enemyProjectile\ is\ at\ the\ edge\ of\ the\ screen.\r\n\ If\ it\ is\ at\ the\ edge\ it\ will\ remove\ the\ enemyProjectile.\r\n
-numComments=3
+comment3.params=
+comment3.target=void\ checkCollision()
+numComments=4

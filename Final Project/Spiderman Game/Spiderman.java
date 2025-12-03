@@ -32,6 +32,13 @@ public class Spiderman extends Actor
 
     private int quipTimer = 0;
     private String currentQuip = "";
+    
+    /* Power-Ups*/
+    private boolean doubleDamage = false;
+    private boolean speedBoost = false;
+    private boolean rapidFire = false;
+    private int powerUpTimer = 0;
+    
 
     //constructor
     public Spiderman()
@@ -92,15 +99,24 @@ public class Spiderman extends Actor
     public void act()
     {
         checkKeypress();
-        checkCollision();
         aim();
         fireSpeed();
         
-        if (quipTimer > 0) {
+        if (quipTimer > 0) 
+        {
             quipTimer--;
             if (quipTimer == 0) 
             {
                 getWorld().showText("", 200, 30); // clear after 3 seconds
+            }
+        }
+        
+        if (powerUpTimer > 0)
+        {
+            powerUpTimer--;
+            if (powerUpTimer == 0)
+            {
+                clearPowerUps();
             }
         }
 
@@ -112,6 +128,37 @@ public class Spiderman extends Actor
         currentQuip = quips[index];
         getWorld().showText(currentQuip, 300,20);
         quipTimer = 180; // 3 seconds at 60 fps
+    }
+    
+    public void applyBlessing(String type)
+    {
+     switch(type)
+     {
+         case "doubleDamage" :
+             doubleDamage = true;
+             getWorld().showText("Double Damage Activated!", 300, 380);
+             break;
+         case "speedBoost":
+             speedBoost = true;
+             getWorld().showText("Speed Boost Activated!", 300, 380);
+             break;
+         case "rapidFire" : 
+             rapidFire = true;
+             cooldown = 10;
+             getWorld().showText("Rapid Fire Activated!", 300, 380);
+             break;
+             
+     }
+     powerUpTimer = 300;
+    }
+    
+    private void clearPowerUps()
+    {
+        doubleDamage = false;
+        speedBoost = false;
+        rapidFire = false;
+        cooldown = 30;
+        getWorld().showText("", 300, 380); 
     }
 
 
@@ -136,10 +183,12 @@ public class Spiderman extends Actor
         int y = getY();
 
         boolean moving = false;
-
+        int step = speedBoost ? 8 : 5; 
+        
+        // blue and white pill = speedBoost
         if(Greenfoot.isKeyDown("a"))
         {
-            setLocation(x - 5,y);
+            setLocation(x - step,y);
             moving = true;
             if(directionIsRight)
             {
@@ -155,7 +204,7 @@ public class Spiderman extends Actor
 
         if(Greenfoot.isKeyDown("d"))
         {
-            setLocation(x + 5, y);
+            setLocation(x + step, y);
             moving = true;
 
             if(!directionIsRight)
@@ -172,12 +221,12 @@ public class Spiderman extends Actor
 
         if (Greenfoot.isKeyDown("w"))
         {
-            setLocation(x, y - 5);
+            setLocation(x, y - step);
         }// end if
 
         if (Greenfoot.isKeyDown("s"))
         {
-            setLocation(x, y + 5);
+            setLocation(x, y + step);
         }// end if
 
         if (moving)
@@ -220,7 +269,8 @@ public class Spiderman extends Actor
     {
         if (cooldown == 0)
         {  
-            webProjectiles web = new webProjectiles();
+            int damage = doubleDamage ? 2 : 1;
+            webProjectiles web = new webProjectiles(damage);
 
             // get the position of the mouse on scren
             int targetX = Greenfoot.getMouseInfo().getX();
@@ -236,7 +286,7 @@ public class Spiderman extends Actor
             web.setRotation(rotation);
 
             getWorld().addObject (web, getX(), getY());
-            cooldown = 30;
+            cooldown = rapidFire ? 10 : 30;
         }// end if 
     }// end fire method
 
@@ -267,12 +317,6 @@ public class Spiderman extends Actor
             removeTouching(Blessings.class);
         }
 
-        if (isTouching(enemyProjectile.class))
-        {
-            removeTouching(enemyProjectile.class);
-            Background background = (Background)getWorld();
-            background.takeHealth(20);
-        }
     }// end checkTouching method
 }// end Spiderman class
 

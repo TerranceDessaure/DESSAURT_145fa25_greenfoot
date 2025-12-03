@@ -61,7 +61,7 @@ public class Background extends BaseWorld
             frameCounter = 0;
         }//end if
 
-        if (gemInterval == 5)
+        if (gemInterval == 10)
         {
             sendGems();
             gemInterval = 0; // resets the gem interval to 0
@@ -69,7 +69,7 @@ public class Background extends BaseWorld
             // another gem
         }// end if
 
-        if(blessingInterval == 30)
+        if(blessingInterval == 15)
         {
             sendBlessings();
             blessingInterval = 0;
@@ -82,7 +82,14 @@ public class Background extends BaseWorld
      */
     private void sendBlessings()
     {
-        addObject (new Blessings(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+        String[] types = { "doubleDamage", "speedBoost", "rapidFire"};
+        String chosen = types[Greenfoot.getRandomNumber(types.length)];
+
+        int x = Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
+
+        addObject(new Blessings(chosen), x, y);
+
     }// end sendBlessings method
 
     /**
@@ -99,7 +106,7 @@ public class Background extends BaseWorld
      */
     private void checkHealth()
     {
-        if (manager.getHealth() < 100 && heartInterval >= 5)
+        if (manager.getHealth() < 100 && heartInterval >= 10)
         {
 
             addObject (new heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));

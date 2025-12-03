@@ -11,15 +11,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class webProjectiles extends Actor
 {
     //instance variables
-    
+    private int damage;
     
     //constructor
+    public webProjectiles(int damage)
+    {
+        this.damage = damage;
+    }
+    
+    public int getDamage()
+    {
+        return damage;
+    }
+    
+    
     /**
      * Act - do whatever the web wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
+        
         move(5);
         checkEdge();
         
@@ -36,10 +48,5 @@ public class webProjectiles extends Actor
             getWorld().removeObject(this);
         }// end if
     }// end checkEdge method    
-    
-    private void checkCollision()
-    {
-        
-    }
    
 }// end webProjectiles Class

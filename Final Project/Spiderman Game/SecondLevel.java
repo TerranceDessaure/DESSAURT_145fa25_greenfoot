@@ -61,7 +61,7 @@ public class SecondLevel extends BaseWorld
             gemInterval = 0;
         }
 
-        if (blessingInterval == 30)
+        if (blessingInterval == 10)
         {
             sendBlessings();
             blessingInterval = 0;
@@ -71,8 +71,16 @@ public class SecondLevel extends BaseWorld
 
     private void sendBlessings() 
     {
-        addObject(new Blessings(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));
+        String[] types = {"invincible", "doubleDamage", "speedBoost", "rapidFire"};
+        String chosen = types[Greenfoot.getRandomNumber(types.length)];
+
+        int x = Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
+
+        addObject(new Blessings(chosen), x, y);
+
     }
+    
 
     private void sendGems() 
     {

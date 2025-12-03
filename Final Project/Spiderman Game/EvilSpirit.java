@@ -74,9 +74,12 @@ public class EvilSpirit extends Actor {
     private void checkCollision() {
         if (isTouching(Spiderman.class)) {
             World currentWorld = getWorld();
-            if (currentWorld instanceof Background) {
+            if (currentWorld instanceof Background) 
+            {
                 ((Background)currentWorld).takeHealth(10);
-            } else if (currentWorld instanceof SecondLevel) {
+            } 
+            else if (currentWorld instanceof SecondLevel) 
+            {
                 ((SecondLevel)currentWorld).takeHealth(10);
             }
             getWorld().removeObject(this);
