@@ -30,8 +30,6 @@ public class Background extends BaseWorld
     public Background(Spiderman spiderman, GameManager manager) 
     {
         super(600, 400, 1, spiderman, manager);
-        showText("Welcome to Level 1!", 300, 50);
-
     }
 
     public void act()

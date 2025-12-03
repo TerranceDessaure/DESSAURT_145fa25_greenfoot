@@ -29,7 +29,6 @@ public class SecondLevel extends BaseWorld
         this.myGameManager = myGameManager;
 
         addObject(spiderman, 300, 200); 
-        showText("Welcome to Level 2!", 300,50);
 
         // showText("Time:" + myGameManager.getCurrentTime(), 150, 80);
     }
@@ -102,7 +101,7 @@ public class SecondLevel extends BaseWorld
     
     public void addGem()
     {
-        if (manager.getGemCounter() == 5)
+        if (manager.getGemCounter() == 12)
         {
             showText("Level 2 complete!", 300, 200);
             Greenfoot.stop();

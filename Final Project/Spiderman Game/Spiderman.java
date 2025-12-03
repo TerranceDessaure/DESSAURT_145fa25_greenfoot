@@ -23,6 +23,16 @@ public class Spiderman extends Actor
     private SpriteSheet spriteSheet;
 
     private boolean directionIsRight;
+
+    private String[] quips = { 
+            "My spider-sense is tingling!",
+            "Web-slinging never gets old!",
+            "Another gem for the collection!",
+            "Evil spirits? More like easy targets!" };
+
+    private int quipTimer = 0;
+    private String currentQuip = "";
+
     //constructor
     public Spiderman()
     {
@@ -85,7 +95,25 @@ public class Spiderman extends Actor
         checkCollision();
         aim();
         fireSpeed();
+        
+        if (quipTimer > 0) {
+            quipTimer--;
+            if (quipTimer == 0) 
+            {
+                getWorld().showText("", 200, 30); // clear after 3 seconds
+            }
+        }
+
     }// end act method
+
+    public void sayQuip() 
+    {
+        int index = Greenfoot.getRandomNumber(quips.length);
+        currentQuip = quips[index];
+        getWorld().showText(currentQuip, 300,20);
+        quipTimer = 180; // 3 seconds at 60 fps
+    }
+
 
     public void updateImage()
     {
@@ -124,7 +152,7 @@ public class Spiderman extends Actor
             }
 
         }// end if 
-        
+
         if(Greenfoot.isKeyDown("d"))
         {
             setLocation(x + 5, y);
@@ -193,11 +221,11 @@ public class Spiderman extends Actor
         if (cooldown == 0)
         {  
             webProjectiles web = new webProjectiles();
-            
+
             // get the position of the mouse on scren
             int targetX = Greenfoot.getMouseInfo().getX();
             int targetY = Greenfoot.getMouseInfo().getY();
-            
+
             // Calculates the angle from Spiderman to the mouse
             int dx = targetX - getX();
             int dy = targetY - getY();
@@ -207,9 +235,7 @@ public class Spiderman extends Actor
             int rotation = (int)Math.toDegrees(angle);
             web.setRotation(rotation);
 
-    
             getWorld().addObject (web, getX(), getY());
-
             cooldown = 30;
         }// end if 
     }// end fire method
@@ -235,12 +261,12 @@ public class Spiderman extends Actor
 
     private void checkCollision()
     {
-        
+
         if (isTouching(Blessings.class))
         {
             removeTouching(Blessings.class);
         }
-        
+
         if (isTouching(enemyProjectile.class))
         {
             removeTouching(enemyProjectile.class);

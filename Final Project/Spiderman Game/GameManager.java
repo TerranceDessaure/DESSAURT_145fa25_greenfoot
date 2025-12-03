@@ -156,6 +156,6 @@ public class GameManager
     
     public boolean hasWonLevel1()
     {
-        return gemCounter >= 2;
+        return gemCounter >= 6;
     }
 }
