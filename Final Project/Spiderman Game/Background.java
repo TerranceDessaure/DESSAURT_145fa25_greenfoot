@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Background extends BaseWorld
 {
-   /* FIELDS */
-   
+    /* FIELDS */
+
     private int frameCounter; // instializes a counter variable
     private int frameInterval;// initializes a varible to count the frames
     // per second
@@ -19,9 +19,10 @@ public class Background extends BaseWorld
     private int heartInterval;// count frames for hearts
     private int spiritInterval;
     private int blessingInterval;
-    
+
     private int time;
     private int spiritCounter;
+
     public Background() {
         this(new Spiderman(), new GameManager()); 
     }
@@ -30,9 +31,8 @@ public class Background extends BaseWorld
     {
         super(600, 400, 1, spiderman, manager);
         showText("Welcome to Level 1!", 300, 50);
-        
+
     }
-  
 
     public void act()
     {
@@ -70,7 +70,7 @@ public class Background extends BaseWorld
             // so it count to 15 again and place 
             // another gem
         }// end if
-        
+
         if(blessingInterval == 30)
         {
             sendBlessings();
@@ -78,7 +78,7 @@ public class Background extends BaseWorld
         }// end if
 
     }// end countFrames method 
-    
+
     /**
      * Send a Blessing to the world in a random place
      */
@@ -103,10 +103,10 @@ public class Background extends BaseWorld
     {
         if (manager.getHealth() < 100 && heartInterval >= 5)
         {
-           
+
             addObject (new heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
             heartInterval = 0;
-           
+
         }// end if
     }// end checkHealth Method
 
@@ -149,7 +149,7 @@ public class Background extends BaseWorld
             Greenfoot.setWorld(new SecondLevel(spiderman,manager));
         }
     }// end addGems method
-    
+
     /**
      * This method will allow the Spirit Counter to earase one count.
      */
@@ -166,7 +166,6 @@ public class Background extends BaseWorld
         showText("Game Over - You Win!", 300, 200);
     }// end showWinMesage method
 
-  
     /**
      * This method will adds an Evil Spirit to the world in a ramdom place. We use the numbers 580 and 380
      * so that they do not spawn to close to the edges of the screen.
@@ -176,5 +175,5 @@ public class Background extends BaseWorld
         EvilSpirit evilspirit = new EvilSpirit();
         addObject( evilspirit, Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
     }// end addSpirit method
-    
+
 }// end class Background

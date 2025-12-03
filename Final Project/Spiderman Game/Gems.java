@@ -78,9 +78,9 @@ public class Gems extends Actor
                 world.addGem(); 
             }
 
-            
+            getWorld().addObject(new Message("+1", 180),100,40);
             getWorld().removeObject(this); // remove the gem itself
-
+            
         }// end act method
 
     }
