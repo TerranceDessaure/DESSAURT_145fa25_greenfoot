@@ -15,9 +15,9 @@ public class Spiderman extends Actor
     private int mouseY;
 
     // animation logic
-    private GreenfootImage[] images = new GreenfootImage[9];
-    private int frameCount;
-    private int imageIndex;
+    //private GreenfootImage[] images = new GreenfootImage[9];
+    //private int frameCount;
+    //private int imageIndex;
 
     // declare reference to a StriteSheet object
     private SpriteSheet spriteSheet;
@@ -51,42 +51,42 @@ public class Spiderman extends Actor
         //                                                     0, 0,
         //                                                     28, 30, 
         //                                                   28, 30));
-        images[0] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                0, 33,
-                18, 65, 
-                18, 32));
-        images[1] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                22,33 ,
-                48, 65, 
-                26, 32));
-        images[2] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                59, 33,
-                83, 65, 
-                24, 32));
-        images[3] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                87, 33,
-                107, 65, 
-                20, 32));
-        images[4] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                107, 33,
-                128, 65, 
-                21, 32)); 
-        images[5] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                131, 33,
-                155, 65, 
-                24, 32)); 
-        images[6] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                156, 33,
-                178, 65, 
-                22, 32));
-        images[7] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                179, 33,
-                197, 65, 
-                18, 32)); 
-        images[8] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
-                201, 33,
-                228, 65, 
-                27, 32)); 
+        // images[0] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 0, 33,
+                // 18, 65, 
+                // 18, 32));
+        // images[1] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 22,33 ,
+                // 48, 65, 
+                // 26, 32));
+        // images[2] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 59, 33,
+                // 83, 65, 
+                // 24, 32));
+        // images[3] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 87, 33,
+                // 107, 65, 
+                // 20, 32));
+        // images[4] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 107, 33,
+                // 128, 65, 
+                // 21, 32)); 
+        // images[5] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 131, 33,
+                // 155, 65, 
+                // 24, 32)); 
+        // images[6] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 156, 33,
+                // 178, 65, 
+                // 22, 32));
+        // images[7] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 179, 33,
+                // 197, 65, 
+                // 18, 32)); 
+        // images[8] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
+                // 201, 33,
+                // 228, 65, 
+                // 27, 32)); 
 
         directionIsRight = true;
 
@@ -107,7 +107,7 @@ public class Spiderman extends Actor
             quipTimer--;
             if (quipTimer == 0) 
             {
-                getWorld().showText("", 200, 30); // clear after 3 seconds
+                //getWorld().showText("", 200, 30); // clear after 3 seconds
             }
         }
         
@@ -162,19 +162,19 @@ public class Spiderman extends Actor
     }
 
 
-    public void updateImage()
-    {
-        setImage ( images[imageIndex] );
+    // public void updateImage()
+    // {
+        // setImage ( images[imageIndex] );
 
-        // ++imageIndex pre-incremnt imageIndex
-        // then we check to see if the incremented value of imageIndex
-        // is greater that the highest available index in the
-        // images array
-        if (++imageIndex > (images.length - 1))
-        {
-            imageIndex = 0;
-        }// end if
-    }// end method updateImage
+        // // ++imageIndex pre-incremnt imageIndex
+        // // then we check to see if the incremented value of imageIndex
+        // // is greater that the highest available index in the
+        // // images array
+        // if (++imageIndex > (images.length - 1))
+        // {
+            // imageIndex = 0;
+        // }// end if
+    // }// end method updateImage
 
     public void checkKeypress()
     {
@@ -190,15 +190,15 @@ public class Spiderman extends Actor
         {
             setLocation(x - step,y);
             moving = true;
-            if(directionIsRight)
-            {
-                for (GreenfootImage image : images)
-                {
-                    image.mirrorHorizontally();
-                }// end end hanced for statement
-                directionIsRight = false;
+            // if(directionIsRight)
+            // {
+                // for (GreenfootImage image : images)
+                // {
+                    // //image.mirrorHorizontally();
+                // }// end end hanced for statement
+                // directionIsRight = false;
 
-            }
+            // }
 
         }// end if 
 
@@ -207,15 +207,15 @@ public class Spiderman extends Actor
             setLocation(x + step, y);
             moving = true;
 
-            if(!directionIsRight)
-            {
-                for (GreenfootImage image : images)
-                {
-                    image.mirrorHorizontally();
-                }// end end hanced for statement
-                directionIsRight = true;
+            // if(!directionIsRight)
+            // {
+                // for (GreenfootImage image : images)
+                // {
+                    // //image.mirrorHorizontally();
+                // }// end end hanced for statement
+                // directionIsRight = true;
 
-            }
+            // }
 
         }// end if
 
@@ -229,15 +229,15 @@ public class Spiderman extends Actor
             setLocation(x, y + step);
         }// end if
 
-        if (moving)
-        {
-            frameCount++;
-            if (frameCount == 4)
-            {
-                updateImage();
-                frameCount = 0;
-            }
-        }// end
+        //if (moving)
+        // {
+            // frameCount++;
+            // if (frameCount == 4)
+            // {
+                // updateImage();
+                // frameCount = 0;
+            // }
+        // }// end
 
         if(Greenfoot.mouseClicked(null))
         {
@@ -284,9 +284,13 @@ public class Spiderman extends Actor
             // Convert to degrees and set rotation
             int rotation = (int)Math.toDegrees(angle);
             web.setRotation(rotation);
+            
+            if (getWorld() != null)
+            {
+                getWorld().addObject (web, getX(), getY());
+                cooldown = rapidFire ? 10 : 30;
+            }
 
-            getWorld().addObject (web, getX(), getY());
-            cooldown = rapidFire ? 10 : 30;
         }// end if 
     }// end fire method
 

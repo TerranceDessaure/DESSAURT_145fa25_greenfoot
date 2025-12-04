@@ -22,7 +22,7 @@ public class SpriteSheet
     {
         int tempWidth;
         int tempHeight;
-        
+
         if(topLeftX<bottomRightX)
         {
             tempWidth = bottomRightX - topLeftX;
@@ -31,7 +31,7 @@ public class SpriteSheet
         {
             tempWidth = topLeftX - bottomRightX;
         }
-        
+
         if(topLeftY<bottomRightY)
         {
             tempHeight = bottomRightY - topLeftY;
@@ -40,9 +40,9 @@ public class SpriteSheet
         {
             tempHeight = topLeftY - bottomRightY;
         }
-        
+
         GreenfootImage img = new GreenfootImage(tempWidth, tempHeight);
-        
+
         if(topLeftX<bottomRightX) 
         {
             for(int x = topLeftX; x < bottomRightX; x++) 
@@ -54,8 +54,8 @@ public class SpriteSheet
                         if(x >= 0 && x < spriteSheet.getWidth() && y >= 0 && y < spriteSheet.getHeight()) 
                         {
                             img.setColorAt( tempWidth-(bottomRightX - x), 
-                                            tempHeight-(bottomRightY - y), 
-                                            spriteSheet.getColorAt(x, y) );
+                                tempHeight-(bottomRightY - y), 
+                                spriteSheet.getColorAt(x, y) );
                         } 
                     } 
                 } 
@@ -64,8 +64,8 @@ public class SpriteSheet
                     for(int y = bottomRightY; y < topLeftY; y++) 
                     {
                         img.setColorAt( tempWidth-(bottomRightX - x), 
-                                        tempHeight-(topLeftY - y), 
-                                        spriteSheet.getColorAt(x, y) );
+                            tempHeight-(topLeftY - y), 
+                            spriteSheet.getColorAt(x, y) );
                     } 
                 } 
             }
@@ -79,8 +79,8 @@ public class SpriteSheet
                     for(int y = topLeftY; y < bottomRightY; y++) 
                     {
                         img.setColorAt( tempWidth-(topLeftX - x), 
-                                        tempHeight-(bottomRightY - y), 
-                                        spriteSheet.getColorAt(x, y) );
+                            tempHeight-(bottomRightY - y), 
+                            spriteSheet.getColorAt(x, y) );
                     }
                 } 
                 else 
@@ -88,17 +88,17 @@ public class SpriteSheet
                     for(int y = bottomRightY; y < topLeftY; y++) 
                     {
                         img.setColorAt( tempWidth-(topLeftX - x), 
-                                        tempHeight-(topLeftY - y), 
-                                        spriteSheet.getColorAt(x, y) );
+                            tempHeight-(topLeftY - y), 
+                            spriteSheet.getColorAt(x, y) );
                     } 
                 } 
             }
         }
-        
+
         img.scale(width, height);
-        
+
         return img;
-        
+
     } // end method getSprite
 
     /**

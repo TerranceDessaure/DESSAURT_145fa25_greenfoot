@@ -24,7 +24,7 @@ public class SecondLevel extends BaseWorld
     public SecondLevel(Spiderman spiderman, GameManager myGameManager)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1, spiderman, myGameManager); 
+        super(1000, 1000, 1, spiderman, myGameManager); 
         this.spiderman = spiderman;
         this.myGameManager = myGameManager;
 
