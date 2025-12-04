@@ -164,11 +164,11 @@ public class EvilSpirit extends Actor {
             World currentWorld = getWorld();
             if (currentWorld instanceof Background) 
             {
-                ((Background)currentWorld).takeHealth(10);
+                ((Background)currentWorld).takeHealth(25);
             } 
             else if (currentWorld instanceof SecondLevel) 
             {
-                ((SecondLevel)currentWorld).takeHealth(10);
+                ((SecondLevel)currentWorld).takeHealth(50);
             }
             getWorld().removeObject(this);
             return;

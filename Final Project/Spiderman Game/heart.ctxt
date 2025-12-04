@@ -1,7 +1,11 @@
 #BlueJ class context
-comment0.target=heart
+comment0.target=Heart
 comment0.text=\r\n\ If\ the\ heart\ is\ touched\ by\ Spiderman\ it\ will\ give\ him\ health.\r\n\ Theses\ hearts\ should\ only\ spawn\ if\ Spiderman\ has\ taken\ damage.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ (11/18/2025)\r\n
 comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ heart\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment1.target=Heart()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ heart\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.params=
+comment3.target=void\ updateImage()
+numComments=4

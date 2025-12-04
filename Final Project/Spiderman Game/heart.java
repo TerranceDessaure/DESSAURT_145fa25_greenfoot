@@ -7,14 +7,44 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Terrance Dessaure 
  * @version (11/18/2025)
  */
-public class heart extends Actor
+public class Heart extends Actor
 {
+    // instance variable 
+    private GreenfootImage[] images = new GreenfootImage[8];
+    
+    private int frameCount;
+    private int imageIndex;
+    
+    //constructor
+    public Heart()
+    {
+        // populate the images array with references 
+        // to GreenfootImage objects
+        
+        images[0] = new GreenfootImage("heart0.png");
+        images[1] = new GreenfootImage("heart1.png");
+        images[2] = new GreenfootImage("heart2.png");
+        images[3] = new GreenfootImage("heart3.png");
+        images[4] = new GreenfootImage("heart4.png");
+        images[5] = new GreenfootImage("heart5.png");
+        images[6] = new GreenfootImage("heart6.png");
+        images[7] = new GreenfootImage("heart7.png");
+    }
+    
+    
     /**
      * Act - do whatever the heart wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
+        frameCount++;
+        if (frameCount == 7)
+        {
+            updateImage();
+            frameCount = 0;
+        }
+        
         if (isTouching(Spiderman.class)) 
         {
             World currentWorld = getWorld();
@@ -34,6 +64,16 @@ public class heart extends Actor
         }
 
         getWorld().removeObject(this);
+        }
     }
+    
+    public void updateImage()
+    {
+        setImage(images[imageIndex]);
+        
+        if ( ++imageIndex > (images.length - 1) )
+        {
+            imageIndex = 0;
+        }
     }
 }

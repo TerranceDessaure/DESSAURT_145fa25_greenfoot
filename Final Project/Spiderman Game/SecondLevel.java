@@ -91,7 +91,7 @@ public class SecondLevel extends BaseWorld
     {
         if (myGameManager.getHealth() < 100 && heartInterval >= 5) 
         {
-            addObject(new heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
+            addObject(new Heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
             heartInterval = 0;
         }
     }

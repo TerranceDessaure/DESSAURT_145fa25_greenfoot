@@ -109,7 +109,7 @@ public class Background extends BaseWorld
         if (manager.getHealth() < 100 && heartInterval >= 10)
         {
 
-            addObject (new heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
+            addObject (new Heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
             heartInterval = 0;
 
         }// end if
