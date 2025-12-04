@@ -15,6 +15,39 @@ public class Gems extends Actor
     private SpriteSheet spriteSheet;
     private GameManager manager;
 
+    public enum GemState 
+    {
+        STATIC,
+        MOVING,
+        DISAPPEARING
+    }
+
+    double[][] transitionMatrix = 
+        {
+            {0.6, 0.3, 0.1},// From STATIC
+            {0.2, 0.6,0.2}, // From MOVING
+            {0.0, 0.0, 1.0} // From DISAPPEARING       
+        };
+
+    private GemState currentState = GemState.STATIC;
+    private int framesInState = 0;
+    private static final int DWELL_FRAMES = 60;
+
+    private GemState nextState(GemState current) 
+    {
+        double rand = Math.random();
+        double cumulative = 0.0;
+        int row = current.ordinal();
+
+        for (int col = 0; col < transitionMatrix[row].length; col++) {
+            cumulative += transitionMatrix[row][col];
+            if (rand <= cumulative) {
+                return GemState.values()[col];
+            }
+        }
+        return current;
+    }
+
     // constuctor
     public Gems()
     {
@@ -53,13 +86,53 @@ public class Gems extends Actor
      */
     public void act()
     {
+        if (getWorld() == null) return; // gem already removed
         // frameCount++;
         // if (frameCount == 4)
         // {
         // updateImage();
         // frameCount = 0;
         // }
+        framesInState++;
+        if (framesInState >= DWELL_FRAMES) {
+            currentState = nextState(currentState);
+            framesInState = 0;
+        }
 
+        switch (currentState) {
+            case STATIC:
+                // do nothing
+                break;
+            case MOVING:
+                move(2);
+                if (isAtEdge()) turn(180);
+                break;
+            case DISAPPEARING:
+                getWorld().removeObject(this);
+                return; // stop after removal
+        }
+        
+        checkCollision();
+        if (getWorld() == null) return; // removed during collision
+
+    }
+    
+    private void gemProgression()
+    {
+
+        if (manager != null && manager.getGemCounter() >=  3)
+        {
+            move(5);
+            if (isAtEdge())
+            {
+                turn(180);
+            }
+
+        }
+    }
+
+    private void checkCollision()
+    {
         if (isTouching(Spiderman.class)) 
 
         {
@@ -85,24 +158,6 @@ public class Gems extends Actor
             getWorld().removeObject(this); // remove the gem itself
             spiderman.sayQuip();
 
-        }// end act method
-        
-
-    }
-    
-    
-
-    private void gemProgression()
-    {
-        
-        if (manager != null && manager.getGemCounter() >=  3)
-        {
-            move(5);
-            if (isAtEdge())
-            {
-                turn(180);
-            }
-            
         }
     }
 

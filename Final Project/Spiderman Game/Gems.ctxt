@@ -1,11 +1,15 @@
 #BlueJ class context
 comment0.target=Gems
 comment0.text=\r\n\ These\ gems\ represent\ the\ gems\ of\ the\ Breast\ Plate\ of\ Aaron.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ (11/17/2025)\r\n
-comment1.params=
-comment1.target=Gems()
+comment1.params=current
+comment1.target=Gems.GemState\ nextState(Gems.GemState)
 comment2.params=
-comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Gems\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.target=Gems()
 comment3.params=
-comment3.target=void\ gemProgression()
-numComments=4
+comment3.target=void\ act()
+comment3.text=\r\n\ Act\ -\ do\ whatever\ the\ Gems\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment4.params=
+comment4.target=void\ gemProgression()
+comment5.params=
+comment5.target=void\ checkCollision()
+numComments=6
