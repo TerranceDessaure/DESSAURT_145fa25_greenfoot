@@ -21,6 +21,8 @@ public class BaseWorld extends World
 
         // Add Spiderman to the world at a default position
         addObject(spiderman, 300, 200);
+        Score score = new Score();
+        addObject(score, 700, 30);
     }
     
     

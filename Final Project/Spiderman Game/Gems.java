@@ -155,6 +155,7 @@ public class Gems extends Actor
             }
 
             getWorld().addObject(new Message("+1", 180),100,40);
+            ((Score)getWorld().getObjects(Score.class).get(0)).addPoints(100);
             getWorld().removeObject(this); // remove the gem itself
             spiderman.sayQuip();
 

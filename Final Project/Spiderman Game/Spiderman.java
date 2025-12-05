@@ -117,6 +117,8 @@ public class Spiderman extends Actor
 
     }// end act method
 
+
+
     public void sayQuip() 
     {
         int index = Greenfoot.getRandomNumber(quips.length);

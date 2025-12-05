@@ -226,24 +226,33 @@ public class EvilSpirit extends Actor {
      * the spide is removed form the world and the counter goes down.
      */
     private void checkHit() {
-        if (isTouching(webProjectiles.class)) {
-            health--; // reduce spirit’s health
-            removeTouching(webProjectiles.class);
+    if (isTouching(webProjectiles.class)) {
+        health--; // reduce spirit’s health
+        removeTouching(webProjectiles.class);
 
-            if (health <= 0) 
-            {
-                World currentWorld = getWorld();
-                if (currentWorld instanceof Background) 
-                {
-                    ((Background)currentWorld).subtractSpiritCounter(1);
-                } else if (currentWorld instanceof SecondLevel) 
-                {
-                    ((SecondLevel)currentWorld).subtractSpiritCounter(1);
+        if (health <= 0) {
+            World currentWorld = getWorld(); // cache once
+
+            if (currentWorld != null) { // safety guard
+                if (currentWorld instanceof Background) {
+                    ((Background) currentWorld).subtractSpiritCounter(1);
+                } else if (currentWorld instanceof SecondLevel) {
+                    ((SecondLevel) currentWorld).subtractSpiritCounter(1);
                 }
-                getWorld().removeObject(this); // remove spirit itself
-            }//end if
-        }// end if
-    }// end checkHit method
+
+                // Update score safely
+                java.util.List<Score> scores = currentWorld.getObjects(Score.class);
+                if (!scores.isEmpty()) {
+                    scores.get(0).addPoints(100);
+                }
+
+                // Finally remove the spirit
+                currentWorld.removeObject(this);
+            }
+        }
+    }
+}
+
 
     // --- Collision with Spiderman ---
     /**
@@ -263,6 +272,8 @@ public class EvilSpirit extends Actor {
             {
                 ((SecondLevel)currentWorld).takeHealth(50);
             }// end if
+            Score score = (Score) currentWorld.getObjects(Score.class).get(0);
+            score.subtractPoint(150);
             getWorld().removeObject(this);
             return;
         }// end if

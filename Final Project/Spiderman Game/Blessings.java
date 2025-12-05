@@ -66,9 +66,11 @@ public class Blessings extends Actor
 
             // Optional: trigger a quip
             spiderman.sayQuip();
-
+            ((Score)getWorld().getObjects(Score.class).get(0)).addPoints(25);
             // Remove blessing from the world
             getWorld().removeObject(this);
+    
+
         }
     }// end check Collision
     

@@ -153,7 +153,7 @@ public class Background extends BaseWorld
         if (manager.hasWonLevel1())
         {
             showWinMessage();
-            Greenfoot.setWorld(new SecondLevel(spiderman,manager));
+            Greenfoot.setWorld(new SecondLevel(getSpiderman(), getManager()));
         }
     }// end addGems method
 

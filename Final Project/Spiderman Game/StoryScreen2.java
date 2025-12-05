@@ -36,7 +36,7 @@ public class StoryScreen2 extends World
         // If Enter is pressed after text is shown, go to next world
         if (shown && Greenfoot.isKeyDown("enter")) 
         {
-            Greenfoot.setWorld(new Background()); // replace with your next world class
+            Greenfoot.setWorld(new StoryScreen3()); // replace with your next world class
         }
     }
 }

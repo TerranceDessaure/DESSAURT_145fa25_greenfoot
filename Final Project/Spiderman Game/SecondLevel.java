@@ -24,7 +24,7 @@ public class SecondLevel extends BaseWorld
     public SecondLevel(Spiderman spiderman, GameManager myGameManager)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1000, 1000, 1, spiderman, myGameManager); 
+        super(800, 600, 1, spiderman, myGameManager); 
         this.spiderman = spiderman;
         this.myGameManager = myGameManager;
 
@@ -80,7 +80,6 @@ public class SecondLevel extends BaseWorld
         addObject(new Blessings(chosen), x, y);
 
     }
-    
 
     private void sendGems() 
     {
@@ -106,16 +105,16 @@ public class SecondLevel extends BaseWorld
             spiritInterval = 0;
         }
     }
-    
-    public void addGem()
+
+    public void addGem() 
     {
-        if (manager.getGemCounter() == 12)
+        if (myGameManager.getGemCounter() == 12) 
         {
-            showText("Level 2 complete!", 300, 200);
+            Greenfoot.setWorld(new GameOverWin());
             Greenfoot.stop();
         }
     }
-    
+
     /**
      * takeHealth will subtract whatever amout of damage is neccisary
      * after hitting an ememy or enemy projectile.
@@ -123,19 +122,20 @@ public class SecondLevel extends BaseWorld
      */
     public void takeHealth(int damage)
     {
-        manager.takeHealth(damage);
-        if  (manager.isGameOver())
+        myGameManager.takeHealth(damage);
+        if (myGameManager.isGameOver()) 
         {
-            showText("Game Over: You Lose", 300,200);
+            showText("Game Over: You Lose", 300, 200);
             Greenfoot.stop();
+
         }// end if
     }// end takeHealth method
-    
+
     public GameManager getManager()
     {
         return myGameManager;
     }
-    
+
     public Spiderman getSpiderman()
     {
         return spiderman;
