@@ -15,7 +15,7 @@ public class BaseWorld extends World
     
 
     public BaseWorld(int width, int height, int cellSize, Spiderman spiderman, GameManager manager) {
-        super(600, 400, 1);
+        super(800, 600, 1);
         this.spiderman = spiderman;
         this.manager = manager;
 

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=StartScreen
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ StartScreen\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ This\ is\ the\ Title\ Screen.\ Hit\ enter\ to\ move\ to\ the\ next\ world.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ 12.4.25\r\n
 comment1.params=
 comment1.target=StartScreen()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ StartScreen.\r\n\ \r\n

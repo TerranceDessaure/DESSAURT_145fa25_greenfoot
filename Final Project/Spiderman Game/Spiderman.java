@@ -19,9 +19,6 @@ public class Spiderman extends Actor
     //private int frameCount;
     //private int imageIndex;
 
-    // declare reference to a StriteSheet object
-    private SpriteSheet spriteSheet;
-
     private boolean directionIsRight;
 
     private String[] quips = { 
@@ -43,8 +40,6 @@ public class Spiderman extends Actor
     //constructor
     public Spiderman()
     {
-        // instantiate the SpriteSheet object
-        spriteSheet = new SpriteSheet(); // call defalt constructor
 
         // extract the first row of animation frames
         //images[0] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("Spider-ManSpriteSheet.png"), 
@@ -126,7 +121,7 @@ public class Spiderman extends Actor
     {
         int index = Greenfoot.getRandomNumber(quips.length);
         currentQuip = quips[index];
-        getWorld().showText(currentQuip, 300,20);
+        getWorld().showText(currentQuip, 400,20);
         quipTimer = 180; // 3 seconds at 60 fps
     }
     
@@ -136,16 +131,16 @@ public class Spiderman extends Actor
      {
          case "doubleDamage" :
              doubleDamage = true;
-             getWorld().showText("Double Damage Activated!", 300, 380);
+             getWorld().showText("Double Damage Activated!", 400, 580);
              break;
          case "speedBoost":
              speedBoost = true;
-             getWorld().showText("Speed Boost Activated!", 300, 380);
+             getWorld().showText("Speed Boost Activated!", 400, 580);
              break;
          case "rapidFire" : 
              rapidFire = true;
              cooldown = 10;
-             getWorld().showText("Rapid Fire Activated!", 300, 380);
+             getWorld().showText("Rapid Fire Activated!", 400, 580);
              break;
              
      }

@@ -85,8 +85,8 @@ public class Background extends BaseWorld
         String[] types = { "doubleDamage", "speedBoost", "rapidFire"};
         String chosen = types[Greenfoot.getRandomNumber(types.length)];
 
-        int x = Greenfoot.getRandomNumber(getWidth());
-        int y = Greenfoot.getRandomNumber(getHeight());
+        int x = Greenfoot.getRandomNumber(700);
+        int y = Greenfoot.getRandomNumber(500);
 
         addObject(new Blessings(chosen), x, y);
 
@@ -97,7 +97,7 @@ public class Background extends BaseWorld
      */
     private void sendGems()
     {
-        addObject (new Gems(), Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400));    
+        addObject (new Gems(), Greenfoot.getRandomNumber(700), Greenfoot.getRandomNumber(500));    
     }// end sendGems method
 
     /**
@@ -109,7 +109,7 @@ public class Background extends BaseWorld
         if (manager.getHealth() < 100 && heartInterval >= 10)
         {
 
-            addObject (new Heart(), Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
+            addObject (new Heart(), Greenfoot.getRandomNumber(700), Greenfoot.getRandomNumber(500));
             heartInterval = 0;
 
         }// end if
@@ -137,8 +137,10 @@ public class Background extends BaseWorld
         manager.takeHealth(damage);
         if  (manager.isGameOver())
         {
-            showText("Game Over: You Lose", 300,200);
+            showText("Game Over: You Lose", 400,300);
+            Greenfoot.setWorld(new GameOver());
             Greenfoot.stop();
+           
         }// end if
     }// end takeHealth method
 
@@ -168,7 +170,7 @@ public class Background extends BaseWorld
      */
     private void showWinMessage()
     {
-        showText("Game Over - You Win!", 300, 200);
+        showText("Game Over - You Win!", 400, 300);
     }// end showWinMesage method
 
     /**
@@ -178,7 +180,7 @@ public class Background extends BaseWorld
     private void addSpirit()
     {
         EvilSpirit evilspirit = new EvilSpirit();
-        addObject( evilspirit, Greenfoot.getRandomNumber(580), Greenfoot.getRandomNumber(380));
+        addObject( evilspirit, Greenfoot.getRandomNumber(750), Greenfoot.getRandomNumber(550));
     }// end addSpirit method
 
 }// end class Background
