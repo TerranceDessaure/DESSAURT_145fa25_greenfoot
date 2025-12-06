@@ -53,8 +53,8 @@ public class Blessings extends Actor
      */
     private void checkCollision() 
     {
-     if (isTouching(Spiderman.class)) 
-     {
+        if (isTouching(Spiderman.class)) 
+        {
             Spiderman spiderman = (Spiderman)getOneIntersectingObject(Spiderman.class);
 
             // Choose a random blessing type
@@ -66,15 +66,15 @@ public class Blessings extends Actor
 
             // Optional: trigger a quip
             spiderman.sayQuip();
-            ((Score)getWorld().getObjects(Score.class).get(0)).addPoints(25);
+            GameManager manager = ((BaseWorld)getWorld()).getManager();
+            manager.addScore(25);
+
             // Remove blessing from the world
             getWorld().removeObject(this);
-    
 
         }
     }// end check Collision
-    
-    
+
     /**
      * Creates a new Blessing object with a specific type.
      * The type determins what kind of blessing eddect this object gives
@@ -102,10 +102,15 @@ public class Blessings extends Actor
                 setImage("powerup1.png"); 
                 break;
             case "speedBoost":
-                setImage("powerup2.png");
+                GreenfootImage speedImage = new GreenfootImage("loaSpeed.png");
+                speedImage.scale(48, 48); // or 64x64 depending on your preferred size
+                setImage(speedImage);
                 break;
+
             case "rapidFire":
-                setImage("powerup3.png"); 
+                GreenfootImage rapidFireImage = new GreenfootImage("flaming.png");
+                rapidFireImage.scale(48, 48); // or 64x64 depending on your preferred size
+                setImage(rapidFireImage);
                 break;
         }// end switch
     }// end setImageForType(String type) method

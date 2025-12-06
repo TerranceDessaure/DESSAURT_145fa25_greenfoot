@@ -23,13 +23,14 @@ public class Background extends BaseWorld
     private int time;
     private int spiritCounter;
 
-    public Background() {
+    public Background() 
+    {
         this(new Spiderman(), new GameManager()); 
     }
 
     public Background(Spiderman spiderman, GameManager manager) 
     {
-        super(1000, 1000, 1, spiderman, manager);
+        super(800, 600, 1, spiderman, manager);
     }
 
     public void act()
@@ -69,7 +70,7 @@ public class Background extends BaseWorld
             // another gem
         }// end if
 
-        if(blessingInterval == 15)
+        if(blessingInterval == 5)
         {
             sendBlessings();
             blessingInterval = 0;
@@ -137,7 +138,6 @@ public class Background extends BaseWorld
         manager.takeHealth(damage);
         if  (manager.isGameOver())
         {
-            showText("Game Over: You Lose", 400,300);
             Greenfoot.setWorld(new GameOver());
             Greenfoot.stop();
            
@@ -153,7 +153,7 @@ public class Background extends BaseWorld
         if (manager.hasWonLevel1())
         {
             showWinMessage();
-            Greenfoot.setWorld(new SecondLevel(getSpiderman(), getManager()));
+            Greenfoot.setWorld(new LoadingScreen1(getSpiderman(), getManager()));
         }
     }// end addGems method
 

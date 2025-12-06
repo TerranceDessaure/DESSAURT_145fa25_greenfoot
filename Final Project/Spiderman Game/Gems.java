@@ -12,7 +12,6 @@ public class Gems extends Actor
     // private GreenfootImage[] images = new GreenfootImage[6];
     // private int frameCount;
     // private int imageIndex;
-    private SpriteSheet spriteSheet;
     private GameManager manager;
 
     public enum GemState 
@@ -39,9 +38,11 @@ public class Gems extends Actor
         double cumulative = 0.0;
         int row = current.ordinal();
 
-        for (int col = 0; col < transitionMatrix[row].length; col++) {
+        for (int col = 0; col < transitionMatrix[row].length; col++) 
+        {
             cumulative += transitionMatrix[row][col];
-            if (rand <= cumulative) {
+            if (rand <= cumulative) 
+            {
                 return GemState.values()[col];
             }
         }
@@ -105,7 +106,10 @@ public class Gems extends Actor
                 break;
             case MOVING:
                 move(2);
-                if (isAtEdge()) turn(180);
+                if (isAtEdge()) 
+                {
+                    turn(180);
+                }
                 break;
             case DISAPPEARING:
                 getWorld().removeObject(this);
@@ -113,7 +117,10 @@ public class Gems extends Actor
         }
         
         checkCollision();
-        if (getWorld() == null) return; // removed during collision
+        if (getWorld() == null) 
+        {
+            return; // removed during collision
+        }
 
     }
     
@@ -144,18 +151,28 @@ public class Gems extends Actor
                 Background world = (Background)getWorld();
                 manager = world.getManager();
                 manager.addGem(1);
+                
                 world.addGem();
             } 
-            else if(currentWorld instanceof SecondLevel)
+            if (currentWorld instanceof SecondLevel)
             {
                 SecondLevel world = (SecondLevel)currentWorld;
                 manager = world.getManager();
                 manager.addGem(1);
                 world.addGem(); 
             }
+            else if(currentWorld instanceof LastLevel)
+            {
+                LastLevel world = (LastLevel)currentWorld;
+                manager = world.getManager();
+                manager.addGem(1);
+                world.addGem(); 
+            }
 
             getWorld().addObject(new Message("+1", 180),100,40);
-            ((Score)getWorld().getObjects(Score.class).get(0)).addPoints(100);
+            GameManager manager = ((BaseWorld)getWorld()).getManager();
+            manager.addScore(100);
+
             getWorld().removeObject(this); // remove the gem itself
             spiderman.sayQuip();
 

@@ -13,6 +13,9 @@ public class GameManager
     private int gemCounter;
     private int spiritCounter;
     private int health;
+    private int score;
+    
+
     
     /**
      * Constructor for objects of class GameManager
@@ -24,6 +27,7 @@ public class GameManager
         gemCounter = 0;
         spiritCounter = 0;
         health = 100;
+        
     }// end no-arg GameManager constructor
     
     public GameManager ( int currentTimeFromPreviousScene )
@@ -156,6 +160,28 @@ public class GameManager
     
     public boolean hasWonLevel1()
     {
-        return gemCounter >= 6;
+        return gemCounter >= 4;
     }
+    
+     public boolean hasWonLevel2()
+    {
+        return gemCounter >= 8;
+    }
+    
+    public boolean hasWonLevel3()
+    {
+        return gemCounter >= 12;
+    }
+    
+    public void addScore(int points) 
+    {
+        score += points;
+    }
+
+    public int getScore() 
+    {
+        return score;
+    }
+
+
 }

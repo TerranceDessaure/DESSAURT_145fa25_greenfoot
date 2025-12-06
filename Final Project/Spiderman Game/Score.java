@@ -1,39 +1,19 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class Score here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Score extends Actor
-{
-    private int points = 0;
+public class Score extends Actor {
 
+    public void act() {
+        GameManager manager = ((BaseWorld)getWorld()).getManager();
+        setImage(new GreenfootImage("Score: " + manager.getScore(), 24, Color.WHITE, null));
+    }
+
+    // Constructor
     public Score() {
-        updateImage();
+        updateImage(0); // start with 0 until GameManager updates
     }
 
-    public void addPoints(int value)
-    {
-        points += value;
-        updateImage();
-    }
-    
-    public void subtractPoint(int value)
-    {
-        points -= value;
-        updateImage();
-    }
-
-    private void updateImage() 
-    {
+    // Update image using manager’s score
+    private void updateImage(int points) {
         setImage(new GreenfootImage("Score: " + points, 30, Color.WHITE, Color.BLACK));
     }
-
-    public int getPoints() 
-    {
-        return points;
-    }
-
 }

@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Terrance Dessaure
  * @version (12/02/25)
  */
-public class EvilSpirit extends Actor {
+public class EvilSpirit extends Actor 
+{
     private int health = 3;       // each spirit starts with 3 HP
     private int coolDown;         // projectile cooldown
     private int actCounter;       // frame counter
@@ -49,8 +50,8 @@ public class EvilSpirit extends Actor {
         {0.1, 0.2, 0.7}
     };
     
-    private EnemyState currentState = EnemyState.IDLE;
-    private int FramesInState = 0;
+    private EnemyState currentState;
+    private int FramesInState;
     private static final int DWELL_FRAMES = 45;
     
     private static final int PATROL_FRAMES_EACH_DIRECTION = 30;
@@ -69,6 +70,8 @@ public class EvilSpirit extends Actor {
      */
     public EvilSpirit()
     {
+        currentState = EnemyState.IDLE;
+        FramesInState = 0;
         patrolHeading = Greenfoot.getRandomNumber(360);
     }// end no-arg constructor
 
@@ -97,11 +100,17 @@ public class EvilSpirit extends Actor {
         }// end if
         turnAtEdge();
         checkHit();   
-        if (getWorld() == null) return; // if the actor has already been removed stop the method
-                                        // I added this prevent getting an IllegalStateException
+        if (getWorld() == null) 
+        {
+            return; // if the actor has already been removed stop the method
+                                        // I added this prevent getting an Illeg
+        }
         
         checkCollision(); 
-        if (getWorld() == null) return;
+        if (getWorld() == null)
+        {
+           return; 
+        }//end if
 
         FramesInState++;
         if(FramesInState >= DWELL_FRAMES)
@@ -234,16 +243,25 @@ public class EvilSpirit extends Actor {
             World currentWorld = getWorld(); // cache once
 
             if (currentWorld != null) { // safety guard
-                if (currentWorld instanceof Background) {
+                if (currentWorld instanceof Background) 
+                {
                     ((Background) currentWorld).subtractSpiritCounter(1);
-                } else if (currentWorld instanceof SecondLevel) {
+                } 
+                if (currentWorld instanceof SecondLevel) 
+                {
                     ((SecondLevel) currentWorld).subtractSpiritCounter(1);
+                }
+                else if (currentWorld instanceof LastLevel) 
+                {
+                    ((LastLevel) currentWorld).subtractSpiritCounter(1);
                 }
 
                 // Update score safely
                 java.util.List<Score> scores = currentWorld.getObjects(Score.class);
                 if (!scores.isEmpty()) {
-                    scores.get(0).addPoints(100);
+                    GameManager manager = ((BaseWorld)getWorld()).getManager();
+                    manager.addScore(25);
+
                 }
 
                 // Finally remove the spirit
@@ -266,14 +284,19 @@ public class EvilSpirit extends Actor {
             World currentWorld = getWorld();
             if (currentWorld instanceof Background) 
             {
-                ((Background)currentWorld).takeHealth(25);
+                ((Background)currentWorld).takeHealth(15);
             } // end if 
-            else if (currentWorld instanceof SecondLevel) 
+            if (currentWorld instanceof SecondLevel) 
             {
-                ((SecondLevel)currentWorld).takeHealth(50);
+                ((SecondLevel)currentWorld).takeHealth(25);
             }// end if
-            Score score = (Score) currentWorld.getObjects(Score.class).get(0);
-            score.subtractPoint(150);
+            else if (currentWorld instanceof LastLevel) 
+            {
+                ((LastLevel)currentWorld).takeHealth(35);
+            }// end if
+            GameManager manager = ((BaseWorld)getWorld()).getManager();
+            manager.addScore(-100);
+
             getWorld().removeObject(this);
             return;
         }// end if
@@ -324,23 +347,6 @@ public class EvilSpirit extends Actor {
             }// end if
         }// end if
     }// end roam method
-
-    // private void chaseSpiderman() {
-        // if (getWorld() == null) return;
-
-        // if (spiderman != null && spiderman.getWorld() != null) {
-            // turnTowards(spiderman.getX(), spiderman.getY());
-            // move(2);
-
-            // chaseTimer++;
-            // if (chaseTimer >= maxChaseTime) {
-                // chasing = false;
-                // chaseTimer = 0;
-            // }
-        // } else {
-            // chasing = false;
-        // }
-    // }
 
     // --- Firing ---
     /**

@@ -30,7 +30,7 @@ public class Loading extends World {
         // If Enter is pressed after text is shown, go to next world
         if (shown && Greenfoot.isKeyDown("enter")) 
         {
-            Greenfoot.setWorld(new StoryScreen()); // replace with your next world class
+            Greenfoot.setWorld(new StoryScreen2()); // replace with your next world class
         }
     }
 }

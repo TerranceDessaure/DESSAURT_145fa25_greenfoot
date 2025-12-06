@@ -108,10 +108,10 @@ public class SecondLevel extends BaseWorld
 
     public void addGem() 
     {
-        if (myGameManager.getGemCounter() == 12) 
+         if (manager.hasWonLevel2())
         {
-            Greenfoot.setWorld(new GameOverWin());
-            Greenfoot.stop();
+            
+            Greenfoot.setWorld(new LoadingScreen2(getSpiderman(), getManager()));
         }
     }
 
@@ -125,7 +125,7 @@ public class SecondLevel extends BaseWorld
         myGameManager.takeHealth(damage);
         if (myGameManager.isGameOver()) 
         {
-            showText("Game Over: You Lose", 300, 200);
+            Greenfoot.setWorld(new GameOver());
             Greenfoot.stop();
 
         }// end if
