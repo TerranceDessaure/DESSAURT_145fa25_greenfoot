@@ -1,11 +1,13 @@
 #BlueJ class context
 comment0.target=LoadingScreen1
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ AaronScreen2\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ LoadingScreen\ 1\ class\ it\ a\ transistional\ screen\ used\ between\ levels\ 1\ \r\n\ and\ 2.\ It\ displays\ information\ about\ one\ of\ the\ four\ symbols\ that\ was\ assigned\r\n\ and\ is\ being\ incorparted\ into\ the\ game.\ \r\n\ \r\n\ @author\ Terrance\ Dessaure\r\n\ @version\ 12.6.25\r\n
 comment1.params=spiderman\ manager
 comment1.target=LoadingScreen1(Spiderman,\ GameManager)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ StoryScreen2.\r\n\ \r\n
+comment1.text=\r\n\ Constructs\ the\ LoadingScreen1\ world\ with\ the\ given\ Spiderman\ and\ GameManager.\r\n\ Removes\ the\ score\ display,\ adds\ a\ loading\ circle,\ and\ shows\ a\ random\ message\ from\ the\r\n\ array.\r\n\ \r\n\ @param\ spiderman\ the\ player\ character\r\n\ @param\ manager\ \ \ the\ game\ manager\ tracking\ score,\ health,\ and\ progression\r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Called\ every\ frame.\ Updates\ the\ timer,\ shows\ the\ "Press\ Enter"\ prompt\r\n\ after\ 5\ seconds,\ allow\ the\ user\ to\ cycle\ through\ \ lore\ messages\ with\ Space,\r\n\ and\ transitions\ to\ the\ next\ world\ when\ Enter\ is\ pressed\r\n
 comment3.params=
 comment3.target=void\ showRandomMessage()
+comment3.text=\r\n\ Displays\ the\ random\ lore\ message\ at\ the\ center\ of\ the\ screen\r\n
 numComments=4
