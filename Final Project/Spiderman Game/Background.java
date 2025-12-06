@@ -21,18 +21,32 @@ public class Background extends BaseWorld
     private int blessingInterval;
 
     private int time;
-    private int spiritCounter;
-
+    /**
+     * Constructs a BackGround woorld with a new Spiderman and GameManager.
+     * Thisis the default entry point for Levvel 1.
+     */
     public Background() 
     {
         this(new Spiderman(), new GameManager()); 
-    }
-
+    }// end BackGound Constructor
+    
+    /**
+     * Constricts a Background world with a given Spiderman and GameManagers.
+     * This allows persistence of plater state and score across worlds.
+     * 
+     * @param spiderman the player character
+     * @param manager   the game manager tracking score, health, and progress
+     */
     public Background(Spiderman spiderman, GameManager manager) 
     {
         super(800, 600, 1, spiderman, manager);
-    }
+    }// end Background Constructor
+    
 
+    /**
+     * Called every frame. Updates counters, spawns objects at intervals,
+     * checks health, and displays HUD information
+     */
     public void act()
     {
         frameCounter = frameCounter + 1;
@@ -102,8 +116,8 @@ public class Background extends BaseWorld
     }// end sendGems method
 
     /**
-     * If heath does not equal 100 hundred then a heart will pop up every 5 seconds in
-     * a random spot on the screen.
+     * Spawns a heart if health is below 100.
+     * Hears restore health and appear every 10 seconds.
      */
     private void checkHealth()
     {
@@ -117,7 +131,7 @@ public class Background extends BaseWorld
     }// end checkHealth Method
 
     /**
-     * Sends the Spirits to the world.
+     * Spawns an EvilSpirit if few than 3 exist and 5 seconds have passed.
      */
     private void sendSpirit()
     {
@@ -129,9 +143,8 @@ public class Background extends BaseWorld
     }// end sendSpirit method
 
     /**
-     * takeHealth will subtract whatever amout of damage is neccisary
-     * after hitting an ememy or enemy projectile.
-     * If the current Health is less than or equal to zero the game will stop.
+     * Reduces players health by the given damage amount.
+     * Ends the game if ehalth reaches zero.
      */
     public void takeHealth(int damage)
     {
@@ -145,33 +158,16 @@ public class Background extends BaseWorld
     }// end takeHealth method
 
     /**
-     * Adds 1 Gem to gem counter
+     * Adds a gem to the manager's counter/
+     * If the plater has wone Level 1, transitions to the loading screen
      */
     public void addGem()
     {
-
         if (manager.hasWonLevel1())
         {
-            showWinMessage();
             Greenfoot.setWorld(new LoadingScreen1(getSpiderman(), getManager()));
         }
     }// end addGems method
-
-    /**
-     * This method will allow the Spirit Counter to earase one count.
-     */
-    public void subtractSpiritCounter(int erase)
-    {
-        spiritCounter = spiritCounter - erase;
-    }// end subtractSpiritCounter method
-
-    /**
-     * Show winning end of game message 
-     */
-    private void showWinMessage()
-    {
-        showText("Game Over - You Win!", 400, 300);
-    }// end showWinMesage method
 
     /**
      * This method will adds an Evil Spirit to the world in a ramdom place. We use the numbers 580 and 380
