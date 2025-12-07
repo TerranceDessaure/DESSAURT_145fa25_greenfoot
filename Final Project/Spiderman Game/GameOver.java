@@ -1,14 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GameOver here.
+ * Game over Screen
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Terrance Dessaure 
+ * @version 12.6.25
  */
 public class GameOver extends World
 {
-
+    // Fields
+    
+    // Constuctor
     /**
      * Constructor for objects of class GameOver.
      * 
@@ -17,5 +19,7 @@ public class GameOver extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1); 
-    }
-}
+    }// end constuctor
+    
+    //Methods
+}// end GameOver Class

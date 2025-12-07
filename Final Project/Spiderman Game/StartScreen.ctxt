@@ -6,4 +6,5 @@ comment1.target=StartScreen()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ StartScreen.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Calls\ every\ frame.\ If\ the\ enter\ button\ is\ pressed,\ the\ Title\ screen\r\n\ will\ move\ to\ the\ first\ loading\ screen.\r\n
 numComments=3

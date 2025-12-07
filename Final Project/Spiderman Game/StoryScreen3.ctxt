@@ -1,9 +1,10 @@
 #BlueJ class context
 comment0.target=StoryScreen3
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ StoryScreen3\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ StoryScreen2\ class\ represents\ a\ transitional\ story\ screen\ in\ the\ game.\r\n\ It\ shows\ the\ loading\ ciricle\ animation\ and,\ after\ short\ delay,\r\n\ prompts\ \ the\ player\ to\ press\ Enter\ to\ continue\ to\ the\ next\ story\ screen.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ 12.6.25\r\n
 comment1.params=
 comment1.target=StoryScreen3()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ StoryScreen2.\r\n\ \r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ StoryScreen2.\r\n\ \ Initializes\ the\ timer\ and\ shown\ flag,\ and\ adds\ a\ loading\ circle\ animation.\r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Constructs\ the\ StoryScreen2\ world.\r\n\ Initializes\ the\ timer\ and\ shown\ flag,\ and\ adds\ a\ loading\ circle\ animation.\r\n
 numComments=3
