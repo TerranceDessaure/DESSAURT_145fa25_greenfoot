@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * This class represents an enemy in the game.
  * It can move around the world, sometimes turning randomly,
- * and will chase Spiderman if he gets close. The enemy can also fire projectiles at Spirderman
+ * and will attack Spiderman if he gets close. The enemy can also fire projectiles at Spirderman
  * when in range. It keeps track of health and removes itself from the world when defeated.
  * 
  * @author Terrance Dessaure
@@ -20,8 +20,8 @@ public class EvilSpirit extends Actor
     private int stepCounter;      
     private int sideLength; 
 
-    private boolean chasing;
-    private int chaseTimer;
+    private boolean attacking;
+    private int attackTimer;
     private int maxChaseTime;
 
     private Spiderman spiderman;
@@ -33,7 +33,7 @@ public class EvilSpirit extends Actor
      * 
      *  IDLE - the enemy stands still and does nothing.
      *  PATROL - the enemy moves around om a set pr random pattern.
-     *  CHASE - the enemy activity follows and tries to catch Spiderman.
+     *  ATTACK - the enemy activity follows and tries to catch Spiderman.
      *  
      *  Using an enum makes the code easier to read and manage because
      *  the enemy's state is alwats one of these defined values.
@@ -42,7 +42,7 @@ public class EvilSpirit extends Actor
     {
         IDLE,
         PATROL,
-        CHASE
+        ATTACK
     }// end private enum
 
     double[][] transitionMatrix = {
@@ -72,8 +72,8 @@ public class EvilSpirit extends Actor
         // intialize fields
         this.health = 3;
         this.sideLength = 50;
-        this.chasing = false;
-        this.chaseTimer = 0;
+        this.attacking = false;
+        this.attackTimer = 0;
         this.maxChaseTime = 180;
 
         currentState = EnemyState.IDLE;
@@ -121,15 +121,15 @@ public class EvilSpirit extends Actor
             case PATROL:
                 patrol();
                 break;
-            case CHASE:
-                chaseSpiderman();
+            case ATTACK:
+                attackSpiderman();
                 break;
 
         }// end switch   
     } // end act method
 
     /**
-     * Chooses the enemy's next state (IDLE, PATROL, or CHASE) using probabilities
+     * Chooses the enemy's next state (IDLE, PATROL, or ATTACK) using probabilities
      * from the transition matrix. A random number determines which state is selected.
      *
      * @param current the enemy's current state
@@ -168,10 +168,10 @@ public class EvilSpirit extends Actor
     }// end patrol method
 
     /**
-     * Makes the enemy chase Spiderman by turning toward his position
+     * Makes the enemy attack Spiderman by turning toward his position
      * and moving forward each frame.
      */
-    private void chaseSpiderman()
+    private void attackSpiderman()
     {
         BaseWorld bw = (BaseWorld)getWorld();
         Spiderman spiderman = bw.getSpiderman();
@@ -180,7 +180,7 @@ public class EvilSpirit extends Actor
             turnTowards(spiderman.getX(), spiderman.getY());
             move(3);
         }// end if 
-    }// end chaseSpiderman method
+    }// end attackSpiderman method
 
     //Timers
     /**
@@ -190,7 +190,8 @@ public class EvilSpirit extends Actor
     private void countSeconds() 
     {
         actCounter++;
-        if (actCounter == 60) {
+        if (actCounter == 60)
+        {
             seconds++;
             actCounter = 0;
         }// end if
@@ -229,12 +230,11 @@ public class EvilSpirit extends Actor
                     }
 
                     // Update score safely
-                    java.util.List<Score> scores = currentWorld.getObjects(Score.class);
-                    if (!scores.isEmpty()) 
+                    if (!currentWorld.getObjects(Score.class).isEmpty()) 
                     {
-                        GameManager manager = ((BaseWorld)getWorld()).getManager();
-                        manager.addScore(25);
+                        ((BaseWorld) currentWorld).getManager().addScore(25);
                     }// end if
+
                     currentWorld.removeObject(this);
                 }// end if
             }// end if
@@ -289,7 +289,7 @@ public class EvilSpirit extends Actor
     /**
      * This method makes the actor move around the world. It moves forward 
      * and sometmes turns randomly. If Spiderman is close (less than 150),
-     * the ator will start chasing him and reset the chase timer.
+     * the ator will start attacking him and reset the attack timer.
      */
     private void roam() 
     {
@@ -315,8 +315,8 @@ public class EvilSpirit extends Actor
 
             if (distance < 150) 
             {
-                chasing = true;
-                chaseTimer = 0;
+                attacking = true;
+                attackTimer = 0;
             }// end if
         }// end if
     }// end roam method

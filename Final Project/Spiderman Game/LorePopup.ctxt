@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=LorePopup
-comment0.text=\r\n\ LorePopup\ displays\ a\ shore\ lore\ message\ in\ a\ semi-transparent\ box.\r\n\ It\ disapperars\ when\ the\ player\ presses\ Enter\ or\ Space\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ LorePopup\ displays\ a\ shore\ lore\ message\ in\ a\ semi-transparent\ box.\r\n\ It\ disapperars\ when\ the\ player\ presses\ Enter\ or\ Space\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ 12.6.25\r\n
 comment1.params=message
 comment1.target=LorePopup(java.lang.String)
 comment1.text=\r\n\ Creates\ a\ LorePopup\ with\ the\ give\ message.\r\n\ \r\n\ @param\ message\ the\ text\ to\ display\r\n

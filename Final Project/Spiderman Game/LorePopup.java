@@ -4,8 +4,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * LorePopup displays a shore lore message in a semi-transparent box.
  * It disapperars when the player presses Enter or Space
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Terrance Dessaure 
+ * @version 12.6.25
  */
 public class LorePopup extends Actor
 {

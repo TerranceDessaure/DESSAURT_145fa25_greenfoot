@@ -76,7 +76,7 @@ public class Background extends BaseWorld
             frameCounter = 0;
         }//end if
 
-        if (gemInterval == 10)
+        if (gemInterval == 5)
         {
             sendGems();
             gemInterval = 0; // resets the gem interval to 0
@@ -84,7 +84,7 @@ public class Background extends BaseWorld
             // another gem
         }// end if
 
-        if(blessingInterval == 5)
+        if(blessingInterval == 15)
         {
             sendBlessings();
             blessingInterval = 0;

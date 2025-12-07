@@ -99,17 +99,19 @@ public class Blessings extends Actor
         switch(type) 
         {
             case "doubleDamage":
-                setImage("powerup1.png"); 
+                GreenfootImage doubleImage = new GreenfootImage("double.png");
+                doubleImage.scale(48, 48); 
+                setImage(doubleImage);
                 break;
             case "speedBoost":
-                GreenfootImage speedImage = new GreenfootImage("loaSpeed.png");
-                speedImage.scale(48, 48); // or 64x64 depending on your preferred size
+                GreenfootImage speedImage = new GreenfootImage("speed.png");
+                speedImage.scale(48, 48); 
                 setImage(speedImage);
                 break;
 
             case "rapidFire":
-                GreenfootImage rapidFireImage = new GreenfootImage("flaming.png");
-                rapidFireImage.scale(48, 48); // or 64x64 depending on your preferred size
+                GreenfootImage rapidFireImage = new GreenfootImage("rapid.png");
+                rapidFireImage.scale(64, 64); 
                 setImage(rapidFireImage);
                 break;
         }// end switch
