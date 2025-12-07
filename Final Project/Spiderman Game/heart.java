@@ -47,22 +47,13 @@ public class Heart extends Actor
         if (isTouching(Spiderman.class)) 
         {
             World currentWorld = getWorld();
-            GameManager manager = null;
 
-            if (currentWorld instanceof Background) 
-            {
-                Background world = (Background)currentWorld;
-                manager = world.getManager();
-                manager.addHealth(20); // heal player
-            }    
-            else if (currentWorld instanceof SecondLevel) 
-            {
-                SecondLevel world = (SecondLevel)currentWorld;
-                manager = world.getManager();
-                manager.addHealth(20);
+            if (currentWorld != null) 
+            { // safety guard
+                BaseWorld world = (BaseWorld) currentWorld;
+                world.getManager().addHealth(20); 
+                world.removeObject(this); 
             }// end if
-
-            getWorld().removeObject(this);
         }// end if
     }// end act method
 

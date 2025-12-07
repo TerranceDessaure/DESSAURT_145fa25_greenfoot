@@ -1,22 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class AaronScreen here.
+ * BaseWorld is the foundation for all the game levels.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Terrance Dessaure
+ * @version 12.6.25
  */
 public class AaronScreen extends World
 {
-
-    private int timer = 0;   // counts frames
-    private boolean shown = false; // track if text has been added
+    /*Fields*/
+    private int timer;   
+    private boolean shown;
     
     private Spiderman spiderman;
     private GameManager manager;
     
-
-
+    /*Constructor*/
     /**
      * Constructor for objects of class StoryScreen2.
      * 
@@ -28,24 +27,19 @@ public class AaronScreen extends World
         this.spiderman = spiderman;
         this.manager = manager;
        
-
-
+        timer = 0;
+        shown = false;
+        
         LoadingCircle loadingcircle = new LoadingCircle();
         addObject(loadingcircle, 780, 580);
-    }
+    }// end AaronScreen constructor
     
     public void act()
     {
-        
-        // Continue to next level with enter
-        if (Greenfoot.isKeyDown("enter")) {
+        if (Greenfoot.isKeyDown("enter")) 
+        {
             Greenfoot.setWorld(new SecondLevel(spiderman,manager));
-        }
-    }
+        }// end if
+    }// end act method
     
-    
-    
-    
-
-
-}
+}// end class

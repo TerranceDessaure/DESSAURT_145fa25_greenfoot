@@ -64,7 +64,7 @@ public class Gems extends Actor
         }// end for
         return current;
     }// end GemState nextState(GemState current) method
-    
+
     /**
      * Runs each frame: updates state, moves if needed,
      * disappears when required, and checks collisions.
@@ -101,13 +101,9 @@ public class Gems extends Actor
         }// end switch
 
         checkCollision();
-        if (getWorld() == null) // safty to avoid null pointer
-        {
-            return; // removed during collision
-        }// end if 
     }
 
-     /**
+    /**
      * Moves faster if enough gems have been collected.
      */
     private void gemProgression()
@@ -130,43 +126,16 @@ public class Gems extends Actor
     private void checkCollision()
     {
         if (isTouching(Spiderman.class)) 
-
         {
-            Spiderman spiderman = (Spiderman)getOneIntersectingObject(Spiderman.class);
+            Spiderman spiderman = (Spiderman) getOneIntersectingObject(Spiderman.class);
+            BaseWorld world = (BaseWorld) getWorld();
 
-            World currentWorld = getWorld();
-            if (currentWorld instanceof Background)
-            {
-                Background world = (Background)getWorld();
-                manager = world.getManager();
-                manager.addGem(1);
+            world.getManager().addGem(1); 
+            world.addScore(100);
+            world.addObject(new Message("+1", 180), 100, 40);
+            world.removeObject(this);
 
-                world.addGem();
-            } // end if
-            
-            if (currentWorld instanceof SecondLevel)
-            {
-                SecondLevel world = (SecondLevel)currentWorld;
-                manager = world.getManager();
-                manager.addGem(1);
-                world.addGem(); 
-            }
-            
-            else if(currentWorld instanceof LastLevel)
-            {
-                LastLevel world = (LastLevel)currentWorld;
-                manager = world.getManager();
-                manager.addGem(1);
-                world.addGem(); 
-            }// end if
-
-            getWorld().addObject(new Message("+1", 180),100,40);
-            GameManager manager = ((BaseWorld)getWorld()).getManager();
-            manager.addScore(100);
-
-            getWorld().removeObject(this); // remove the gem itself
             spiderman.sayQuip();
-
-        }// end if
+        }
     }// end checkCollision
 }// end Gems class

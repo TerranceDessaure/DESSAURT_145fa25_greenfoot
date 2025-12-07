@@ -14,16 +14,26 @@ public class webProjectiles extends Actor
     private int damage;
     
     //constructor
+    /**
+     * Create a projectile with custom damage.
+     * 
+     * @param damage amount of damage
+     */
     public webProjectiles(int damage)
     {
         this.damage = damage;
-    }
+        damage = 1;
+    }// end constructor
     
+    /**
+     * Get the damage value.
+     * 
+     * @return damage amount
+     */
     public int getDamage()
     {
         return damage;
-    }
-    
+    }// end getter
     
     /**
      * Act - do whatever the web wants to do. This method is called whenever
@@ -31,10 +41,8 @@ public class webProjectiles extends Actor
      */
     public void act()
     {
-        
         move(5);
         checkEdge();
-        
     }// end act method
     
     /**

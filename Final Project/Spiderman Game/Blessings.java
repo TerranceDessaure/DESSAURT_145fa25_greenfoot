@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * The Blessing class represents Special power-up items that appear in the game
- * Each blessing give Spiderman a temporary ablility when collected, suck as 
+ * Each blessing give Spiderman a temporary ablility when collected, such as 
  * double damage, faster movement, or tapid fire. Blessing only stat in the world
  * for a limit timre before disappearing on their own
  * 
@@ -37,8 +37,8 @@ public class Blessings extends Actor
     public Blessings(String type)
     {
         // intialize fields
-        this.lifeTime = 600;
-        this.type = type;
+        lifeTime = 600;
+        type = type;
         setImageForType(type);
     }// end Blessings construtor
 
@@ -73,7 +73,6 @@ public class Blessings extends Actor
         {
             Spiderman spiderman = (Spiderman)getOneIntersectingObject(Spiderman.class);
 
-            // Choose a random blessing type
             String[] types = { "doubleDamage", "speedBoost", "rapidFire"};
             String chosen = types[Greenfoot.getRandomNumber(types.length)];
 
@@ -111,7 +110,7 @@ public class Blessings extends Actor
 
             case "rapidFire":
                 GreenfootImage rapidFireImage = new GreenfootImage("rapid.png");
-                rapidFireImage.scale(64, 64); 
+                rapidFireImage.scale(48, 48); 
                 setImage(rapidFireImage);
                 break;
         }// end switch

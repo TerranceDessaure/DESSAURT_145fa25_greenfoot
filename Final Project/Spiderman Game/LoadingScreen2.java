@@ -75,7 +75,6 @@ public class LoadingScreen2 extends BaseWorld
             Greenfoot.delay(10); 
         }// end if
         
-        // If Enter is pressed after text is shown, go to next world
         if (shown && Greenfoot.isKeyDown("enter")) 
         {
             Greenfoot.setWorld(new LastLevel(getSpiderman(), getManager())); // replace with your next world class

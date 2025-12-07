@@ -212,34 +212,20 @@ public class EvilSpirit extends Actor
 
             if (health <= 0) 
             {
-                World currentWorld = getWorld(); // cache once
-
-                if (currentWorld != null)  // safety guard against Null Pointer Error
-                {
-                    if (currentWorld instanceof Background) //if objects is in background
+                World currentWorld = getWorld(); 
+                if (currentWorld != null) 
+                { 
+                    BaseWorld world = (BaseWorld) currentWorld;
+                    world.subtractSpiritCounter(1);
+                    if (!world.getObjects(Score.class).isEmpty()) 
                     {
-                        ((Background) currentWorld).subtractSpiritCounter(1);
-                    } //end if
-                    if (currentWorld instanceof SecondLevel) // if object is in secondlevel
-                    {
-                        ((SecondLevel) currentWorld).subtractSpiritCounter(1);
-                    }
-                    else if (currentWorld instanceof LastLevel) // if object is in lastlevel
-                    {
-                        ((LastLevel) currentWorld).subtractSpiritCounter(1);
-                    }
-
-                    // Update score safely
-                    if (!currentWorld.getObjects(Score.class).isEmpty()) 
-                    {
-                        ((BaseWorld) currentWorld).getManager().addScore(25);
+                        world.getManager().addScore(25);
                     }// end if
-
-                    currentWorld.removeObject(this);
+                    world.removeObject(this);
                 }// end if
             }// end if
         }// end if
-    }// end checkHit method
+    }// end check hit method
 
     //Collision with Spiderman
     /**

@@ -50,6 +50,7 @@ public class SecondLevel extends BaseWorld
         countFrames();
         sendSpirit();
         checkHealth();
+        checkWin();
         showHUD();
     }// end act
 
@@ -140,11 +141,10 @@ public class SecondLevel extends BaseWorld
      * Adds a gem to the manager’s counter.
      * If the player has won Level 2, transitions to the next loading screen.
      */
-    public void addGem() 
+    public void checkWin() 
     {
         if (manager.hasWonLevel2())
         {
-            
             Greenfoot.setWorld(new LoadingScreen2(getSpiderman(), getManager()));
         }// end if
     }// end addGem method

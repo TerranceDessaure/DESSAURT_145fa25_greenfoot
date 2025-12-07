@@ -51,6 +51,7 @@ public class LastLevel extends BaseWorld
         countFrames();
         sendSpirit();
         checkHealth();
+        checkWin();
         showHUD();
     }// end act method
 
@@ -141,7 +142,7 @@ public class LastLevel extends BaseWorld
      * Adds a gem to the manager's counter.
      * If the player has won Level 3, transitions to the win screen.
      */
-    public void addGem() 
+    public void checkWin() 
     {
         if (manager.hasWonLevel3()) 
         {

@@ -53,6 +53,7 @@ public class Background extends BaseWorld
         countFrames();
         sendSpirit();
         checkHealth();
+        addGem();
         showHUD();
         manager.setCurrentTime(1);
         //showText("" + myGameManager.getCurrentTime(), 150, 80);
