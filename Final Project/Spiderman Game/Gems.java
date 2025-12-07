@@ -2,25 +2,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * These gems represent the gems of the Breast Plate of Aaron.
+ * They can stay still, move, or disappear based on state transitions
  * 
  * @author Terrance Dessaure 
- * @version (11/17/2025)
+ * @version 12.6.25
  */
 public class Gems extends Actor
 {
-    //instance variables
-    // private GreenfootImage[] images = new GreenfootImage[6];
-    // private int frameCount;
-    // private int imageIndex;
+    //Fields
     private GameManager manager;
 
+    // these are the posible states for a gem
     public enum GemState 
     {
         STATIC,
         MOVING,
         DISAPPEARING
-    }
+    }// end enum
 
+    // this is the transition matrix i used for transition 
     double[][] transitionMatrix = 
         {
             {0.6, 0.3, 0.1},// From STATIC
@@ -29,9 +29,25 @@ public class Gems extends Actor
         };
 
     private GemState currentState = GemState.STATIC;
-    private int framesInState = 0;
+    private int framesInState;
     private static final int DWELL_FRAMES = 60;
 
+    // constuctor
+    /**
+     * Creates a new gem starting in the STATIC state.
+     */
+    public Gems()
+    {
+        //initialize fields
+        this.framesInState = 0;
+    }//end Gems method
+
+    /**
+     * Chooses the next state based on probabilities.
+     *
+     * @param current the current state
+     * @return the next state
+     */
     private GemState nextState(GemState current) 
     {
         double rand = Math.random();
@@ -44,63 +60,31 @@ public class Gems extends Actor
             if (rand <= cumulative) 
             {
                 return GemState.values()[col];
-            }
-        }
+            }// end if
+        }// end for
         return current;
-    }
-
-    // constuctor
-    public Gems()
-    {
-        // instantiate the SpriteSheet object
-        // spriteSheet = new SpriteSheet(); // call defalt constructor
-
-        // images[0] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("gemsSpriteSheet.png"), 
-        // 0, 0,
-        // 15, 23, 
-        // 15, 23));
-        // images[1] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("gemsSpriteSheet.png"), 
-        // 15, 0,
-        // 32, 23, 
-        // 17, 23));
-        // images[2] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("gemsSpriteSheet.png"), 
-        // 33, 0,
-        // 49, 23, 
-        // 16, 23));
-        // images[3] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("gemsSpriteSheet.png"), 
-        // 50, 0,
-        // 65, 23, 
-        // 15, 23));
-        // images[4] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("gemsSpriteSheet.png"), 
-        // 66, 0,
-        // 80, 23, 
-        // 14, 23));
-        // images[5] = new GreenfootImage(spriteSheet.getSprite(new GreenfootImage("gemsSpriteSheet.png"), 
-        // 81, 0,
-        // 93, 23, 
-        // 12, 23));
-    }//end Gems method
-
+    }// end GemState nextState(GemState current) method
+    
     /**
-     * Act - do whatever the Gems wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Runs each frame: updates state, moves if needed,
+     * disappears when required, and checks collisions.
      */
     public void act()
     {
-        if (getWorld() == null) return; // gem already removed
-        // frameCount++;
-        // if (frameCount == 4)
-        // {
-        // updateImage();
-        // frameCount = 0;
-        // }
-        framesInState++;
-        if (framesInState >= DWELL_FRAMES) {
-            currentState = nextState(currentState);
-            framesInState = 0;
+        if (getWorld() == null) 
+        {
+            return; //  check if gem is already removed
         }
 
-        switch (currentState) {
+        framesInState++;
+        if (framesInState >= DWELL_FRAMES)
+        {
+            currentState = nextState(currentState);
+            framesInState = 0;
+        }// end if
+
+        switch (currentState) 
+        {
             case STATIC:
                 // do nothing
                 break;
@@ -109,35 +93,40 @@ public class Gems extends Actor
                 if (isAtEdge()) 
                 {
                     turn(180);
-                }
+                }// end if
                 break;
             case DISAPPEARING:
                 getWorld().removeObject(this);
                 return; // stop after removal
-        }
-        
+        }// end switch
+
         checkCollision();
-        if (getWorld() == null) 
+        if (getWorld() == null) // safty to avoid null pointer
         {
             return; // removed during collision
-        }
-
+        }// end if 
     }
-    
+
+     /**
+     * Moves faster if enough gems have been collected.
+     */
     private void gemProgression()
     {
-
         if (manager != null && manager.getGemCounter() >=  3)
         {
             move(5);
             if (isAtEdge())
             {
                 turn(180);
-            }
+            }// end if
+        }// end if
+    }// end gemProgression method
 
-        }
-    }
-
+    /**
+     * Checks if Spiderman collected the gem.
+     * If so, adds to gem count, score, shows a message,
+     * and removes the gem from the world.
+     */
     private void checkCollision()
     {
         if (isTouching(Spiderman.class)) 
@@ -151,9 +140,10 @@ public class Gems extends Actor
                 Background world = (Background)getWorld();
                 manager = world.getManager();
                 manager.addGem(1);
-                
+
                 world.addGem();
-            } 
+            } // end if
+            
             if (currentWorld instanceof SecondLevel)
             {
                 SecondLevel world = (SecondLevel)currentWorld;
@@ -161,13 +151,14 @@ public class Gems extends Actor
                 manager.addGem(1);
                 world.addGem(); 
             }
+            
             else if(currentWorld instanceof LastLevel)
             {
                 LastLevel world = (LastLevel)currentWorld;
                 manager = world.getManager();
                 manager.addGem(1);
                 world.addGem(); 
-            }
+            }// end if
 
             getWorld().addObject(new Message("+1", 180),100,40);
             GameManager manager = ((BaseWorld)getWorld()).getManager();
@@ -176,21 +167,6 @@ public class Gems extends Actor
             getWorld().removeObject(this); // remove the gem itself
             spiderman.sayQuip();
 
-        }
-    }
-
-    // public void updateImage()
-    // {
-    // setImage ( images[imageIndex] );
-
-    // // ++imageIndex pre-incremnt imageIndex
-    // // then we check to see if the incremented value of imageIndex
-    // // is greater that the highest available index in the
-    // // images array
-    // if (++imageIndex > (images.length - 1))
-    // {
-    // imageIndex = 0;
-    // }// end if
-    // }// end method updateImage
-
-}
+        }// end if
+    }// end checkCollision
+}// end Gems class

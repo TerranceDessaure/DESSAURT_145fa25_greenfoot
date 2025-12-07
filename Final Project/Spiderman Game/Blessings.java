@@ -21,13 +21,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Blessings extends Actor
 {
-    /* Instance vairiables */
-    private int lifeTime = 600;
+    // Fields
+    
+    private int lifeTime;
     private String type;
 
+    //Constructor
     /**
-     * Act - do whatever the Blessings wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Creates a new Blessing object with a specific type.
+     * The type determins what kind of blessing eddect this object gives
+     * (for example: "doubleDamage", "speedBoost", or "rapidFire").
+     * 
+     * @param type the kind of blessing this object represents
+     */
+    public Blessings(String type)
+    {
+        // intialize fields
+        this.lifeTime = 600;
+        this.type = type;
+        setImageForType(type);
+    }// end Blessings construtor
+
+    //Methods
+    /**
+     * Runs each frame: counts down lifttime and checks for collisions.
      */
     public void act()
     {
@@ -41,16 +58,15 @@ public class Blessings extends Actor
     }// end act
 
     /**
-     * Check if this blessing object is touching Spiderman.
-     * if a collision is detected:
-     *  Chooses a random blessing type ( doubleDamage, speedBoost, or rapidFire)
-     *  Applies the chosen blessing eddect to Spiderman
-     *  Optionallt makes Spiderman say a quip.
-     *  Removes the blessing object from the word so it cannot be collected again.
-     *  
-     *  This method does not take any parameters and does not return a value.
-     *  It directly changes Spriderman's state and removes the blessing actor.
+     * Checks if this blessing is touching Spiderman.
+     * If collected:
+     * - Chooses a random blessing type.
+     * - Applies the effect to Spiderman.
+     * - Optionally shows a quip.
+     * - Adds to the score.
+     * - Removes the blessing from the world.
      */
+
     private void checkCollision() 
     {
         if (isTouching(Spiderman.class)) 
@@ -61,32 +77,16 @@ public class Blessings extends Actor
             String[] types = { "doubleDamage", "speedBoost", "rapidFire"};
             String chosen = types[Greenfoot.getRandomNumber(types.length)];
 
-            // Apply the blessing effect to Spiderman
             spiderman.applyBlessing(chosen);
 
-            // Optional: trigger a quip
             spiderman.sayQuip();
+            
             GameManager manager = ((BaseWorld)getWorld()).getManager();
             manager.addScore(25);
 
-            // Remove blessing from the world
             getWorld().removeObject(this);
-
-        }
+        }//end if
     }// end check Collision
-
-    /**
-     * Creates a new Blessing object with a specific type.
-     * The type determins what kind of blessing eddect this object gives
-     * (for example: "doubleDamage", "speedBoost", or "rapidFire").
-     * 
-     * @param type the kind of blessing this object represents
-     */
-    public Blessings(String type)
-    {
-        this.type = type;
-        setImageForType(type);
-    }// end Blessings method
 
     /**
      * Chooses the correct picture for this Blessings object based on its type.

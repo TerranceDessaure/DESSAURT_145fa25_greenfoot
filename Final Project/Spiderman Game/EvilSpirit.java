@@ -11,20 +11,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EvilSpirit extends Actor 
 {
-    private int health = 3;       // each spirit starts with 3 HP
+    // Fields
+    private int health;      
     private int coolDown;         // projectile cooldown
-    private int actCounter;       // frame counter
-    private int seconds;          // second counter
+    private int actCounter;       
+    private int seconds;         
 
-    private int stepCounter;      // movement counter
-    private int sideLength = 50;  // box movement length
+    private int stepCounter;      
+    private int sideLength; 
 
-    private boolean chasing = false;
-    private int chaseTimer = 0;
-    private int maxChaseTime = 180;
+    private boolean chasing;
+    private int chaseTimer;
+    private int maxChaseTime;
 
     private Spiderman spiderman;
-    
+
     /**
      * EnemyState is an enumeration (enum) that list the possible
      * behaviors an enemy can have in the game. Each value represents
@@ -43,24 +44,22 @@ public class EvilSpirit extends Actor
         PATROL,
         CHASE
     }// end private enum
-    
+
     double[][] transitionMatrix = {
-        {0.6, 0.3, 0.1},
-        {0.2, 0.6, 0.2},
-        {0.1, 0.2, 0.7}
-    };
-    
+            {0.6, 0.3, 0.1},
+            {0.2, 0.6, 0.2},
+            {0.1, 0.2, 0.7}
+        };
+
     private EnemyState currentState;
     private int FramesInState;
     private static final int DWELL_FRAMES = 45;
-    
+
     private static final int PATROL_FRAMES_EACH_DIRECTION = 30;
     private int patrolFrameCount;
     private int patrolHeading;
-    
-    // Current state of EvilSpirit 
-    
-    /* Constructor*/
+
+    // Constructor
     /**
      * Creates a new EvilSpirit enemy.
      * When the object is made, it is given a random starting
@@ -70,25 +69,21 @@ public class EvilSpirit extends Actor
      */
     public EvilSpirit()
     {
+        // intialize fields
+        this.health = 3;
+        this.sideLength = 50;
+        this.chasing = false;
+        this.chaseTimer = 0;
+        this.maxChaseTime = 180;
+
         currentState = EnemyState.IDLE;
         FramesInState = 0;
         patrolHeading = Greenfoot.getRandomNumber(360);
-    }// end no-arg constructor
+    } // end no-arg constructor
 
     /**
-     * Called automatically by Greenfoot each frame to control the Evil Spirit's beahavior.
-     * This method handles several task in order:
-     *      Counts seconds and adjust firing speed.
-     *      Fires a projectile at Spiderman every 5 seconds.
-     *      Turns around if the enemy reaches the edge of the world.
-     *      Checks if the enemy has been hit by Spiderman's attack.
-     *      Checks for collisions with other obkects and removes itself if needed
-     *      Updates how long the enemy has been in its current state.
-     *      Changes to a new stat (idle, patrol, or chase) after enough frames.
-     *      
-     *      
-     * This method does not take any parameter and does not return a value.
-     * It direictly controls the EvilSpirit's action each frame.
+     * Called each frame to control the Evil Spirit's behavior.
+     * Handles timing, firing, movement, collisions, and state changes.
      */
     public void act() 
     {
@@ -103,13 +98,13 @@ public class EvilSpirit extends Actor
         if (getWorld() == null) 
         {
             return; // if the actor has already been removed stop the method
-                                        // I added this prevent getting an Illeg
+            // I added this prevent getting an Illegal pointer exception
         }
-        
+
         checkCollision(); 
         if (getWorld() == null)
         {
-           return; 
+            return; 
         }//end if
 
         FramesInState++;
@@ -118,7 +113,7 @@ public class EvilSpirit extends Actor
             currentState = nextState(currentState);
             FramesInState = 0;
         } // end if
-        
+
         switch(currentState)
         {
             case IDLE:
@@ -129,52 +124,37 @@ public class EvilSpirit extends Actor
             case CHASE:
                 chaseSpiderman();
                 break;
-                
+
         }// end switch   
     } // end act method
-    
-    
+
     /**
-     *Chooses the enemy's next state (IDLE, PATROL, or CHASE) based on probablity.
-     *This method uses the transitionMatrix to decide randomly which state
-     *the enemy should move into next. The higher the probability in the martix,
-     *the more likely that state will be chosen
+     * Chooses the enemy's next state (IDLE, PATROL, or CHASE) using probabilities
+     * from the transition matrix. A random number determines which state is selected.
      *
-     *Steps:
-     *      
-     *      Generate a random number between 0.0 and 1.0.
-     *      Look up the row in the transitionMatrix that matches the current state.
-     *      Add up probabilites until the random number is less that or equal to the total.
-     *      Return the state that matches the column.
-     *      
      * @param current the enemy's current state
-     * @return the next state chosen for the enemy
+     * @return the next state chosen
      */
     private EnemyState nextState(EnemyState current)
+    {
+        double rand = Math.random();
+        double cumulative = 0.0;
+        int row = current.ordinal();
+
+        for (int col = 0; col < transitionMatrix[row].length; col++)
         {
-            double rand = Math.random();
-            double cumulative = 0.0;
-            int row = current.ordinal();
-            
-            for (int col = 0; col < transitionMatrix[row].length; col++)
+            cumulative += transitionMatrix[row][col];
+            if (rand <= cumulative)
             {
-                cumulative += transitionMatrix[row][col];
-                if (rand <= cumulative)
-                {
-                    return EnemyState.values()[col];
-                }// end if
-            }// end for
-            return current;
-        }// end EnemyState nextState(EnemyState current) method
-        
+                return EnemyState.values()[col];
+            }// end if
+        }// end for
+        return current;
+    }// end EnemyState nextState(EnemyState current) method
+
     /**
-     * Makes the eney move back and forth to simulate a patrol.
-     * The enemy moves forward a small amount each frame, and a counter
-     * keeps track of how many frames it has been moving in the same direction.
-     * Once the counter reaches the limit (PATROL_FRAMES_EACH_DIRECTION),
-     * the enemy turns around (180 degrees) and the counter resets.
-     * 
-     * this creates a simple back-and-forth patrol pattern.
+     * Moves the enemy back and forth to simulate a patrol.
+     * The enemy walks forward each frame, then turns around after a set number of frames.
      */
     private void patrol()
     {
@@ -186,18 +166,10 @@ public class EvilSpirit extends Actor
             patrolFrameCount = 0;
         }// end if
     }// end patrol method
-    
+
     /**
-     * Makes the eney chase Spiderman
-     * This method gets a reference to the current world and then
-     * finds the Spiderman object inside it. If Spiderman exists
-     * and is still in the world:
-     * 
-     *      The enemy turns to face Spiderman's current position.
-     *      The enemy moves forward a little bit toward Spiderman.
-     *      
-     * This creates a simple chasing behavior where the enemy follows
-     * Spiderman around the world.
+     * Makes the enemy chase Spiderman by turning toward his position
+     * and moving forward each frame.
      */
     private void chaseSpiderman()
     {
@@ -210,14 +182,10 @@ public class EvilSpirit extends Actor
         }// end if 
     }// end chaseSpiderman method
 
-    // --- Timers ---
+    //Timers
     /**
-     * Keeps track of time in second based on the number of act cycles.
-     * Each time the at method runs, actCounter increases by 1.
-     * When actCounter reaches 60 and actCounter is resest back to 0.
-     * 
-     * This method does not take any parameters and does not return a value.
-     * It isused to measure the time in seconds during gameplay.
+     * Tracks time in seconds based on act cycles.
+     * Increases actCounter each frame and resets after 60 to measure one second.
      */
     private void countSeconds() 
     {
@@ -228,57 +196,59 @@ public class EvilSpirit extends Actor
         }// end if
     }// end countSeconds method
 
-    // --- Projectile collision ---
+    //Projectile collision
     /**
      * This method checks if the spirit touches a web projectile. If it does,
      * the spirit loses health and the projectile is remoes. When health is 0 or less,
      * the spide is removed form the world and the counter goes down.
      */
-    private void checkHit() {
-    if (isTouching(webProjectiles.class)) {
-        health--; // reduce spirit’s health
-        removeTouching(webProjectiles.class);
+    private void checkHit() 
+    {
+        if (isTouching(webProjectiles.class)) 
+        {
+            health--; // reduce spirit’s health
+            removeTouching(webProjectiles.class);
 
-        if (health <= 0) {
-            World currentWorld = getWorld(); // cache once
+            if (health <= 0) 
+            {
+                World currentWorld = getWorld(); // cache once
 
-            if (currentWorld != null) { // safety guard
-                if (currentWorld instanceof Background) 
+                if (currentWorld != null)  // safety guard against Null Pointer Error
                 {
-                    ((Background) currentWorld).subtractSpiritCounter(1);
-                } 
-                if (currentWorld instanceof SecondLevel) 
-                {
-                    ((SecondLevel) currentWorld).subtractSpiritCounter(1);
-                }
-                else if (currentWorld instanceof LastLevel) 
-                {
-                    ((LastLevel) currentWorld).subtractSpiritCounter(1);
-                }
+                    if (currentWorld instanceof Background) //if objects is in background
+                    {
+                        ((Background) currentWorld).subtractSpiritCounter(1);
+                    } //end if
+                    if (currentWorld instanceof SecondLevel) // if object is in secondlevel
+                    {
+                        ((SecondLevel) currentWorld).subtractSpiritCounter(1);
+                    }
+                    else if (currentWorld instanceof LastLevel) // if object is in lastlevel
+                    {
+                        ((LastLevel) currentWorld).subtractSpiritCounter(1);
+                    }
 
-                // Update score safely
-                java.util.List<Score> scores = currentWorld.getObjects(Score.class);
-                if (!scores.isEmpty()) {
-                    GameManager manager = ((BaseWorld)getWorld()).getManager();
-                    manager.addScore(25);
+                    // Update score safely
+                    java.util.List<Score> scores = currentWorld.getObjects(Score.class);
+                    if (!scores.isEmpty()) 
+                    {
+                        GameManager manager = ((BaseWorld)getWorld()).getManager();
+                        manager.addScore(25);
+                    }// end if
+                    currentWorld.removeObject(this);
+                }// end if
+            }// end if
+        }// end if
+    }// end checkHit method
 
-                }
-
-                // Finally remove the spirit
-                currentWorld.removeObject(this);
-            }
-        }
-    }
-}
-
-
-    // --- Collision with Spiderman ---
+    //Collision with Spiderman
     /**
      * This method checks if the spirit touches Spiderman. If it does,
      * the world will take awat health (25 in the Backgound, and 50 in SecondLevel).
      * After that the spirit is removed from the world.
      */
-    private void checkCollision() {
+    private void checkCollision() 
+    {
         if (isTouching(Spiderman.class)) 
         {
             World currentWorld = getWorld();
@@ -302,7 +272,7 @@ public class EvilSpirit extends Actor
         }// end if
     }// end checkCollsion method
 
-    // --- Movement ---
+    //Movement
     /**
      * This method makes the actor turn around when it reaches ther edge
      * of the world. It checks if the actor is at the edge and then rotates
@@ -329,7 +299,10 @@ public class EvilSpirit extends Actor
             turn(Greenfoot.getRandomNumber(90) - 45);
         }// end if
 
-        if (getWorld() == null) return;
+        if (getWorld() == null) 
+        {
+            return;
+        }
 
         BaseWorld bw = (BaseWorld)getWorld();
         Spiderman spiderman = bw.getSpiderman();
@@ -362,7 +335,7 @@ public class EvilSpirit extends Actor
             seconds = 0;
         }// end if
     }// end fireSpeed method
-    
+
     /**
      * This method makes the enemy shoot a projectile at Spiderman. It first check if
      * the world and Spiderman exits and if the cooldown is 0.
@@ -394,8 +367,7 @@ public class EvilSpirit extends Actor
             }// end if
         }// end if
     }// end fireAtSpiderman method
-    
-    
+
     /**
      * This method check if Spiderman is cloes enough to the actor.
      * It finds the distance between the actor and Spiderman and 
@@ -409,7 +381,7 @@ public class EvilSpirit extends Actor
         return distance <= range;
     }// end isInRange method
 
-    // --- Getter ---
+    //Getter
     /**
      * This method gives back the Spiderman object from the world. It just returns
      * the current Spiderman.
@@ -420,5 +392,5 @@ public class EvilSpirit extends Actor
     public Spiderman getSpiderman() 
     {
         return spiderman;
-    }
+    }// end getter
 }// end class

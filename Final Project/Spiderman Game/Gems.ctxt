@@ -1,15 +1,19 @@
 #BlueJ class context
 comment0.target=Gems
-comment0.text=\r\n\ These\ gems\ represent\ the\ gems\ of\ the\ Breast\ Plate\ of\ Aaron.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ (11/17/2025)\r\n
-comment1.params=current
-comment1.target=Gems.GemState\ nextState(Gems.GemState)
-comment2.params=
-comment2.target=Gems()
+comment0.text=\r\n\ These\ gems\ represent\ the\ gems\ of\ the\ Breast\ Plate\ of\ Aaron.\r\n\ They\ can\ stay\ still,\ move,\ or\ disappear\ based\ on\ state\ transitions\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ 12.6.25\r\n
+comment1.params=
+comment1.target=Gems()
+comment1.text=\r\n\ Creates\ a\ new\ gem\ starting\ in\ the\ STATIC\ state.\r\n
+comment2.params=current
+comment2.target=Gems.GemState\ nextState(Gems.GemState)
+comment2.text=\r\n\ Chooses\ the\ next\ state\ based\ on\ probabilities.\r\n\r\n\ @param\ current\ the\ current\ state\r\n\ @return\ the\ next\ state\r\n
 comment3.params=
 comment3.target=void\ act()
-comment3.text=\r\n\ Act\ -\ do\ whatever\ the\ Gems\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.text=\r\n\ Runs\ each\ frame\:\ updates\ state,\ moves\ if\ needed,\r\n\ disappears\ when\ required,\ and\ checks\ collisions.\r\n
 comment4.params=
 comment4.target=void\ gemProgression()
+comment4.text=\r\n\ Moves\ faster\ if\ enough\ gems\ have\ been\ collected.\r\n
 comment5.params=
 comment5.target=void\ checkCollision()
+comment5.text=\r\n\ Checks\ if\ Spiderman\ collected\ the\ gem.\r\n\ If\ so,\ adds\ to\ gem\ count,\ score,\ shows\ a\ message,\r\n\ and\ removes\ the\ gem\ from\ the\ world.\r\n
 numComments=6
