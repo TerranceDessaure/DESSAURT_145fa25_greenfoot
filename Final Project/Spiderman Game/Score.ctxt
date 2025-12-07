@@ -1,9 +1,13 @@
 #BlueJ class context
 comment0.target=Score
+comment0.text=\r\n\ Dispays\ the\ player's\ score\ on\ screen.\r\n\ Updates\ each\ frame\ based\ on\ GameManager\r\n\ \r\n\ @author\ Terrance\ Dessaure\r\n\ @version\ 12.6.2025\r\n
 comment1.params=
-comment1.target=void\ act()
+comment1.target=Score()
+comment1.text=\r\n\ Creates\ a\ Score\ display\ starting\ at\ 0\r\n
 comment2.params=
-comment2.target=Score()
+comment2.target=void\ act()
+comment2.text=\r\n\ Updates\ the\ score\ display\ each\ frame.\r\n
 comment3.params=points
 comment3.target=void\ updateImage(int)
+comment3.text=\r\n\ Updates\ the\ score\ image\ with\ the\ given\ points.\r\n\ \r\n\ @param\ point\ the\ score\ to\ display\r\n
 numComments=4

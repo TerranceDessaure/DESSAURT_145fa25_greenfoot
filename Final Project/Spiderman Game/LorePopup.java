@@ -1,21 +1,32 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LorPopup here.
+ * LorePopup displays a shore lore message in a semi-transparent box.
+ * It disapperars when the player presses Enter or Space
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class LorePopup extends Actor
 {
+    //Fields
     private String message;
 
+    // Constructor
+    /**
+     * Creates a LorePopup with the give message.
+     * 
+     * @param message the text to display
+     */
     public LorePopup(String message) 
     {
         this.message = message;
         updateImage();
-    }
+    }// end one-arg constructor
 
+    /**
+     * Updates the popup image with the current message
+     */
     private void updateImage() 
     {
         GreenfootImage img = new GreenfootImage(400, 100);
@@ -24,14 +35,17 @@ public class LorePopup extends Actor
         img.setColor(Color.WHITE);
         img.drawString(message, 10, 50);
         setImage(img);
-    }
+    }// end updateImage method
     
+    /**
+     * Runs each frame. Removes the popup if Enter or Space is pressed.
+     */
     public void act() 
       {
         if (Greenfoot.isKeyDown("enter") || Greenfoot.isKeyDown("space")) 
         {
             getWorld().removeObject(this);
-        }
-    }
-}
+        }// end if
+    }// end act method
+}// end LorePopup class
 

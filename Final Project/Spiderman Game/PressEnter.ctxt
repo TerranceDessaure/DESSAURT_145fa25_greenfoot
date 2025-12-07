@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.target=PressEnter
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ PressEnter\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Displays\ a\ "Press\ ENTER"\ prompt\ on\ the\ screen.\r\n\ Used\ to\ signal\ the\ player\ to\ continue.\r\n\ \r\n\ @author\ Terrance\ Dessaure\r\n\ @version\ 12/06/2025\r\n
 comment1.params=
 comment1.target=PressEnter()
+comment1.text=\r\n\ Creates\ the\ "Press\ ENTER"\ image\ and\ sets\ it\ as\ this\ actor's\ graphic.\r\n
 numComments=2

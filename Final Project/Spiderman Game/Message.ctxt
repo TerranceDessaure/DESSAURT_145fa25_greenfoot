@@ -1,9 +1,10 @@
 #BlueJ class context
 comment0.target=Message
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Message\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Message\ displays\ temporary\ text\ on\ the\ screen.\r\n\ It\ disappears\ after\ a\ set\ number\ of\ frames.\r\n\ \r\n\ @author\ Terrance\ Dessaure\ \r\n\ @version\ 12.6.25\r\n
 comment1.params=text\ durationFrames
 comment1.target=Message(java.lang.String,\ int)
+comment1.text=\r\n\ Creates\ a\ new\ message\ with\ the\ given\ text\ and\ duration.\r\n\r\n\ @param\ text\ the\ text\ to\ display\r\n\ @param\ durationFrames\ how\ many\ frames\ the\ message\ lasts\r\n
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Message\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment2.text=\r\n\ Runs\ each\ frame.\ Counts\ down\ lifetime\ and\ removes\ the\ message\ when\ time\ is\ up.\r\n
 numComments=3

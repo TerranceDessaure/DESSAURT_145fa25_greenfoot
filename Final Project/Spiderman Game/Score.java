@@ -1,19 +1,40 @@
 import greenfoot.*;
 
-public class Score extends Actor {
+/**
+ * Dispays the player's score on screen.
+ * Updates each frame based on GameManager
+ * 
+ * @author Terrance Dessaure
+ * @version 12.6.2025
+ */
+public class Score extends Actor 
+{
+    // Constructor
+    /**
+     * Creates a Score display starting at 0
+     */
+    public Score() 
+    {
+        updateImage(0); // start with 0 until GameManager updates
+    }// end cpnstructor
 
-    public void act() {
+    //methods
+    /**
+     * Updates the score display each frame.
+     */
+    public void act() 
+    {
         GameManager manager = ((BaseWorld)getWorld()).getManager();
         setImage(new GreenfootImage("Score: " + manager.getScore(), 24, Color.WHITE, null));
-    }
+    }// emd act method
 
-    // Constructor
-    public Score() {
-        updateImage(0); // start with 0 until GameManager updates
-    }
-
-    // Update image using manager’s score
-    private void updateImage(int points) {
+    /**
+     * Updates the score image with the given points.
+     * 
+     * @param point the score to display
+     */
+    private void updateImage(int points) 
+    {
         setImage(new GreenfootImage("Score: " + points, 30, Color.WHITE, Color.BLACK));
-    }
-}
+    }// end updateImage
+}//end Score class

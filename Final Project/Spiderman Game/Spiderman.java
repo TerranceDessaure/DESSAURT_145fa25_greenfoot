@@ -9,18 +9,13 @@ import greenfoot.GreenfootImage;
  */
 public class Spiderman extends Actor
 {
-    // instance variables
+    // Fields
     private int cooldown;
     private int mouseX;
     private int mouseY;
 
-    // animation logic
-    //private GreenfootImage[] images = new GreenfootImage[9];
-    //private int frameCount;
-    //private int imageIndex;
-
     private boolean directionIsRight;
-
+    
     private String[] quips = { 
             "My spider-sense is tingling!",
             "Web-slinging never gets old!",
@@ -31,20 +26,24 @@ public class Spiderman extends Actor
     private String currentQuip = "";
 
     /* Power-Ups*/
-    private boolean doubleDamage = false;
-    private boolean speedBoost = false;
-    private boolean rapidFire = false;
-    private int powerUpTimer = 0;
+    private boolean doubleDamage;
+    private boolean speedBoost;
+    private boolean rapidFire;
+    private int powerUpTimer;
 
     //constructor
     public Spiderman()
     {
-
-        directionIsRight = true;
+        //initialize fields
+        doubleDamage = false;
+        speedBoost = false;
+        rapidFire = false;
+        powerUpTimer = 0;
+        //directionIsRight = true;
     }
+    
     /**
-     * Act - do whatever the Spiderman wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Runs eahc frame: hangles input. aiming, firing, quips, and power-up timers
      */
     public void act()
     {
@@ -57,9 +56,9 @@ public class Spiderman extends Actor
             quipTimer--;
             if (quipTimer == 0) 
             {
-                //getWorld().showText("", 200, 30); // clear after 3 seconds
-            }
-        }
+                getWorld().showText("", 200, 30); // clear after 3 seconds
+            }// end if
+        }// end if
 
         if (powerUpTimer > 0)
         {
@@ -67,20 +66,26 @@ public class Spiderman extends Actor
             if (powerUpTimer == 0)
             {
                 clearPowerUps();
-            }
-        }
-
+            }// end if
+        }// end if
     }// end act method
 
-
+    /**
+     * Displays a random quip for a few seconds.
+     */
     public void sayQuip() 
     {
         int index = Greenfoot.getRandomNumber(quips.length);
         currentQuip = quips[index];
         getWorld().showText(currentQuip, 400,20);
         quipTimer = 180; // 3 seconds at 60 fps
-    }
+    }// end sayQuip method
 
+    /**
+     * Applies a blessing effect (double damage, speed boost, or rapid fire).
+     * 
+     * @param type the blessing type
+     */
     public void applyBlessing(String type)
     {
         switch(type)
@@ -99,10 +104,13 @@ public class Spiderman extends Actor
                 getWorld().showText("Rapid Fire Activated!", 400, 580);
                 break;
 
-        }
+        }// end swwith
         powerUpTimer = 300;
-    }
+    }// end applyBlessing method
 
+    /**
+     * Clears all powers ups and resest cooldown.
+     */
     private void clearPowerUps()
     {
         doubleDamage = false;
@@ -110,8 +118,11 @@ public class Spiderman extends Actor
         rapidFire = false;
         cooldown = 30;
         getWorld().showText("", 300, 380); 
-    }
+    }// end clearPowerUps method
 
+    /**
+     * Handles movement and firing input.
+     */
     public void checkKeypress()
     {
         // Get Current position
@@ -147,16 +158,18 @@ public class Spiderman extends Actor
         {
             fire();
         }// end if
-
     } // end checkKeypress Method
 
+    /**
+     * reduces cooldown each frame.
+     */
     private void fireSpeed()
     {
         if (cooldown > 0)
         {
             cooldown--;
         }//end if
-    }
+    }// fireSpeed method
 
     /**
      * Fires a web projectile toward the current mouse position.
@@ -165,7 +178,7 @@ public class Spiderman extends Actor
      * `webProjectiles` object at the actor's current location.
      * It calculates the angle between the actor and the mouse cursor,
      * set the projectile's rotation accordingly, and adds it to the world.
-     * After firinf, the cooldown is reset to 30 frames to prevent 
+     * After firing, the cooldown is reset to 30 frames to prevent 
      * continuous firing.
      */
     private void fire()
@@ -192,8 +205,7 @@ public class Spiderman extends Actor
             {
                 getWorld().addObject (web, getX(), getY());
                 cooldown = rapidFire ? 10 : 30;
-            }
-
+            }// end if
         }// end if 
     }// end fire method
 
@@ -212,18 +224,18 @@ public class Spiderman extends Actor
         {
             mouseX = Greenfoot.getMouseInfo().getX();
             mouseY = Greenfoot.getMouseInfo().getY();
-
         }//end if
     }// end aim method
 
+    /**
+     * Removes blessings if touched.
+     */
     private void checkCollision()
     {
-
         if (isTouching(Blessings.class))
         {
             removeTouching(Blessings.class);
-        }
-
+        }// end if
     }// end checkTouching method
 }// end Spiderman class
 

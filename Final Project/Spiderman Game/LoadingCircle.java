@@ -1,18 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LoadingCirle here.
+ * Loading Circle is just an animation used to make transition screens look
+ * like they are loading
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Terrance Dessaure
+ * @version 12.6.25
  */
 public class LoadingCircle extends Actor
 {
+    // Fields
     private GreenfootImage[] images = new GreenfootImage[8];
     
     private int frameCount;
     private int imageIndex;
     
+    // Constructor
     public LoadingCircle()
     {
         images[0] = new GreenfootImage("circle0.png");
@@ -23,8 +26,11 @@ public class LoadingCircle extends Actor
         images[5] = new GreenfootImage("circle5.png");
         images[6] = new GreenfootImage("circle6.png");
         images[7] = new GreenfootImage("circle7.png");
-    }
+    }// end LoadingCircle constructor
     
+    /**
+     * Runs each frame and cycles through the Loading Circle animation
+     */
     public void act()
     {
          frameCount++;
@@ -32,10 +38,13 @@ public class LoadingCircle extends Actor
         {
             updateImage();
             frameCount = 0;
-        }
-        
-    }
+        }// end if
+    }// end act method
     
+    /**
+     * Updates the heart's image to the next frame.
+     * Loops back to the first frame  after the last one.
+     */
     public void updateImage()
     {
         setImage(images[imageIndex]);
@@ -43,6 +52,6 @@ public class LoadingCircle extends Actor
         if ( ++imageIndex > (images.length - 1) )
         {
             imageIndex = 0;
-        }
-    }
-}
+        }// end if
+    }// end updateImage method
+}// end LoadCircle class
