@@ -54,7 +54,7 @@ public class LoadingScreen1 extends BaseWorld
         
         showRandomMessage();
         
-    }// end LoadingScreen Contrutors
+    }// end LoadingScreen1 Contrutor
     
     // Methods
     /**
