@@ -237,24 +237,16 @@ public class EvilSpirit extends Actor
     {
         if (isTouching(Spiderman.class)) 
         {
-            World currentWorld = getWorld();
-            if (currentWorld instanceof Background) 
+            if (isTouching(Spiderman.class)) 
             {
-                ((Background)currentWorld).takeHealth(15);
-            } // end if 
-            if (currentWorld instanceof SecondLevel) 
-            {
-                ((SecondLevel)currentWorld).takeHealth(25);
+                BaseWorld currentWorld = (BaseWorld) getWorld();
+                
+                currentWorld.takeHealthOnCollision();
+                
+                GameManager manager = currentWorld.getManager();
+                manager.addScore(-100);
+                getWorld().removeObject(this);
             }// end if
-            else if (currentWorld instanceof LastLevel) 
-            {
-                ((LastLevel)currentWorld).takeHealth(35);
-            }// end if
-            GameManager manager = ((BaseWorld)getWorld()).getManager();
-            manager.addScore(-100);
-
-            getWorld().removeObject(this);
-            return;
         }// end if
     }// end checkCollsion method
 

@@ -88,6 +88,15 @@ public class BaseWorld extends World
     }// end setter
 
     /**
+     * Handles health deduction when a spirit collides with Spiderman.
+     * Override in subclasses to customize damage values.
+     */
+    public void takeHealthOnCollision() 
+    {
+        manager.takeHealth(15); // default damage
+    }
+
+    /**
      * Displays the HUD  with health, gem count, and time.
      */
     public void showHUD() 
