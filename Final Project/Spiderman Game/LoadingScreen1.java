@@ -67,20 +67,20 @@ public class LoadingScreen1 extends BaseWorld
         timer++;  
         if (timer >= 300 && !shown) 
         {
-            addObject(new PressEnter(), getWidth()/2, 580); // bottom middle
-            shown = true; // ensure it only adds once
+            addObject(new PressEnter(), getWidth()/2, 580); 
+            shown = true; 
         }//end if
         
         if (Greenfoot.isKeyDown("space")) 
         {
             removeObjects(getObjects(LorePopup.class));
             showRandomMessage();
-            Greenfoot.delay(10); // prevent rapid skipping
+            Greenfoot.delay(10); 
         }// end if
         
         if (shown && Greenfoot.isKeyDown("enter")) 
         {
-            Greenfoot.setWorld(new SecondLevel(getSpiderman(), getManager())); // replace with your next world class
+            Greenfoot.setWorld(new SecondLevel(getSpiderman(), getManager())); 
         }// end if
     }// end act method
     
