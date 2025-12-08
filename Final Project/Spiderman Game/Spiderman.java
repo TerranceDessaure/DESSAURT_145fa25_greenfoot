@@ -116,7 +116,7 @@ public class Spiderman extends Actor
         speedBoost = false;
         rapidFire = false;
         cooldown = 30;
-        getWorld().showText("", 300, 380); 
+        getWorld().showText("", 400, 580); 
     }// end clearPowerUps method
 
     /**

@@ -1,4 +1,7 @@
 #BlueJ class context
 comment0.target=GameOverWin
 comment0.text=\r\n\ Game\ Won\ Screen\r\n\ \r\n\ @author\ Terrance\ Dessaure\r\n\ @version\ 12.6.25\r\n
-numComments=1
+comment1.params=
+comment1.target=GameOverWin()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ GameOverWin.\r\n\ \r\n
+numComments=2

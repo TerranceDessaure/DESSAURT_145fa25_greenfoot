@@ -321,8 +321,9 @@ public class EvilSpirit extends Actor
      * it creates a new projectile, points it toward Spiderman, and adds it
      * to the world. Then the cooldown is set so it waits before firing agian.
      */
-    private void fireAtSpiderman() {
-        if (getWorld() == null) return;
+    private void fireAtSpiderman() 
+    {
+        if (getWorld() == null)   return;
 
         BaseWorld world = (BaseWorld)getWorld();
         Spiderman spiderman = world.getSpiderman();
