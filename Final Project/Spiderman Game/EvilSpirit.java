@@ -13,7 +13,7 @@ public class EvilSpirit extends Actor
 {
     // Fields
     private int health;      
-    private int coolDown;         // projectile cooldown
+    private int coolDown;         
     private int actCounter;       
     private int seconds;         
 

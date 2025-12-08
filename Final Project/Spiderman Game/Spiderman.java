@@ -1,11 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import greenfoot.GreenfootImage;
 
 /**
  * Write a description of class Spiderman here.
  * 
  * @author Terrance Dessaire 
- * @version (a version number or a date)
+ * @version 12.6.25
  */
 public class Spiderman extends Actor
 {

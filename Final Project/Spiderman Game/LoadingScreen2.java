@@ -19,13 +19,13 @@ public class LoadingScreen2 extends BaseWorld
     
     private String[] loreMessages = 
     {
-    "The Loa are guardians of balance, guiding mortals through trials unseen.",
+    "The Loa are guardians of balance",
     "Each Loa embodies a force of nature",
-    "Blessings from the Loa are gifts of strength, but they must be earned.",
+    "Blessings from the Loa are gifts of strength.",
     "The Loa whisper wisdom in dreams, shaping destiny with subtle hands.",
     "To honor the Loa is to walk in harmony with the living world.",
     "Spirits of the Loa weave fate, binding heroes to paths of growth.",
-   
+    
     };
     
     //Constructor
@@ -44,7 +44,7 @@ public class LoadingScreen2 extends BaseWorld
         this.spiderman = spiderman;
         
         // instantiate variables from field
-        int time = 0;
+        int timer = 0;
         boolean shown = false;
 
         LoadingCircle loadingcircle = new LoadingCircle();

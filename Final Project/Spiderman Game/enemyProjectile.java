@@ -22,8 +22,8 @@ public class enemyProjectile extends Actor
         if (getWorld() != null)
         {
             checkEdge();
-        }
-    }
+        }// end if
+    }// end act
 
     /**
      * This will check if the enemyProjectile is at the edge of the screen.

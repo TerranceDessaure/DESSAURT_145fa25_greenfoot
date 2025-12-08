@@ -30,7 +30,7 @@ public class LorePopup extends Actor
     private void updateImage() 
     {
         GreenfootImage img = new GreenfootImage(400, 100);
-        img.setColor(new Color(0, 0, 0, 180)); // semi-transparent background
+        img.setColor(new Color(0, 0, 0, 180)); 
         img.fillRect(0, 0, 250, 100);
         img.setColor(Color.WHITE);
         img.drawString(message, 10, 50);
